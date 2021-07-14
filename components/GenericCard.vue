@@ -2,9 +2,10 @@
     <v-card
       id="vcard"
       elevation="1"
+      rounded
     >
     <nuxt-link
-    :to="{ params: { ...params }, path: nextView }"
+    :to="{ params: { ...params }, name: nview }"
     style="text-decoration: none; color: inherit"
     >
       <v-card-title id="title-name" class="justify-center" style="font-family: -apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto;">{{ name }}</v-card-title>
@@ -19,13 +20,19 @@
 export default {
   name: "GenericCard",
   props: {
-    name: String,
-    image: String,
-    nextView: String,
+    name: {
+      type: String,
+      default:''},
+    image: {
+      type: String,
+      default:''},
+    nview: {
+      type: String,
+      default:''},
   },
   computed: {
     params() {
-      const params = {};
+      const params = {placeType: 'beaches'};
       if (this.$route.name === "search-beach-1") params.island = this.name;
       if (this.$route.name === "search-beach-2") params.sandType = this.name;
       if (this.$route.name === "search-beach-3") params.size = this.name;
@@ -34,6 +41,11 @@ export default {
       return { ...params, ...this.$route.params };
     },
   },
+  mounted() {
+    // console.log(this.$route.name)
+    // console.log('params', this.params.island)
+    // console.log('route params', this.$route.params)
+  }
 };
 </script>
 

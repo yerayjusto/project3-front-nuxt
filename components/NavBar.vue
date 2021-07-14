@@ -1,50 +1,80 @@
 <template>
-  <div>
-      <v-app-bar
+    <div>
+    <v-app-bar
+      color="blue"
       dark
-      shrink-on-scroll
-      src="bgnavbar.jpg"
-      style="position: fixed"
       app
+      fixed
     >
-      <div class="div-text">
-      <nuxt-link to="/" style="text-decoration: none; color: white;">
-      LET'S GO!
-      CANARIAS
-      </nuxt-link>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-toolbar-title>Let's go! Canarias</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <div flex-grow-1 flex-lg-grow-0 class="w-20">
+      <input type="text" placeholder="Buscar..." style="background-color: white;">
       </div>
-
-      <v-row>
-        <v-col offset="7" cols="4">
-
-        </v-col>
-        <v-col cols="1">
-      <v-btn icon>
-
-      </v-btn>
-      </v-col>
-      </v-row>
     </v-app-bar>
+
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+    >
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item-group
+          v-model="group"
+          active-class="primary--text text--accent-4"
+        >
+          <nuxt-link to="/"
+          style="text-decoration: none; color: inherit">
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item>
+          </nuxt-link>
+
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Cuenta/Registrarse</v-list-item-title>
+          </v-list-item>
+
+          <nuxt-link to="/beaches"
+          style="text-decoration: none; color: inherit">
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Playas</v-list-item-title>
+          </v-list-item>
+          </nuxt-link>
+
+          <nuxt-link to="/search-beach-1"
+          style="text-decoration: none; color: inherit">
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-magnify</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Encuentra tu playa</v-list-item-title>
+          </v-list-item>
+          </nuxt-link>
+
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 
 <script>
 export default {
-  name: "NavBar",
-
+data: () => ({
+      drawer: false,
+      group: null,
+    }),
 }
 </script>
-
-<style lang="scss" scoped>
-.input-search{
-  background-color: white;
-  height: 200px;
-}
-v-text-field{
-  width:100px;
-}
-.div-text{
-  width: 500px;
-  font-size: 40px;
-}
-</style>

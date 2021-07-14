@@ -11,10 +11,11 @@
 
 export default {
   name:'Beaches',
+  async asyncData({ $axios, params }) {
+    const beaches = await $axios.get('/places/search', { params: { ...params } })
+    return { beaches: beaches.data }
+  },
   data(){
-    return{
-      beaches:[]
-    }
   },
   props: {
     filter: {

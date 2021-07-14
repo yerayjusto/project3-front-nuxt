@@ -32,7 +32,7 @@
       <v-col
         v-for="(island, idx) in islands"
         :key="idx"
-        class="d-flex justify-center"
+        class="d-flex justify-center px-lg-15"
         cols="6"
         xs="4"
         sm="4"
@@ -41,7 +41,7 @@
         <GenericCard
           :name="island.island"
           :image="island.image"
-          nextView="/search-beach-2"
+          nview="search-beach-2"
         />
       </v-col>
     </v-row>

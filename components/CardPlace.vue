@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto my-12" width="374" height="500">
+  <v-card class="ma-auto" width="374" height="500">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"

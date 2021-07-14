@@ -12,34 +12,30 @@
       </v-col>
     </v-row>
 
-    <v-row v-else>
-      <v-row align="center" justify="center">
-        <v-col class="d-flex ml-2 col-sm-6 col-md-4 col-lg-1" cols="1">
-          <nuxt-link to="/" style="text-decoration: none; color: inherit">
-            <v-btn class="secondary me-5" width="300" height="50"
-              >MENU PRINCIPAL</v-btn
-            >
-          </nuxt-link>
-        </v-col>
+    <v-row v-else align="center" justify="center">
+      <v-col justify="center">
+          <h1 style="text-align: center;">{{ beaches.length }} Playas encontradas!</h1>
+      </v-col>
       </v-row>
-      <v-col
-        class="d-flex justify-center col-sm-6 col-md-4 col-lg-1"
-        cols="11"
-        style="
-          font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI,
-            Roboto;
-        "
-      >
-        <h1>{{ beaches.length }} Playas encontradas!</h1>
+
+    <v-row align="center" justify="center">
+      <v-col d-flex justify="center" class="col-sm-6 col-md-4 col-lg-2">
+        <nuxt-link to="/" style="text-decoration: none; color: inherit">
+        <div align="center">
+          <v-btn v-show="$vuetify.breakpoint.md || $vuetify.breakpoint.lg" style="width: auto;" id="btn-menu" class="secondary"
+            >MENU PRINCIPAL
+          </v-btn>
+        </div>
+        </nuxt-link>
       </v-col>
     </v-row>
 
     <v-row align="center" justify="center">
       <v-col
-        cols="12"
-        class="col-sm-6 col-md-4 col-lg-3"
         v-for="(beach, idx) in beaches"
         :key="idx"
+        cols="12"
+        class="col-sm-6 col-md-4 col-lg-3"
       >
         <CardPlace :place="beach" />
       </v-col>
@@ -50,9 +46,29 @@
 <script>
 export default {
   name: 'Beaches',
-  async asyncData({ $axios, $route }) {
-    const beaches = await $axios.get('/places/beaches/search', { params: { ...$route.params } })
-    return { beaches }
-  }
+  async asyncData({ $axios, params }) {
+    const beaches = await $axios.get('/places/search', {
+      params: { ...params },
+    })
+    return { beaches: beaches.data }
+  },
 }
 </script>
+<style>
+.results {
+  display: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('../assets/bgletsgo3.jpg') !important;
+  background-size: cover;
+  background-position: center;
+}
+@media (max-width: 600px) {
+h1 {
+  font-size: 18px;
+}
+#btn-menu {
+  width: 50px;
+}
+}
+</style>
