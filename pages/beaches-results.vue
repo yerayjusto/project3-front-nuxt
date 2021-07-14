@@ -31,13 +31,14 @@
     </v-row>
 
     <v-row align="center" justify="center">
+
       <v-col
         v-for="(beach, idx) in beaches"
         :key="idx"
         cols="12"
         class="col-sm-6 col-md-4 col-lg-3"
       >
-        <CardPlace :place="beach" />
+        <CardPlace :place="beach"/>
       </v-col>
     </v-row>
   </v-container>
@@ -52,6 +53,9 @@ export default {
     })
     return { beaches: beaches.data }
   },
+  mounted() {
+    console.log(this.beaches)
+  }
 }
 </script>
 <style>

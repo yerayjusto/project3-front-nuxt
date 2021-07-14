@@ -26,7 +26,7 @@
           :to="{ params: { ...params }, path: 'beaches-results' }"
         >
           <v-btn class="primary" width="160" height="50"
-            >FINALIZAR (SALTAR)</v-btn
+            >SIGUIENTE (SALTAR)</v-btn
           >
         </nuxt-link>
       </v-col>

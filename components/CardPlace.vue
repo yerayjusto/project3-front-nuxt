@@ -1,5 +1,7 @@
 <template>
   <v-card class="ma-auto" width="374" height="500">
+    <nuxt-link :to="{ params: { id: place._id }, name: 'beach-details' }"
+    style="text-decoration: none; color: inherit">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -61,6 +63,7 @@
         Reserve
       </v-btn>
     </v-card-actions> -->
+    </nuxt-link>
   </v-card>
 </template>
 
