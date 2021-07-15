@@ -1,27 +1,31 @@
 <template>
   <v-row>
-    <v-col cols="12"
-        class="d-flex justify-center col-sm-6 col-md-4 col-lg-3" v-for="(beach,idx) in beaches" :key="idx" >
-        <CardPlace :place="beach"/>
+    <v-col
+      cols="12"
+      class="d-flex justify-center col-sm-6 col-md-4 col-lg-3"
+      v-for="(beach, idx) in beaches"
+      :key="idx"
+    >
+      <CardPlace :place="beach" />
     </v-col>
   </v-row>
 </template>
 
 <script>
-
 export default {
-  name:'Beaches',
+  name: 'Beaches',
   async asyncData({ $axios, params }) {
-    const beaches = await $axios.get('/places/search', { params: { ...params } })
+    const beaches = await $axios.get('/places/search', {
+      params: { ...params },
+    })
     return { beaches: beaches.data }
   },
-  data(){
-  },
+  data() {},
   props: {
     filter: {
       type: Object,
-      required:true
-    }
+      required: true,
+    },
   },
 
   // mounted() {

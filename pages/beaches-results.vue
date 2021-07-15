@@ -13,19 +13,30 @@
     </v-row>
 
     <v-row v-else align="center" justify="center">
-      <v-col justify="center">
-          <h1 style="text-align: center;">{{ beaches.length }} Playas encontradas!</h1>
+      <v-col v-if="beaches.length > 1" justify="center">
+        <h1 style="text-align: center">
+          {{ beaches.length }} Playas encontradas!
+        </h1>
       </v-col>
-      </v-row>
+      <v-col v-else justify="center">
+        <h1 style="text-align: center">
+          {{ beaches.length }} Playa encontrada!
+        </h1>
+      </v-col>
+    </v-row>
 
     <v-row align="center" justify="center">
       <v-col d-flex justify="center" class="col-sm-6 col-md-4 col-lg-2">
         <nuxt-link to="/" style="text-decoration: none; color: inherit">
-        <div align="center">
-          <v-btn v-show="$vuetify.breakpoint.md || $vuetify.breakpoint.lg" style="width: auto;" id="btn-menu" class="secondary"
-            >MENU PRINCIPAL
-          </v-btn>
-        </div>
+          <div align="center">
+            <v-btn
+              v-show="$vuetify.breakpoint.md || $vuetify.breakpoint.lg"
+              id="btn-menu"
+              style="width: auto"
+              class="secondary"
+              >MENU PRINCIPAL
+            </v-btn>
+          </div>
         </nuxt-link>
       </v-col>
     </v-row>
@@ -33,9 +44,15 @@
     <v-row align="center" justify="center">
       <v-col
         v-for="(beach, idx) in beaches"
+        id="card"
         :key="idx"
-        cols="12"
-        class="col-sm-6 col-md-4 col-lg-3"
+        class="d-flex justify-center pa-xs-0"
+        cols="6"
+        xs="4"
+        sm="4"
+        md="4"
+        lg="3"
+        xl="3"
       >
         <CardPlace :place="beach" />
       </v-col>
@@ -64,11 +81,8 @@ export default {
   background-position: center;
 }
 @media (max-width: 600px) {
-h1 {
-  font-size: 18px;
-}
-#btn-menu {
-  width: 50px;
-}
+  h1 {
+    font-size: 18px;
+  }
 }
 </style>

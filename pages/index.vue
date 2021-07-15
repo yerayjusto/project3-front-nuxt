@@ -18,14 +18,14 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 <style lang="scss">
 .places {
   display: absolute;
   background: url('../assets/bgletsgo3.jpg') !important;
-  background-size:cover;
-  background-position:center;
+  background-size: cover;
+  background-position: center;
 }
 .welcome {
   font-size: 50px;

@@ -1,38 +1,59 @@
 <template>
   <v-container fluid class="choose">
-
-    <v-row>
-      <v-col
-        class="d-flex justify-center"
-      >
-        <h1>Elige Isla:</h1>
-      </v-col>
-    </v-row>
-
     <v-row align="center" justify="center" class="mt-5">
-      <v-col class="d-flex justify-center col-sm-6 col-md-4 col-lg-2">
+      <v-col
+        class="d-flex justify-center pa-xs-0"
+        cols="6"
+        xs="6"
+        sm="6"
+        md="4"
+        lg="3"
+        xl="3"
+      >
         <nuxt-link to="/" style="text-decoration: none; color: inherit">
-          <v-btn cols="12" xs="6" sm="6" class="secondary" width="160" height="50"
-            >MENU PRINCIPAL</v-btn
+          <v-btn
+            v-if="$vuetify.breakpoint.xs"
+            class="mx-2"
+            fab
+            dark
+            small
+            color="secondary"
           >
+            <v-icon dark>mdi-home</v-icon>
+          </v-btn>
+          <v-btn v-else small class="secondary">MENU PRINCIPAL</v-btn>
         </nuxt-link>
       </v-col>
-      <v-col class="d-flex justify-center col-sm-6 col-md-4 col-lg-2">
-        <nuxt-link
-          :to="{ params: { ...$route.params }, path: '/search-beach-2' }"
-        >
-          <v-btn cols="12" xs="6" sm="6" class="primary" width="160" height="50"
-            >SIGUIENTE (SALTAR)</v-btn
+      <v-col
+        class="d-flex justify-center pa-xs-0"
+        cols="6"
+        xs="6"
+        sm="6"
+        md="4"
+        lg="3"
+        xl="3"
+      >
+        <nuxt-link :to="{ name: 'search-beach-2' }">
+          <v-btn
+            v-if="$vuetify.breakpoint.xs"
+            class="mx-2"
+            fab
+            dark
+            small
+            color="primary"
           >
+            <v-icon dark>mdi-arrow-right-bold</v-icon>
+          </v-btn>
+          <v-btn v-else small class="primary"> SIGUIENTE (SALTAR) </v-btn>
         </nuxt-link>
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row align="center" justify="center">
       <v-col
         v-for="(island, idx) in islands"
         :key="idx"
-        class="d-flex justify-center px-lg-15"
+        class="px-lg-15"
         cols="6"
         xs="4"
         sm="4"
@@ -45,7 +66,6 @@
         />
       </v-col>
     </v-row>
-
   </v-container>
 </template>
 
@@ -55,42 +75,45 @@ export default {
     return {
       islands: [
         {
-          island: "Tenerife",
-          image: "tenerife.jpg",
+          island: 'Tenerife',
+          image: 'tenerife.jpg',
         },
         {
-          island: "La Palma",
-          image: "la-palma.jpg",
+          island: 'La Palma',
+          image: 'la-palma.jpg',
         },
         {
-          island: "La Gomera",
-          image: "la-gomera.jpg",
+          island: 'La Gomera',
+          image: 'la-gomera.jpg',
         },
         {
-          island: "El Hierro",
-          image: "el-hierro.jpg",
+          island: 'El Hierro',
+          image: 'el-hierro.jpg',
         },
         {
-          island: "Gran Canaria",
-          image: "gran-canaria.jpg",
+          island: 'Gran Canaria',
+          image: 'gran-canaria.jpg',
         },
         {
-          island: "Fuerteventura",
-          image: "fuerteventura.jpg",
+          island: 'Fuerteventura',
+          image: 'fuerteventura.jpg',
         },
         {
-          island: "Lanzarote",
-          image: "lanzarote.jpg",
+          island: 'Lanzarote',
+          image: 'lanzarote.jpg',
         },
         {
-          island: "La Graciosa",
-          image: "la-graciosa.jpg",
+          island: 'La Graciosa',
+          image: 'la-graciosa.jpg',
         },
       ],
       beaches: Object,
-    };
+    }
   },
-};
+  mounted() {
+    if (this.$route.params.island !== null) delete this.$route.params.island
+  },
+}
 </script>
 
 <style lang="scss">
@@ -99,7 +122,7 @@ export default {
   width: 100%;
   height: 100%;
   background: url('../assets/bgletsgo3.jpg') !important;
-  background-size:cover;
-  background-position:center;
+  background-size: cover;
+  background-position: center;
 }
 </style>
