@@ -1,19 +1,13 @@
 <template>
   <v-container fluid fill-height class="places">
-    <!-- <v-row style="height: 100%; margin: 0 0;" v-if="!token" align="center">
-      <v-col>
-        <v-tabs centered class="form">
-          <v-tab> Entrar </v-tab>
-          <v-tab-item class="pa-5">
-            <Login/>
-          </v-tab-item>
-          <v-tab> Registrarse </v-tab>
-          <v-tab-item class="pa-5">
-            <SignUp/>
-          </v-tab-item>
-        </v-tabs>
+    <v-row align="center"
+      justify="center">
+      <v-col
+      class="d-flex justify-center pa-xs-0"
+        cols="12">
+        <Login/>
       </v-col>
-    </v-row> -->
+  </v-row>
   </v-container>
 </template>
 
@@ -23,6 +17,8 @@ export default {}
 <style lang="scss">
 .places {
   display: absolute;
+  width: 100%;
+  height: 100%;
   background: url('../assets/bgletsgo3.jpg') !important;
   background-size: cover;
   background-position: center;

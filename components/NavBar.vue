@@ -2,7 +2,10 @@
   <div>
     <v-app-bar color="blue" dark app fixed>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-toolbar-title>Let's go! Canarias</v-toolbar-title>
+      <div d-flex>
+      <v-img v-if="$vuetify.breakpoint.xs" height="24" width="24" :src="require('../assets/logonb.png')"></v-img>
+      <v-toolbar-title v-else><b>Let's go!</b> Canarias</v-toolbar-title>
+      </div>
       <v-spacer></v-spacer>
       <div flex-grow-1 flex-lg-grow-0 class="w-20">
         <input

@@ -31,13 +31,6 @@
           v-model="confPass"
           :rules="[confPassRule]"
         ></v-text-field>
-        <v-select
-          label
-          :items="['user', 'master', 'admin']"
-          placeholder="Select a role"
-          outlined
-          v-model="role"
-        ></v-select>
       </v-card-text>
 
       <v-divider></v-divider>
@@ -52,14 +45,14 @@
 
 <script>
 export default {
-  name: 'Signup',
+  name: "Signup",
 
   data: () => ({
-    name: '',
-    email: '',
-    password: '',
-    confPass: '',
-    role: '',
+    name: "",
+    email: "",
+    password: "",
+    confPass: "",
+    role: "",
     formHasErrors: false,
     snackbar: false,
     rules: {
@@ -69,31 +62,31 @@ export default {
         ) || "Email doesn't have the right format",
       password: (value) =>
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(value) ||
-        '8 characters, lowercase and uppercase',
+        "8 characters, lowercase and uppercase",
     },
   }),
   computed: {
     confPassRule() {
-      return () => this.password === this.confPass || 'Passwords do not match'
+      return () => this.password === this.confPass || "Passwords do not match";
     },
     form() {
       return {
         email: this.email,
         password: this.password,
-      }
+      };
     },
   },
   methods: {
     submit() {
-      this.formHasErrors = false
+      this.formHasErrors = false;
 
       Object.keys(this.form).forEach((field) => {
-        if (!this.form[field]) this.formHasErrors = true
+        if (!this.form[field]) this.formHasErrors = true;
 
-        this.$refs[field].validate(true)
-      })
+        this.$refs[field].validate(true);
+      });
 
-      if (!this.formHasErrors) this.signup()
+      if (!this.formHasErrors) this.signup();
     },
     // signup() {
     //   AuthService.signup(this.name, this.email, this.password, this.role)
@@ -107,5 +100,5 @@ export default {
     //   })
     // }
   },
-}
+};
 </script>
