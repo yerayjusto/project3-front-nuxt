@@ -10,7 +10,7 @@
       <v-toolbar-title>Let's go! Canarias</v-toolbar-title>
       <v-spacer></v-spacer>
       <div flex-grow-1 flex-lg-grow-0 class="w-20">
-      <input type="text" placeholder="Buscar..." style="background-color: white;">
+        <input v-model="name" type="text" placeholder="Buscar..." style="background-color: white;" @keyup.enter="$router.push({ query: { name: name },  name: 'beaches-results'})">
       </div>
     </v-app-bar>
 
@@ -75,6 +75,7 @@ export default {
 data: () => ({
       drawer: false,
       group: null,
+      name: ''
     }),
 }
 </script>
