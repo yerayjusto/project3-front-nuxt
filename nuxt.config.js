@@ -41,7 +41,24 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+     [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: 'AIzaSyCGYYCBwAlmjmXrW3VT1cseu_uf7kAExJ4',
+          authDomain: 'lets-go-canarias.firebaseapp.com',
+          projectId: 'lets-go-canarias',
+          storageBucket: 'lets-go-canarias.appspot.com',
+          messagingSenderId: '857947278789',
+          appId: '1:857947278789:web:ee32dd0b4c66adf0c5cfac',
+          measurementId: 'G-WDXZKP53J7'
+        },
+        services: {
+          storage: true
+        }
+      }
+    ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
