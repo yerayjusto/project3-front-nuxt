@@ -38,6 +38,27 @@
             <v-list-item-title>Cuenta/Registrarse</v-list-item-title>
           </v-list-item>
 
+          <nuxt-link to="/restaurants" style="text-decoration: none; color: inherit">
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-food-variant</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Restaurantes</v-list-item-title>
+            </v-list-item>
+          </nuxt-link>
+
+          <nuxt-link
+            to="/search-rest-1"
+            style="text-decoration: none; color: inherit"
+          >
+          <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-magnify</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Encuentra tu restaurante</v-list-item-title>
+            </v-list-item>
+          </nuxt-link>
+
           <nuxt-link
             to="/beaches"
             style="text-decoration: none; color: inherit"

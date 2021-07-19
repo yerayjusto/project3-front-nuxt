@@ -1,6 +1,5 @@
 <template>
   <v-container fluid class="choose">
-
     <v-row align="center" justify="center" class="mt-5">
       <v-col
         class="d-flex justify-center pa-xs-0"
@@ -35,7 +34,7 @@
         xl="3"
       >
         <nuxt-link
-          :to="{ params: { placeType: 'beaches' }, name: 'search-beach-2' }"
+          :to="{ params: { placeType: 'restaurants' }, name: 'search-rest-2' }"
         >
           <v-btn
             v-if="$vuetify.breakpoint.xs"
@@ -62,10 +61,10 @@
         sm="4"
         md="3"
       >
-        <CardBeach
+        <CardRestaurant
           :name="island.island"
           :image="island.image"
-          nview="search-beach-2"
+          nview="search-rest-2"
         />
       </v-col>
     </v-row>
@@ -123,11 +122,5 @@ export default {
   display: absolute;
   width: 100%;
   height: 100%;
-}
-.title {
-  width: 100%;
-  height: 100px;
-  background-color: white;
-  margin: 0 0 0 0;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <v-container fluid class="beaches">
+  <v-container fluid class="restaurants">
     <v-row>
       <v-col
-        v-for="(beach, idx) in beaches"
+        v-for="(restaurant, idx) in restaurants"
         :key="idx"
         class="d-flex justify-center pa-xs-0"
         cols="6"
@@ -12,7 +12,7 @@
         lg="3"
         xl="3"
       >
-        <CardPlace :place="beach" />
+        <CardPlace :place="restaurant" />
       </v-col>
     </v-row>
   </v-container>
@@ -22,17 +22,18 @@
 export default {
   name: 'Beaches',
   async asyncData({ $axios, params }) {
-    const beaches = await $axios.get('/places/search', {
-      params: { placeType: 'beaches' },
+    const restaurants = await $axios.get('/places/search', {
+      params: { placeType: 'restaurants' },
     })
-    return { beaches: beaches.data }
+    return { restaurants: restaurants.data }
   },
 
   data() {},
 }
 </script>
+
 <style scoped>
-.beaches {
+.restaurants {
   display: absolute;
   width: 100%;
   height: 100%;

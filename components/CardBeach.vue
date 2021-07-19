@@ -7,16 +7,12 @@
       <v-card-title
         id="title-name"
         class="justify-center"
-        style="
-          font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI,
-            Roboto;
-        "
         >{{ name }}</v-card-title
       >
       <div id="divcard" class="pa-2">
         <v-img
           id="imgcard"
-          height="120"
+          height="200"
           :src="require(`@/assets/${image}`)"
         ></v-img>
       </div>
@@ -26,7 +22,7 @@
 
 <script>
 export default {
-  name: 'GenericCard',
+  name: 'CardBeach',
   props: {
     name: {
       type: String,
@@ -51,11 +47,6 @@ export default {
 
       return { ...params, ...this.$route.params }
     },
-  },
-  mounted() {
-    // console.log(this.$route.name)
-    // console.log('params', this.params.island)
-    // console.log('route params', this.$route.params)
   },
 }
 </script>

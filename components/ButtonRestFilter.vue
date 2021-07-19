@@ -1,15 +1,15 @@
 <template>
   <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
     <nuxt-link
-      :to="{ params: { ...params }, name: 'beaches-results' }"
+      :to="{ params: { ...params }, name: 'restaurants-results' }"
       style="text-decoration: none; color: inherit"
     >
-      <v-btn v-if="$vuetify.breakpoint.xs" small class="success">
-        <v-icon dark>mdi-white-balance-sunny</v-icon>
+      <v-btn v-if="$vuetify.breakpoint.xs" small class="success" width="130">
+        <v-icon dark>mdi-food-variant</v-icon>
         &nbsp;
-        {{ beaches.length }} PLAYAS
+        {{ restaurants.length }} RESULTADOS
       </v-btn>
-      <v-btn v-else class="success"> {{ beaches.length }} PLAYAS</v-btn>
+      <v-btn v-else class="success"> {{ restaurants.length }} RESULTADOS</v-btn>
     </nuxt-link>
   </v-col>
 </template>
@@ -17,7 +17,7 @@
 <script>
 export default {
   props: {
-    beaches: {
+    restaurants: {
       type: Array,
       required: true,
     },

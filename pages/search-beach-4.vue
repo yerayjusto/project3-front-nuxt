@@ -16,7 +16,7 @@
           >
             <v-icon dark>mdi-arrow-left-bold</v-icon>
           </v-btn>
-          <v-btn v-else small class="secondary">ATRAS</v-btn>
+          <v-btn v-else class="secondary">ATRAS</v-btn>
         </nuxt-link>
       </v-col>
 
@@ -37,7 +37,7 @@
           >
             <v-icon dark>mdi-arrow-right-bold</v-icon>
           </v-btn>
-          <v-btn v-else small class="primary"> SIGUIENTE (SALTAR) </v-btn>
+          <v-btn v-else class="primary"> SIGUIENTE (SALTAR) </v-btn>
         </nuxt-link>
       </v-col>
     </v-row>
@@ -52,7 +52,7 @@
         sm="4"
         md="3"
       >
-        <GenericCard
+        <CardBeach
           :image="surge.image"
           :name="surge.surge"
           nview="beaches-results"
