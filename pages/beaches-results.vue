@@ -1,11 +1,15 @@
 <template>
-  <v-container fluid pa-0>
+  <v-container fluid pa-0 pt-2>
     <v-row justify="center">
-      <v-expansion-panels accordion>
+      <v-expansion-panels v-model="panel" accordion>
         <v-expansion-panel>
-          <v-expansion-panel-header>Item</v-expansion-panel-header>
+          <v-expansion-panel-header hide-actions>
+            <v-btn color="warning">
+              Filtros
+            </v-btn>
+          </v-expansion-panel-header>
           <v-expansion-panel-content>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -59,12 +63,21 @@
 <script>
 export default {
   name: 'Beaches',
+
   async asyncData({ $axios, params }) {
     const beaches = await $axios.get('/places/search', {
       params: { ...params },
     })
     return { beaches: beaches.data }
   },
+  data() {
+    return {
+      panel: [0]
+    }
+  },
+  computed () {
+
+  }
 }
 </script>
 <style>
