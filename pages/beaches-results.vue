@@ -1,43 +1,56 @@
 <template>
-  <v-container fluid class="results">
-    <v-row v-if="beaches.length === 0">
-      <v-col
-        class="d-flex justify-center"
-        style="
-          font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI,
-            Roboto;
-        "
-      >
-        <h1>No se han encontrado resultados para tu búsqueda</h1>
-      </v-col>
+  <v-container fluid pa-0>
+    <v-row justify="center">
+      <v-expansion-panels accordion>
+        <v-expansion-panel>
+          <v-expansion-panel-header>Item</v-expansion-panel-header>
+          <v-expansion-panel-content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </v-row>
+    <v-row>
+      <v-col cols="9" >
+        <v-container fluid class="results">
+          <v-row v-if="beaches.length === 0">
+            <v-col cols="3" absolute right>
 
-    <v-row v-else align="center" justify="center">
-      <v-col justify="center">
-          <h1 style="text-align: center;">{{ beaches.length }} Playas encontradas!</h1>
-      </v-col>
-      </v-row>
-
-    <v-row align="center" justify="center">
-      <v-col d-flex justify="center" class="col-sm-6 col-md-4 col-lg-2">
-        <nuxt-link to="/" style="text-decoration: none; color: inherit">
-        <div align="center">
-          <v-btn v-show="$vuetify.breakpoint.md || $vuetify.breakpoint.lg" style="width: auto;" id="btn-menu" class="secondary"
-            >MENU PRINCIPAL
-          </v-btn>
-        </div>
-        </nuxt-link>
-      </v-col>
-    </v-row>
-
-    <v-row align="center" justify="center">
-      <v-col
-        v-for="(beach, idx) in beaches"
-        :key="idx"
-        cols="12"
-        class="col-sm-6 col-md-4 col-lg-3"
-      >
-        <CardPlace :place="beach" />
+            </v-col>
+            <v-col
+              class="d-flex justify-center"
+              style="font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto;"
+            >
+              <h1>No se han encontrado resultados para tu búsqueda</h1>
+            </v-col>
+          </v-row>
+          <v-row v-else align="center" justify="center">
+            <v-col justify="center">
+              <h1 style="text-align: center;">{{ beaches.length }} Playas encontradas!</h1>
+            </v-col>
+          </v-row>
+          <v-row align="center" justify="center">
+            <v-col d-flex justify="center" class="col-sm-6 col-md-4 col-lg-2">
+              <nuxt-link to="/" style="text-decoration: none; color: inherit">
+              <div align="center">
+                <v-btn v-show="$vuetify.breakpoint.md || $vuetify.breakpoint.lg" style="width: auto;" id="btn-menu" class="secondary"
+                  >MENU PRINCIPAL
+                </v-btn>
+              </div>
+              </nuxt-link>
+            </v-col>
+          </v-row>
+          <v-row align="center" justify="center">
+            <v-col
+              v-for="(beach, idx) in beaches"
+              :key="idx"
+              cols="12"
+              class="col-sm-6 col-md-4 col-lg-3"
+            >
+              <CardPlace :place="beach"/>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-col>
     </v-row>
   </v-container>
