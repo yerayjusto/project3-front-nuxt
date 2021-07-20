@@ -1,6 +1,6 @@
 <template>
   <v-container fluid pa-0 pt-2>
-    <v-row justify="center">
+    <v-row justify="center" class="hidden-lg-and-up">
       <v-expansion-panels v-model="panel" accordion>
         <v-expansion-panel>
           <v-expansion-panel-header hide-actions>
@@ -9,18 +9,18 @@
             </v-btn>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            
+            <AdvancedSearchFilter/>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
     </v-row>
     <v-row>
-      <v-col cols="9" >
+      <v-col cols="3" class="hidden-md-and-down">
+        <AdvancedSearchFilter/>
+      </v-col>
+      <v-col cols="12" lg="9">
         <v-container fluid class="results">
           <v-row v-if="beaches.length === 0">
-            <v-col cols="3" absolute right>
-
-            </v-col>
             <v-col
               class="d-flex justify-center"
               style="font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Roboto;"
