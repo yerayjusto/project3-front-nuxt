@@ -4,11 +4,9 @@
       :to="{ params: { ...params }, name: nview }"
       style="text-decoration: none; color: inherit"
     >
-      <v-card-title
-        id="title-name"
-        class="justify-center"
-        >{{ name }}</v-card-title
-      >
+      <v-card-title id="title-name" class="justify-center">{{
+        name
+      }}</v-card-title>
       <div id="divcard" class="pa-2">
         <v-img
           id="imgcard"
@@ -44,8 +42,7 @@ export default {
       if (this.$route.name === 'search-beach-2') params.sandType = this.name
       if (this.$route.name === 'search-beach-3') params.size = this.name
       if (this.$route.name === 'search-beach-4') params.surge = this.name
-
-      return { ...params, ...this.$route.params }
+      return { ...this.$route.params, ...params }
     },
   },
 }

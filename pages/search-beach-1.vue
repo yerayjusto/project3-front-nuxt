@@ -113,7 +113,9 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.params.island !== null) delete this.$route.params.island
+    console.log('------------------before', this.$route.params.island)
+    if (this.$route.params.island !== undefined) delete this.$route.params.island
+    console.log('------------------after', this.$route.params.island)
   },
 }
 </script>

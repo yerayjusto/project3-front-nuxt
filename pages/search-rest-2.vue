@@ -59,7 +59,7 @@
         <CardRestaurant
           :image="type.image"
           :name="type.establishmentType"
-          nview="search-rest-2"
+          nview="search-rest-3"
         />
       </v-col>
     </v-row>

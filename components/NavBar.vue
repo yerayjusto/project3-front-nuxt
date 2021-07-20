@@ -8,11 +8,20 @@
       </div>
       <v-spacer></v-spacer>
       <div flex-grow-1 flex-lg-grow-0 class="w-20">
+        <v-row>
+          <v-col>
         <input
           type="text"
           placeholder="Buscar..."
           style="background-color: white"
         />
+        </v-col>
+        <v-col>
+          <v-btn icon @click="logout">
+           <v-icon>mdi-logout</v-icon>
+          </v-btn>
+        </v-col>
+        </v-row>
       </div>
     </v-app-bar>
 
@@ -82,6 +91,19 @@
               <v-list-item-title>Encuentra tu playa</v-list-item-title>
             </v-list-item>
           </nuxt-link>
+
+          <nuxt-link
+            to="/museums"
+            style="text-decoration: none; color: inherit"
+          >
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-home-modern</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Museos</v-list-item-title>
+            </v-list-item>
+          </nuxt-link>
+
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -94,5 +116,11 @@ export default {
     drawer: false,
     group: null,
   }),
+  methods: {
+   async logout() {
+     await this.$auth.logout()
+     this.$auth.removeUniversal('role')
+    }
+  }
 }
 </script>

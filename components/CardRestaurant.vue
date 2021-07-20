@@ -45,7 +45,7 @@ export default {
       if (this.$route.name === 'search-rest-3') params.price = this.name
       if (this.$route.name === 'search-rest-4') params.cuisine = this.name
 
-      return { ...params, ...this.$route.params }
+      return { ...this.$route.params, ...params }
     },
   },
 }

@@ -79,15 +79,15 @@ export default {
     return {
       prices: [
         {
-          price: 'Económico',
+          price: 'Económico (<15€)',
           image: 'surge-calm.jpg',
         },
         {
-          price: 'Moderado',
+          price: 'Moderado (15-25€)',
           image: 'surge-medium.jpeg',
         },
         {
-          price: 'Elevado',
+          price: 'Elevado (>25€)',
           image: 'surge-hard.jpeg',
         },
       ],

@@ -48,6 +48,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: 'https://letsgocanarias.herokuapp.com/api'
+    // baseURL: 'http://localhost:3000/api'
   },
 
   auth: {
@@ -60,9 +61,9 @@ export default {
       local: {
         token: {
           property: 'token',
-          global: true
+          global: true,
           // required: true,
-          // type: 'Bearer'
+          type: false
         },
         user: {
           property: 'user'
@@ -71,7 +72,7 @@ export default {
         endpoints: {
           login: { url: '/auth/login', method: 'post' },
           logout: false,
-          user: { url: '/auth/user', method: 'get' }
+          user: { url: '/auth/profile', method: 'get' }
         }
       }
     }
