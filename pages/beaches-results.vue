@@ -1,6 +1,6 @@
 <template>
   <v-container fluid pa-0 pt-2>
-    <v-row justify="center" class="hidden-lg-and-up">
+    <v-row class="hidden-lg-and-up" >
       <v-expansion-panels v-model="panel" accordion>
         <v-expansion-panel>
           <v-expansion-panel-header hide-actions>
@@ -15,10 +15,10 @@
       </v-expansion-panels>
     </v-row>
     <v-row>
-      <v-col cols="3" class="hidden-md-and-down">
+      <v-col cols="2" class="hidden-md-and-down">
         <AdvancedSearchFilter/>
       </v-col>
-      <v-col cols="12" lg="9">
+      <v-col cols="12" lg="10">
         <v-container fluid class="results">
           <v-row v-if="beaches.length === 0">
             <v-col
@@ -80,7 +80,7 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss">
 .results {
   display: absolute;
   width: 100%;
@@ -97,4 +97,5 @@ h1 {
   width: 50px;
 }
 }
+
 </style>
