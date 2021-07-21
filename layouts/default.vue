@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  middleware: 'user'
+ // middleware: 'user'
 }
 </script>
 <style>

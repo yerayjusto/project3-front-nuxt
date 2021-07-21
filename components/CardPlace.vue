@@ -1,6 +1,6 @@
 <template>
   <v-card class="ma-auto" width="374" height="500"> 
-    <nuxt-link :to="{ params: { id: place._id }, name: 'beach-details' }"
+    <nuxt-link :to="{ params: { id: place._id }, name: nameDetailsPage }"
     style="text-decoration: none; color: inherit">
     <template slot="progress">
       <v-progress-linear
@@ -55,16 +55,6 @@
         <p>{{ place.description }}</p>
       </div>
     </v-card-text>
-
-    <v-card-actions>
-      <v-btn
-        color="deep-purple lighten-2"
-        text
-        @click="reserve"
-      >
-        Reserve
-      </v-btn>
-    </v-card-actions> -->
     </nuxt-link>
   </v-card>
 </template>
@@ -79,6 +69,17 @@ export default {
       required: true,
     },
   },
+
+  data: () => ({
+    nameDetailsPage: ''
+  }),
+
+  mounted(){
+    if (this.place.placeType === 'beaches') this.nameDetailsPage = 'beach-details'
+    if (this.place.placeType === 'restaurants') this.nameDetailsPage = 'restaurant-details'
+  }
+
+
 }
 </script>
 <style scoped>
