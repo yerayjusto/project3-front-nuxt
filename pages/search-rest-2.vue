@@ -3,7 +3,7 @@
     <v-row align="center" justify="center" class="mt-5">
       <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
         <nuxt-link
-          :to="{ params: { ...params }, name: 'search-beach-2' }"
+          :to="{ params: { ...params }, name: 'search-rest-1' }"
           style="text-decoration: none; color: inherit"
         >
           <v-btn
@@ -20,11 +20,15 @@
         </nuxt-link>
       </v-col>
 
-      <ButtonBeachesFilter v-if="params" :params="params" :beaches="beaches" />
+      <ButtonRestFilter
+        v-if="params"
+        :params="params"
+        :restaurants="restaurants"
+      />
 
       <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
         <nuxt-link
-          :to="{ params: { ...params }, name: 'search-beach-4' }"
+          :to="{ params: { ...params }, name: 'search-rest-3' }"
           style="text-decoration: none; color: inherit"
         >
           <v-btn
@@ -44,7 +48,7 @@
 
     <v-row align="center" justify="center">
       <v-col
-        v-for="(size, idx) in sizes"
+        v-for="(type, idx) in types"
         :key="idx"
         class="px-lg-10"
         cols="6"
@@ -52,10 +56,10 @@
         sm="4"
         md="3"
       >
-        <CardBeach
-          :image="size.image"
-          :name="size.size"
-          nview="search-beach-4"
+        <CardRestaurant
+          :image="type.image"
+          :name="type.establishmentType"
+          nview="search-rest-3"
         />
       </v-col>
     </v-row>
@@ -65,35 +69,29 @@
 <script>
 export default {
   async asyncData({ $axios, params }) {
-    if (params.size !== null) delete params.size
-    const beaches = await $axios.get('/places/search', {
+    if (params.establishmentType !== null) delete params.establishmentType
+    const restaurants = await $axios.get('/places/search', {
       params: { ...params },
     })
-    if (params === {}) return { beaches: beaches.data }
-    return { beaches: beaches.data, params }
+    return { restaurants: restaurants.data, params }
   },
   data() {
     return {
-      sizes: [
+      types: [
         {
-          size: 'Pequeña',
-          image: 'small-beach.jpg',
+          establishmentType: 'Bar/Cafetería',
+          image: 'cheap.png',
         },
         {
-          size: 'Mediana',
-          image: 'medium-beach.jpg',
+          establishmentType: 'Restaurante',
+          image: 'black-sand.jpg',
         },
         {
-          size: 'Grande',
-          image: 'large-beach.jpg',
+          establishmentType: 'Guachinche',
+          image: 'white-sand.jpg',
         },
       ],
     }
-  },
-  methods: {
-    delFilter() {
-      delete this.$route.params.sandType
-    },
   },
 }
 </script>

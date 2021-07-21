@@ -1,8 +1,8 @@
 <template>
-  <v-container fluid fill-height class="index">
+    <v-container fluid fill-height class="signup">
     <v-row align="center" justify="center">
       <v-col class="d-flex justify-center pa-xs-0" cols="12">
-        <Login />
+        <SignUp />
       </v-col>
     </v-row>
   </v-container>
@@ -10,17 +10,12 @@
 
 <script>
 export default {
-  layout: 'unauthenticated',
-  mounted() {
-    if (this.$auth.$state.loggedIn) {
-      this.$router.push('/beaches')
-    }
-
-  }
+  layout: 'unauthenticated'
 }
 </script>
-<style lang="scss">
-.index {
+<style>
+
+.signup {
   display: absolute;
   width: 100%;
   height: 100%;
