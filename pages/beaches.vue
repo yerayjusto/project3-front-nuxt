@@ -12,7 +12,8 @@
 export default {
   name:'Beaches',
   async asyncData({ $axios, params }) {
-    const beaches = await $axios.get('/places/search', { params: { ...params } })
+    const beaches = await $axios.get('/places/')
+    console.log(beaches.data)
     return { beaches: beaches.data }
   },
   data(){
