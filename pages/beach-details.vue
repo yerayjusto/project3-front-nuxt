@@ -14,23 +14,23 @@
         <b>Descripción:</b> <br />{{ place.description }}<br />
         <br />
         <b>Ocupación:</b> {{ place.placeId.occupation }} <br />
-        
+
         <b>Oleaje:</b> {{ place.placeId.surge }} <br>
-        
+
         <b>Acceso:</b> {{ place.placeId.wayToAccess }} <br>
-        
+
         <b>Tipo de arena:</b> {{ place.placeId.sandType }}
       </v-card-text>
       <v-card-text>
-       
+
           <b>Servicios:</b>
-    
+
 
         <v-card-text class="d-flex aling-center">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.parking === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -43,7 +43,7 @@
           <v-tooltip botton>
             <template #activator="{ on, attrs }">
               <v-icon
-               
+
                 v-show="place.placeId.toilet === 'Sí'"
                  v-bind="attrs"
                 v-on="on"
@@ -56,7 +56,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.lifeguard === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -69,7 +69,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.seaFront === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -82,7 +82,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <img
-                
+
                 v-show="place.placeId.nudism === 'Sí'"
                 src="@/assets/nudist.png"
                 style="width: 24px; height: 24px"
@@ -96,7 +96,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.disabledAccess === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -109,7 +109,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.blueFlag === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -122,7 +122,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.shower === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -135,7 +135,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.trashCan === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -148,7 +148,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.rentalSunUmbrella === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -161,7 +161,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.rentalHamocks === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -174,7 +174,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.rentalBoats === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -187,7 +187,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.food === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -200,7 +200,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.touristOffice === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -213,7 +213,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.childZone === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -226,7 +226,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.sportZone === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -239,7 +239,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                
+
                 v-show="place.placeId.scubaDiving === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -252,7 +252,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <img
-               
+
                 v-show="place.placeId.zoneMarkedOut === 'Sí'"
                 src="@/assets/surfing.png"
                 style="width: 24px; height: 24px"
@@ -266,7 +266,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <img
-                
+
                 v-show="place.placeId.zoneMarkedOut === 'Sí'"
                 src="@/assets/buoy.png"
                 style="width: 24px; height: 24px"
@@ -344,9 +344,6 @@ export default {
   display: absolute;
   width: 100%;
   height: 100%;
-  background: url('../assets/bgletsgo3.jpg') !important;
-  background-size: cover;
-  background-position: center;
 }
 @media (max-width: 600px) {
   h1 {

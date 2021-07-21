@@ -1,7 +1,7 @@
 <template>
   <v-card
     align="center"
-    class="ma-0 pa-0"
+    class="ma-0 pa-0 rounded-xl"
     elevation="15"
     width="400px"
     @v-on:keyup.enter="signup"
@@ -81,7 +81,7 @@
         v-model="confPass"
         :rules="[confPassRule]"
       ></v-text-field>
-      <v-btn width="100%" color="success" large @click="submit">
+      <v-btn dark width="100%" color="#FF9A00" large @click="submit">
       Registrarse
     </v-btn>
     </v-card-text>

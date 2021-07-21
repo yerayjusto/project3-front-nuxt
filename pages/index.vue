@@ -1,7 +1,29 @@
 <template>
   <v-container fluid fill-height class="index">
-    <v-row align="center" justify="center">
-      <v-col class="d-flex justify-center pa-xs-0" cols="12">
+    <v-row>
+      <v-col
+        :offset="$vuetify.breakpoint.mdAndUp ? '6' : '0'"
+        cols="12"
+        md="6"
+        align="center"
+        justify="center"
+      >
+        <v-img
+          :src="require('/assets/logoletsgo.png')"
+          height="150"
+          width='300'
+          class="mt-5"
+        ></v-img>
+      </v-col>
+
+      <v-col
+        class="pa-xs-0"
+        :offset="$vuetify.breakpoint.mdAndUp ? '6' : '0'"
+        cols="12"
+        md="6"
+        align="center"
+        justify="center"
+      >
         <Login />
       </v-col>
     </v-row>
@@ -11,12 +33,7 @@
 <script>
 export default {
   layout: 'unauthenticated',
-  mounted() {
-    if (this.$auth.$state.loggedIn) {
-      this.$router.push('/beaches')
-    }
-
-  }
+  middleware: 'user',
 }
 </script>
 <style lang="scss">
@@ -24,5 +41,8 @@ export default {
   display: absolute;
   width: 100%;
   height: 100%;
+  background-image: url('../assets/background_index.jpg') !important;
+  background-size: cover;
+  background-position: center;
 }
 </style>

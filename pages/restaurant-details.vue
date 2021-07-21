@@ -168,7 +168,7 @@ export default {
     show: false,
   }),
   mounted() {
-    
+
   },
 }
 </script>
@@ -177,9 +177,6 @@ export default {
   display: absolute;
   width: 100%;
   height: 100%;
-  background: url('../assets/bgletsgo3.jpg') !important;
-  background-size: cover;
-  background-position: center;
 }
 @media (max-width: 600px) {
   h1 {

@@ -25,9 +25,6 @@ export default {
 </script>
 <style>
 #app {
-  background: url('../assets/bgletsgo3.jpg') !important;
-  background-size: cover;
-  background-position: center;
   font-family: -apple-system, Roboto, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell,  sans-serif
   , 'Helvetica Neue', 'Open Sans';
 }

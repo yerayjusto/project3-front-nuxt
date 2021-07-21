@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar color="blue" dark app fixed>
+    <v-app-bar color="#4D7F9A" dark app fixed>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <div d-flex>
       <v-img v-if="$vuetify.breakpoint.xs" height="24" width="24" :src="require('../assets/logonb.png')"></v-img>
@@ -16,11 +16,6 @@
           style="background-color: white"
           @keyup.enter="$router.push({ query: { name: name },  name: 'beaches-results'})"
         />
-        </v-col>
-        <v-col>
-          <v-btn icon @click="logout">
-           <v-icon>mdi-logout</v-icon>
-          </v-btn>
         </v-col>
         </v-row>
       </div>
@@ -41,12 +36,14 @@
             </v-list-item>
           </nuxt-link>
 
+          <nuxt-link to='user/profile' style="text-decoration: none; color: inherit">
           <v-list-item>
             <v-list-item-icon>
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Cuenta/Registrarse</v-list-item-title>
+            <v-list-item-title>Mi perfil</v-list-item-title>
           </v-list-item>
+          </nuxt-link>
 
           <nuxt-link to="/restaurants" style="text-decoration: none; color: inherit">
             <v-list-item>
@@ -104,6 +101,13 @@
               <v-list-item-title>Museos</v-list-item-title>
             </v-list-item>
           </nuxt-link>
+          <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-logout</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title @click="logout">Cerrar sesión</v-list-item-title>
+            </v-list-item>
+
 
         </v-list-item-group>
       </v-list>
