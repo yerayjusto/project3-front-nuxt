@@ -14,6 +14,7 @@
           type="text"
           placeholder="Buscar..."
           style="background-color: white"
+          @keyup.enter="$router.push({ query: { name: name },  name: 'beaches-results'})"
         />
         </v-col>
         <v-col>
@@ -115,6 +116,7 @@ export default {
   data: () => ({
     drawer: false,
     group: null,
+    name: ''
   }),
   methods: {
    async logout() {

@@ -60,15 +60,13 @@
 <script>
 export default {
   name: 'Beaches',
-  async asyncData({ $axios, params }) {
-    const beaches = await $axios.get('/places/search', {
-      params: { ...params },
-    })
-    return { beaches: beaches.data }
-  },
-  mounted() {
-    console.log(this.beaches)
-  }
+  async asyncData({$axios, params, query}) {
+   const beaches = await $axios.get('/places/search', {
+     params: { ...query, ...params },
+   })
+   return { beaches: beaches.data}
+ },
+ watchQuery: ["name"],
 }
 </script>
 <style>
