@@ -13,10 +13,11 @@
       <v-card-text>
         <b>Descripción:</b> <br />{{ place.description }}<br />
         <br />
-        <b>Tipo de establecimiento:</b> {{ place.placeId.establishmentType }}<br />
+        <b>Tipo de establecimiento:</b> {{ place.placeId.establishmentType
+        }}<br />
         <b>Precio:</b> {{ place.placeId.price }} <br />
         <b>Especialidad:</b> {{ place.placeId.specialty }} <br />
-        <b>Teléfono:</b> {{ place.placeId.telephone }}  <br>
+        <b>Teléfono:</b> {{ place.placeId.telephone }} <br />
         <b>Horario:</b> {{ place.placeId.schedule }}
       </v-card-text>
       <v-card-text>
@@ -37,10 +38,10 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                v-show="place.placeId.petFriendly === 'Sí'"
+                v-show="place.placeId.petFriendly === 'No'"
                 v-bind="attrs"
                 v-on="on"
-                >mdi-dog</v-icon
+                >mdi-dog-side</v-icon
               >
             </template>
             <span>Aceptan mascotas</span>
@@ -49,7 +50,7 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <img
-                v-show="place.placeId.disableBath === 'Sí'"
+                v-show="place.placeId.disabledBath === 'No'"
                 src="../assets/disabled-toilet.png"
                 style="width: 24px; height: 24px"
                 v-bind="attrs"
@@ -74,10 +75,10 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                v-show="place.placeId.vegeterianOption === 'Sí'"
+                v-show="place.placeId.vegetarianOption === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
-                >mdi-flag</v-icon
+                >mdi-sprout</v-icon
               >
             </template>
             <span>Opción vegetariana</span>
@@ -86,10 +87,10 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                v-show="place.placeId.veganOption === 'Sí'"
+                v-show="place.placeId.veganOption === 'No'"
                 v-bind="attrs"
                 v-on="on"
-                >mdi-shower-head</v-icon
+                >mdi-vimeo</v-icon
               >
             </template>
             <span>Opción vegana</span>
@@ -97,12 +98,13 @@
 
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
-              <v-icon
-                v-show="place.placeId.glutenFree === 'Sí'"
+              <img
+                v-show="place.placeId.glutenFree === 'No'"
+                src="../assets/gluten-free.png"
+                style="width: 24px; height: 24px"
                 v-bind="attrs"
                 v-on="on"
-                >mdi-trash-can</v-icon
-              >
+              />
             </template>
             <span>Platos sin gluten</span>
           </v-tooltip>
@@ -110,15 +112,14 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-                v-show="place.placeId.dayMenu === 'Sí'"
+                v-show="place.placeId.dayMenu === 'No'"
                 v-bind="attrs"
                 v-on="on"
-                >mdi-food</v-icon
+                >mdi-silverware-fork-knife</v-icon
               >
             </template>
             <span>Menú del día</span>
           </v-tooltip>
-
         </v-card-text>
       </v-card-text>
 
@@ -145,9 +146,15 @@
               <br />
               <b>Dirección:</b> {{ place.placeId.address }}
               <br />
-              <b>Servicio de comidas:</b> {{ place.placeId.meals }}
+              <b>Servicio de comidas:</b> 
+              <div style="display:inline;" v-for="(meal, idx) in place.placeId.meals" :key="idx">
+                <v-chip> {{meal}} </v-chip> 
+              </div>
               <br />
-              <b>Platos:</b> {{ place.placeId.menu }}
+              <b>Platos:</b> 
+              <div style="display:inline;" v-for="(menu, idx) in place.placeId.menu" :key="idx">
+                <v-chip> {{menu}} </v-chip> 
+              </div>
               <br />
             </v-card-text>
           </v-card-text>
@@ -167,9 +174,7 @@ export default {
   data: () => ({
     show: false,
   }),
-  mounted() {
-    
-  },
+  mounted() {},
 }
 </script>
 <style>

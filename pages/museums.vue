@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'Beaches',
+  name: 'museums',
   async asyncData({ $axios, params }) {
     const museums = await $axios.get('/places/search', {
       params: { placeType: 'museums' },
