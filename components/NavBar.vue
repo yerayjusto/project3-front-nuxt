@@ -11,6 +11,7 @@
         <v-row>
           <v-col>
         <input
+          v-model="name"
           type="text"
           placeholder="Buscar..."
           style="background-color: white"
