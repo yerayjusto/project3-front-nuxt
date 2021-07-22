@@ -1,246 +1,132 @@
 <template>
     <v-container fluid>
         <v-row>
-            <v-col style="padding-bottom: 0">
-                <h4>Nombre</h4>
+            <v-col class="py-0">
+                <v-text-field label="Nombre"
+                              clearable
+                              outlined 
+                              dense>
+                    </v-text-field>
             </v-col>
         </v-row>
         <v-row>
-            <v-col>
-                <input type="text" placeholder="" style="border: 1px solid grey; background-color: white; width:100%">
+            <v-col class="py-0">
+                <v-select
+                    v-model="islandFilter"
+                    :items="islands"
+                    clearable
+                    outlined
+                    dense
+                    label="Isla"
+                ></v-select>
             </v-col>
         </v-row>
-        <v-row>
-            <v-col style="padding-bottom: 0">
-                <v-divider style="margin-bottom:20px"></v-divider>
-                <h4>Isla</h4>
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
-                <v-list>
-                    <v-list-item-group v-model="islandFilter">
-                        <template v-for="{name} in islands">
-                            <v-list-item :key="name">
-                                <v-list-item-content>
-                                    <v-list-item-title>{{name}}</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </template>
-                    </v-list-item-group>
-                </v-list>
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col style="padding-bottom: 0">
-                <v-divider style="margin-bottom:20px"></v-divider>
-                <h4>Municipio</h4>
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col>
+        <v-row class="hidden-md-and-down">
+            <v-col class="py-0">
                 <v-autocomplete
                     v-model="municipalityFilter"
                     :items=municipality
-                    auto-select-first
                     clearable
+                    outlined
+                    dense
+                    label="Municipio"
                 ></v-autocomplete>
             </v-col>
         </v-row>
-        <v-row>
-            <v-col style="padding-bottom: 0">
-                <v-divider style="margin-bottom:20px"></v-divider>
-                <h4>Tipo de lugar</h4>
+        <v-row class="hidden-lg-and-up">
+            <v-col class="py-0">
+                <v-select
+                    v-model="municipalityFilter"
+                    :items=municipality
+                    clearable
+                    outlined
+                    dense
+                    label="Municipio"
+                ></v-select>
             </v-col>
         </v-row>
         <v-row>
-            <v-col>
-                <v-list>
-                    <v-list-item-group v-model="placeFilter">
-                        <v-list-item>
-                            <v-list-item-content>
-                                <v-list-item-title>Playas</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                        <v-list-item>
-                            <v-list-item-content>
-                                <v-list-item-title>Restaurantes</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                        <v-list-item>
-                            <v-list-item-content>
-                                <v-list-item-title>Museos</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                        <v-list-item>
-                            <v-list-item-content>
-                                <v-list-item-title>Miradores</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list-item-group>
-                </v-list>
+            <v-col class="py-0">
+                <v-select
+                    v-model="placeType"
+                    :items=placeTypes
+                    clearable
+                    outlined
+                    dense
+                    label="Tipo de lugar"
+                ></v-select>
             </v-col>
         </v-row>
-        <div v-show="placeFilter == 0">
+        <v-divider v-show="placeType != null"></v-divider>
+        <div v-show="placeType == 'Playas'" class="mt-7">
             <v-row>
-                <v-col style="padding-bottom: 0">
-                    <v-divider style="margin-bottom:20px"></v-divider>
-                    <h4>Ocupación</h4>
+                <v-col class="py-0">
+                    <v-select
+                        v-model="occupationFilter"
+                        :items="occupationGrade"
+                        clearable
+                        outlined
+                        dense
+                        label="Grado de ocupación"
+                    ></v-select>
                 </v-col>
-            </v-row>
+            </v-row>            
             <v-row>
-                <v-col>
-                    <v-list>
-                        <v-list-item-group v-model="model">
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Bajo</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Medio</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Alto</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
+                <v-col class="py-0">
+                    <v-select
+                        v-model="urbanizationFilter"
+                        :items="urbanizationGrade"
+                        clearable
+                        outlined
+                        dense
+                        label="Grado de urbanización"
+                    ></v-select>
                 </v-col>
             </v-row>
             <v-row>
-                <v-col style="padding-bottom: 0">
-                    <v-divider style="margin-bottom:20px"></v-divider>
-                    <h4>Urbanización</h4>
+                <v-col class="py-0">
+                    <v-select
+                        v-model="sandTypeFilter"
+                        :items="sandTypes"
+                        clearable
+                        outlined
+                        dense
+                        label="Tipo de playa"
+                    ></v-select>
                 </v-col>
             </v-row>
             <v-row>
-                <v-col>
-                    <v-list>
-                        <v-list-item-group v-model="model">
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Semiurbana</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Urbana</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Aislada</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
+                <v-col class="py-0">
+                    <v-select
+                        v-model="surgeFilter"
+                        :items="surgeTypes"
+                        clearable
+                        outlined
+                        dense
+                        label="Oleaje"
+                    ></v-select>
                 </v-col>
-            </v-row>
-                       <v-row>
-                <v-col style="padding-bottom: 0">
-                    <v-divider style="margin-bottom:20px"></v-divider>
-                    <h4>Tipo de playa</h4>
-                </v-col>
-            </v-row>
+            </v-row>  
             <v-row>
-                <v-col>
-                    <v-list>
-                        <v-list-item-group v-model="model">
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Arena negra</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Arena blanca</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Piedras</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
+                <v-col class="py-0">
+                    <v-select
+                        v-model="accessFilter"
+                        :items="accessTypes"
+                        clearable
+                        outlined
+                        dense
+                        label="Tipos de acceso"
+                    ></v-select>
                 </v-col>
-            </v-row>
-                        </v-row>
-                       <v-row>
-                <v-col style="padding-bottom: 0">
-                    <v-divider style="margin-bottom:20px"></v-divider>
-                    <h4>Oleaje</h4>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col>
-                    <v-list>
-                        <v-list-item-group v-model="model">
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Oleaje fuerte</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Oleaje moderado</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Aguas tranquilas</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col style="padding-bottom: 0">
-                    <v-divider style="margin-bottom:20px"></v-divider>
-                    <h4>Forma de acceso</h4>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col>
-                    <v-list>
-                        <v-list-item-group v-model="model">
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>A pie fácil</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>A pie dificil</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Coche</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Barco</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
-                </v-col>
-            </v-row>
+            </v-row>  
             <v-row>
                 <v-col class="py-0 pt-1" cols="8">
                     <h4>Playa nudista</h4>
                 </v-col>
                 <v-spacer></v-spacer>
                 <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="nudismFilter"
+                    <v-switch v-model="nudismFilter" 
+                              class="ma-0"
                     ></v-switch>
                 </v-col>
             </v-row>
@@ -561,6 +447,11 @@ export default {
         islandFilter: null,
         municipalityFilter: null,
         placeFilter: null,
+        occupationFilter: null,
+        urbanizationFilter: null,
+        sandTypeFilter: null,
+        surgeFilter: null,
+        accessTypeFilter: null,
         nudismFilter: null,
         blueFlagFiler: null,
         lifeGuardFilter: null,
@@ -576,40 +467,46 @@ export default {
         sportZoneFilter: null,
         scubaDivingFilter: null,
         surfZoneFilter: null,
-        islands: [
-            {
-                name: 'El Hierro'
-            },
-                        {
-                name: 'Fuerteventura'
-            },
-            {
-                name: 'Gran Canaria'
-            },
-            {
-                name: 'La Gomera'
-            },
-            {
-                name: 'La Palma'
-            },
-                        {
-                name: 'Lanzarote'
-            },
-                        {
-                name: 'Tenerife'
-            },
-        ],
+        placeType: null,
+        islands: ['El Hierro',
+                  'Fuerteventura',
+                  'Gran Canaria',
+                  'La Gomera',
+                  'La Palma',
+                  'Lanzarote',
+                  'Tenerife'
+                 ],
+        placeTypes: ['Playas',
+                    'Restaurantes',
+                    'Museos',
+                    'Miradores'
+                    ],
+        occupationGrade: ['Alto',
+                          'Medio',
+                          'Bajo'
+                         ],
+        urbanizationGrade: ['Urbana',
+                            'Semiurbana',
+                            'Aislada'
+                           ],
+        sandTypes: ['Arena negra',
+                    'Arena blanca',
+                    'Piedras'
+                   ],
+        surgeTypes: ['Oleaje fuerte',
+                 'Oleaje moderado',
+                 'Aguas tranquilas'
+                ],
+        accessTypes: ['A pie fácil',
+                     'A pie dificil',
+                     'Coche',
+                     'Barco'
+                    ],
     }),
     computed: {
-        hasSelectedIsland() {
-            return Number.isInteger(this.islandFilter)
-        },
-        selectedIsland() {
-            return this.hasSelectedIsland? this.islands[this.islandFilter].name: ''
-        },
         municipality () {
-            if (this.hasSelectedIsland) {
-                switch(this.selectedIsland){
+            if (this.islandFilter) {
+                switch(this.islandFilter){
                     case 'El Hierro':
                         return ['Frontera',
                                 'Valverde',
