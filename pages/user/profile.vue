@@ -48,3 +48,13 @@ mounted() {
 },
 }
 </script>
+<style lang="scss">
+.index {
+  display: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/background_index.jpg') !important;
+  background-size: cover;
+  background-position: center;
+}
+</style>

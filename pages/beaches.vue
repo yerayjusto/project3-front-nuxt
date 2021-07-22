@@ -1,6 +1,5 @@
 <template>
   <v-container fluid class="beaches">
-
     <v-row>
       <v-col
         v-for="(beach, idx) in beaches"
@@ -13,8 +12,8 @@
         lg="3"
         xl="3"
       >
-      <CardPlaceMobile v-if="$vuetify.breakpoint.xs" :place="beach"/>
-      <CardPlace v-else :place="beach"/>
+        <CardPlaceMobile v-if="$vuetify.breakpoint.xs" :place="beach" style="width: 100%;"/>
+        <CardPlace v-else :place="beach" />
       </v-col>
     </v-row>
   </v-container>

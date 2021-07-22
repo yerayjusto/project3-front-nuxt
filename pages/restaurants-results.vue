@@ -12,9 +12,9 @@
       </v-col>
     </v-row>
 
-    <v-row v-else align="center" justify="center">
+    <v-row v-else>
       <v-col v-if="restaurants.length > 1" justify="center">
-        <h1 style="text-align: center">
+        <h1>
           {{ restaurants.length }} Sitios encontrados!
         </h1>
       </v-col>
@@ -47,14 +47,15 @@
         id="card"
         :key="idx"
         class="d-flex justify-center pa-xs-0"
-        cols="6"
-        xs="4"
+        cols="12"
+        xs="12"
         sm="4"
         md="4"
         lg="3"
         xl="3"
       >
-        <CardPlace :place="restaurant" />
+        <CardPlaceMobile v-if="$vuetify.breakpoint.xs" :place="restaurant" style="width: 100%;"/>
+        <CardPlace v-else :place="restaurant" />
       </v-col>
     </v-row>
   </v-container>

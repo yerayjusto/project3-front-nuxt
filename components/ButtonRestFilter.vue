@@ -1,17 +1,21 @@
 <template>
-  <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
-    <nuxt-link
+<v-row align="center" justify="center">
+      <v-col v-if="restaurants.length > 1" justify="center">
+        <nuxt-link
       :to="{ params: { ...params }, name: 'restaurants-results' }"
       style="text-decoration: none; color: inherit"
     >
-      <v-btn v-if="$vuetify.breakpoint.xs" small class="success" width="130">
-        <v-icon dark>mdi-food-variant</v-icon>
-        &nbsp;
-        {{ restaurants.length }} RESULTADOS
-      </v-btn>
-      <v-btn v-else class="success"> {{ restaurants.length }} RESULTADOS</v-btn>
-    </nuxt-link>
-  </v-col>
+        <p v-if="$vuetify.breakpoint.xs">
+
+          {{ restaurants.length }} RESULTADOS >>
+        </p>
+
+        <h1 v-else>
+          {{ restaurants.length }} RESULTADOS >>
+        </h1>
+      </nuxt-link>
+      </v-col>
+</v-row>
 </template>
 
 <script>

@@ -20,16 +20,16 @@
         type="password"
         label="password"
       ></v-text-field>
-      <v-btn dark class="ma-0" color="#4D7F9A" @click="userLogin"> Entrar </v-btn>
-      <nuxt-link to=""
-        ><v-card-text class="pa-0 mt-2"
+      <v-btn dark width="180" class="ma-0" color="#4D7F9A" @click="userLogin"> Entrar </v-btn>
+      <nuxt-link to="" style="text-decoration: none;"
+        ><v-card-text
           >¿Has olvidado la contraseña?</v-card-text
         ></nuxt-link
       >
     </v-card-text>
 
-    <nuxt-link to="/user/signup" style="text-decoration: none; color: inherit">
-      <v-btn dark class="ma-2" color="#FF9A00"> Registrarse </v-btn>
+    <nuxt-link to="/signup" style="text-decoration: none; color: inherit">
+      <v-btn dark width="180" class="ma-1" color="#FF9A00"> Registrarse </v-btn>
     </nuxt-link>
   </v-card>
 </template>

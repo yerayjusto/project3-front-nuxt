@@ -88,9 +88,7 @@
 
     <v-divider></v-divider>
           <nuxt-link to="/" style="text-decoration: none; color: inherit">
-      <btn icon>
-        <v-icon large>mdi-arrow-left-bold-circle</v-icon>
-      </btn>
+      <v-card-text>Ya tengo una cuenta</v-card-text>
       </nuxt-link>
 
 

@@ -1,5 +1,10 @@
 <template>
   <v-container fluid class="choose">
+    <ButtonRestFilter
+        v-if="params"
+        :params="params"
+        :restaurants="restaurants"
+      />
     <v-row align="center" justify="center" class="mt-5">
       <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
         <nuxt-link
@@ -20,12 +25,6 @@
         </nuxt-link>
       </v-col>
 
-      <ButtonRestFilter
-        v-if="params"
-        :params="params"
-        :restaurants="restaurants"
-      />
-
       <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
         <nuxt-link
           :to="{ params: { ...params }, name: 'search-rest-3' }"
@@ -37,11 +36,11 @@
             fab
             dark
             small
-            color="primary"
+            color="#FF9A00"
           >
             <v-icon dark>mdi-arrow-right-bold</v-icon>
           </v-btn>
-          <v-btn v-else class="primary"> SIGUIENTE (SALTAR) </v-btn>
+          <v-btn v-else dark color="#FF9A00"> SIGUIENTE (SALTAR) </v-btn>
         </nuxt-link>
       </v-col>
     </v-row>
@@ -51,16 +50,25 @@
         v-for="(type, idx) in types"
         :key="idx"
         class="px-lg-10"
-        cols="6"
-        xs="4"
+        cols="12"
+        xs="12"
         sm="4"
         md="3"
       >
-        <CardRestaurant
+        <CardRestaurantMobile
+          v-if="$vuetify.breakpoint.xs"
           :image="type.image"
           :name="type.establishmentType"
           nview="search-rest-3"
         />
+
+        <CardRestaurant
+          v-else
+          :image="type.image"
+          :name="type.establishmentType"
+          nview="search-rest-3"
+        />
+
       </v-col>
     </v-row>
   </v-container>

@@ -40,4 +40,10 @@ export default {
 .v-card__text {
   color: grey;
 }
+p {
+  color: #686868;
+}
+h1 {
+  color: #686868;
+}
 </style>
