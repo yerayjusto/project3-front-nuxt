@@ -15,22 +15,19 @@
         <br />
         <b>Ocupación:</b> {{ place.placeId.occupation }} <br />
 
-        <b>Oleaje:</b> {{ place.placeId.surge }} <br>
+        <b>Oleaje:</b> {{ place.placeId.surge }} <br />
 
-        <b>Acceso:</b> {{ place.placeId.wayToAccess }} <br>
+        <b>Acceso:</b> {{ place.placeId.wayToAccess }} <br />
 
         <b>Tipo de arena:</b> {{ place.placeId.sandType }}
       </v-card-text>
       <v-card-text>
-
-          <b>Servicios:</b>
-
+        <b>Servicios:</b>
 
         <v-card-text class="d-flex aling-center">
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.parking === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -43,9 +40,8 @@
           <v-tooltip botton>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.toilet === 'Sí'"
-                 v-bind="attrs"
+                v-bind="attrs"
                 v-on="on"
                 >mdi-toilet</v-icon
               >
@@ -56,7 +52,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.lifeguard === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -69,7 +64,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.seaFront === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -82,7 +76,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <img
-
                 v-show="place.placeId.nudism === 'Sí'"
                 src="@/assets/nudist.png"
                 style="width: 24px; height: 24px"
@@ -96,7 +89,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.disabledAccess === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -109,7 +101,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.blueFlag === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -122,7 +113,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.shower === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -135,7 +125,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.trashCan === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -148,7 +137,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.rentalSunUmbrella === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -161,7 +149,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.rentalHamocks === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -174,7 +161,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.rentalBoats === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -187,7 +173,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.food === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -200,7 +185,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.touristOffice === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -213,7 +197,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.childZone === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -226,7 +209,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.sportZone === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -239,7 +221,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <v-icon
-
                 v-show="place.placeId.scubaDiving === 'Sí'"
                 v-bind="attrs"
                 v-on="on"
@@ -252,11 +233,10 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <img
-
                 v-show="place.placeId.zoneMarkedOut === 'Sí'"
                 src="@/assets/surfing.png"
                 style="width: 24px; height: 24px"
-                 v-bind="attrs"
+                v-bind="attrs"
                 v-on="on"
               />
             </template>
@@ -266,7 +246,6 @@
           <v-tooltip bottom>
             <template #activator="{ on, attrs }">
               <img
-
                 v-show="place.placeId.zoneMarkedOut === 'Sí'"
                 src="@/assets/buoy.png"
                 style="width: 24px; height: 24px"
@@ -311,14 +290,16 @@
         </div>
       </v-expand-transition>
     </v-card>
-     <div id="map-wrap" style="height: 100vh">
- <no-ssr>
-   <l-map :zoom=13 :center="[55.9464418,8.1277591]">
-     <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
-     <l-marker :lat-lng="[55.9464418,8.1277591]"></l-marker>
-   </l-map>
- </no-ssr>
-</div>
+    <div id="map-wrap" style="height: 100vh">
+      <no-ssr>
+        <l-map :zoom="13" :center="[55.9464418, 8.1277591]">
+          <l-tile-layer
+            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          ></l-tile-layer>
+          <l-marker :lat-lng="[55.9464418, 8.1277591]"></l-marker>
+        </l-map>
+      </no-ssr>
+    </div>
   </v-container>
 </template>
 
@@ -332,13 +313,13 @@ export default {
   data: () => ({
     show: false,
   }),
-  mounted() {
-  },
+  mounted() {},
 }
-
 </script>
 <style>
-#mapid { height: 180px; }
+#mapid {
+  height: 180px;
+}
 
 .details {
   display: absolute;

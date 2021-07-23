@@ -1,21 +1,18 @@
 <template>
-<v-row align="center" justify="center">
-      <v-col v-if="restaurants.length > 1" justify="center">
-        <nuxt-link
+  <v-col v-if="restaurants.length > 1">
+    <nuxt-link
       :to="{ params: { ...params }, name: 'restaurants-results' }"
       style="text-decoration: none; color: inherit"
     >
-        <p v-if="$vuetify.breakpoint.xs">
+      <h5 v-if="$vuetify.breakpoint.xs">{{ restaurants.length }} PLAYAS >></h5>
 
-          {{ restaurants.length }} RESULTADOS >>
-        </p>
+      <h4 v-if="$vuetify.breakpoint.sm">{{ restaurants.length }} RESULTADOS >></h4>
 
-        <h1 v-else>
-          {{ restaurants.length }} RESULTADOS >>
-        </h1>
-      </nuxt-link>
-      </v-col>
-</v-row>
+      <h1 v-if="$vuetify.breakpoint.mdAndUp">
+        {{ restaurants.length }} RESULTADOS >>
+      </h1>
+    </nuxt-link>
+  </v-col>
 </template>
 
 <script>

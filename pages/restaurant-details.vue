@@ -13,10 +13,11 @@
       <v-card-text>
         <b>Descripción:</b> <br />{{ place.description }}<br />
         <br />
-        <b>Tipo de establecimiento:</b> {{ place.placeId.establishmentType }}<br />
+        <b>Tipo de establecimiento:</b> {{ place.placeId.establishmentType
+        }}<br />
         <b>Precio:</b> {{ place.placeId.price }} <br />
         <b>Especialidad:</b> {{ place.placeId.specialty }} <br />
-        <b>Teléfono:</b> {{ place.placeId.telephone }}  <br>
+        <b>Teléfono:</b> {{ place.placeId.telephone }} <br />
         <b>Horario:</b> {{ place.placeId.schedule }}
       </v-card-text>
       <v-card-text>
@@ -118,7 +119,6 @@
             </template>
             <span>Menú del día</span>
           </v-tooltip>
-
         </v-card-text>
       </v-card-text>
 
@@ -167,9 +167,7 @@ export default {
   data: () => ({
     show: false,
   }),
-  mounted() {
-
-  },
+  mounted() {},
 }
 </script>
 <style>

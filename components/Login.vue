@@ -7,6 +7,7 @@
     height="380px"
     rounded
   >
+  <v-form>
     <v-card-text>
       <v-text-field filled dense outlined clearable v-model="email" type="text" label="email">
       </v-text-field>
@@ -31,6 +32,7 @@
     <nuxt-link to="/signup" style="text-decoration: none; color: inherit">
       <v-btn dark width="180" class="ma-1" color="#FF9A00"> Registrarse </v-btn>
     </nuxt-link>
+    </v-form>
   </v-card>
 </template>
 
@@ -69,7 +71,7 @@ computed: {
         })
         console.log(response.data.rol)
         console.log(this.$auth)
-        this.$auth.$storage.setUniversal("role", response.data.rol)
+        this.$auth.$storage.setUniversal('role', response.data.rol)
       } catch (err) {
         console.log(err)
       }

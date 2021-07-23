@@ -2,10 +2,10 @@
   <div class="d-flex flex-direction: row;">
     <v-app-bar color="#4D7F9A" dark app fixed>
       <v-app-bar-nav-icon
-        v-if="$vuetify.breakpoint.smAndDown"
+        v-if="$vuetify.breakpoint.mdAndDown"
         @click="drawer = true"
       ></v-app-bar-nav-icon>
-      <div class="me-10">
+      <div class="me-5">
         <v-img
           v-if="$vuetify.breakpoint.xs"
           height="24"
@@ -18,10 +18,12 @@
           </nuxt-link>
         </v-toolbar-title>
       </div>
-      <v-spacer v-if="$vuetify.breakpoint.smAndDown"></v-spacer>
-      <div v-if="$vuetify.breakpoint.mdAndUp" class="d-flex">
+      <v-spacer v-if="$vuetify.breakpoint.mdAndDown"></v-spacer>
+
+      <div v-if="$vuetify.breakpoint.lgAndUp" class="d-flex">
         <v-btn-toggle group dense>
           <v-btn
+            x-large
             v-for="(btn, idx) in btns"
             :key="idx"
             @click="navBarClick(btn.text)"
@@ -35,7 +37,7 @@
         <v-row>
           <v-col>
             <v-text-field
-            flat
+              flat
               v-model="name"
               background-color="white"
               light
@@ -51,18 +53,18 @@
           </v-col>
         </v-row>
       </div>
-      <div v-if="$vuetify.breakpoint.mdAndUp" class="d-flex">
+      <div class="d-flex">
         <v-btn-toggle group dense>
           <v-btn @click="navBarClick('profile')"
-            ><v-icon>mdi-account-edit</v-icon></v-btn
+            class="mx-0"><v-icon>mdi-account-edit</v-icon></v-btn
           >
-          <v-btn @click="logout"><v-icon>mdi-logout</v-icon></v-btn>
+          <v-btn @click="logout" class="mx-0"><v-icon>mdi-logout</v-icon></v-btn>
         </v-btn-toggle>
       </div>
     </v-app-bar>
 
     <v-navigation-drawer
-      v-if="$vuetify.breakpoint.smAndDown"
+      v-if="$vuetify.breakpoint.mdAndDown"
       v-model="drawer"
       absolute
       temporary
@@ -143,12 +145,6 @@
               <v-list-item-title>Museos</v-list-item-title>
             </v-list-item>
           </nuxt-link>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-logout</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title @click="logout">Cerrar sesión</v-list-item-title>
-          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -161,6 +157,7 @@ export default {
     drawer: false,
     group: null,
     name: '',
+
     btns: [
       { text: 'beaches', name: 'PLAYAS' },
       { text: 'searchBeachs', name: 'PLAYA IDEAL' },
@@ -172,7 +169,7 @@ export default {
   methods: {
     async logout() {
       await this.$auth.logout()
-      this.$auth.removeUniversal('role')
+      this.$auth.$storage.removeUniversal('role')
     },
     navBarClick(btn) {
       if (btn === 'home') this.$router.push('/')

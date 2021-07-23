@@ -1,18 +1,21 @@
 <template>
   <v-container fluid class="beaches">
-    <v-row>
+    <v-row justify="center" align="center">
       <v-col
         v-for="(beach, idx) in beaches"
         :key="idx"
-        class="d-flex justify-center pa-xs-0"
-        cols="12"
+        class="d-flex justify-center"
         xs="12"
         sm="6"
         md="4"
         lg="3"
         xl="3"
       >
-        <CardPlaceMobile v-if="$vuetify.breakpoint.xs" :place="beach" style="width: 100%;"/>
+        <CardPlaceMobile
+          v-if="$vuetify.breakpoint.xs"
+          :place="beach"
+          style="width: 100%"
+        />
         <CardPlace v-else :place="beach" />
       </v-col>
     </v-row>

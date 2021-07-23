@@ -5,7 +5,7 @@
   >
     <v-card class="rounded" height="100">
       <div class="d-flex flex-no-wrap">
-        <v-avatar class="ma-3" size="80" tile>
+        <v-avatar class="ma-3" size="80" rounded>
           <v-img :src="require(`@/assets/${image}`)"></v-img>
         </v-avatar>
         <div

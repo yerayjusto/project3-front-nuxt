@@ -22,6 +22,7 @@
     ></v-img>
     <v-card-text>
       <v-text-field
+        v-model="alias"
         filled
         dense
         outlined
@@ -30,6 +31,7 @@
         label="alias"
       ></v-text-field>
       <v-text-field
+        v-model="firstName"
         filled
         dense
         outlined
@@ -37,9 +39,9 @@
         ref="name"
         type="text"
         label="nombre"
-        v-model="firstName"
       ></v-text-field>
       <v-text-field
+        v-model="lastName"
         filled
         dense
         outlined
@@ -47,9 +49,9 @@
         ref="name"
         type="text"
         label="apellidos"
-        v-model="lastName"
       ></v-text-field>
       <v-text-field
+        v-model="email"
         filled
         dense
         outlined
@@ -57,10 +59,10 @@
         ref="email"
         type="text"
         label="email"
-        v-model="email"
         :rules="[rules.email]"
       ></v-text-field>
       <v-text-field
+        v-model="password"
         filled
         dense
         outlined
@@ -68,30 +70,27 @@
         ref="password"
         type="password"
         label="password"
-        v-model="password"
         :rules="[rules.password]"
       ></v-text-field>
       <v-text-field
+        v-model="confPass"
         filled
         dense
         outlined
         clearable
         type="password"
         label="confirmar password"
-        v-model="confPass"
         :rules="[confPassRule]"
       ></v-text-field>
       <v-btn dark width="100%" color="#FF9A00" large @click="submit">
-      Registrarse
-    </v-btn>
+        Registrarse
+      </v-btn>
     </v-card-text>
 
     <v-divider></v-divider>
-          <nuxt-link to="/" style="text-decoration: none; color: inherit">
+    <nuxt-link to="/" style="text-decoration: none; color: inherit">
       <v-card-text>Ya tengo una cuenta</v-card-text>
-      </nuxt-link>
-
-
+    </nuxt-link>
   </v-card>
 </template>
 
@@ -105,7 +104,7 @@ export default {
     email: '',
     password: '',
     confPass: '',
-    role: '',
+    alias: '',
     formHasErrors: false,
     rules: {
       email: (value) =>
@@ -126,10 +125,42 @@ export default {
       return {
         email: this.email,
         password: this.password,
-      }
+      };
+    },
+  },
+  watch: {
+    loader() {
+      const l = this.loader
+      this[l] = !this[l]
+
+      setTimeout(() => (this[l] = false), 3000)
+
+      this.loader = null
     },
   },
   methods: {
+    async register() {
+      try {
+        await this.$axios.post('/auth/signup', {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          nickName: this.alias,
+          email: this.email,
+          password: this.password,
+        })
+
+        await this.$auth.loginWith('local', {
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+        })
+
+        this.$router.push('/')
+      } catch (e) {
+        this.error = e.response.data.message
+      }
+    },
     submit() {
       this.formHasErrors = false
 
@@ -139,19 +170,8 @@ export default {
         this.$refs[field].validate(true)
       })
 
-      if (!this.formHasErrors) this.signup()
+      if (!this.formHasErrors) this.register()
     },
-    // signup() {
-    //   AuthService.signup(this.name, this.email, this.password, this.role)
-    //   .then(response => {
-    //     localStorage.setItem('token', response.token)
-    //     localStorage.setItem('email', response.email)
-    //     localStorage.setItem('role', response.role)
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
-    // }
   },
 }
 </script>

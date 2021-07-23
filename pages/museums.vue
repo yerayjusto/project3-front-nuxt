@@ -1,13 +1,12 @@
 <template>
   <v-container fluid class="museums">
-    <v-row>
+    <v-row justify="center" align="center">
       <v-col
         v-for="(museum, idx) in museums"
         :key="idx"
-        class="d-flex justify-center pa-xs-0"
-        cols="6"
-        xs="4"
-        sm="4"
+        class="d-flex justify-center"
+        xs="12"
+        sm="6"
         md="4"
         lg="3"
         xl="3"

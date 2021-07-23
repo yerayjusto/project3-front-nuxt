@@ -40,10 +40,22 @@ export default {
 .v-card__text {
   color: grey;
 }
+.v-btn {
+  font-weight: 500;
+}
 p {
   color: #686868;
 }
 h1 {
+  color: #686868;
+}
+h2 {
+  color: #686868;
+}
+h4 {
+  color: #686868;
+}
+h5 {
   color: #686868;
 }
 </style>

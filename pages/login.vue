@@ -11,7 +11,7 @@
         <v-img
           :src="require('/assets/logoletsgo.png')"
           height="140"
-          width='280'
+          width="280"
           class="mt-1"
         ></v-img>
       </v-col>
