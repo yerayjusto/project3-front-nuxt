@@ -64,9 +64,9 @@
 export default {
   name: 'Beaches',
 
-  async asyncData({ $axios, params }) {
+  async asyncData({ $axios, params, query }) {
     const beaches = await $axios.get('/places/search', {
-      params: { ...params },
+      params: { ...params, ...query},
     })
     return { beaches: beaches.data }
   },
@@ -75,9 +75,7 @@ export default {
       panel: [0]
     }
   },
-  computed () {
-
-  }
+   watchQuery: ["name", "island"],
 }
 </script>
 <style lang="scss">

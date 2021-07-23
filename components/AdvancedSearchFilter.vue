@@ -2,11 +2,15 @@
     <v-container fluid>
         <v-row>
             <v-col class="py-0">
-                <v-text-field label="Nombre"
-                              clearable
-                              outlined 
-                              dense>
-                    </v-text-field>
+                <v-text-field
+                    v-model="name"
+                    label="Nombre"
+                    clearable
+                    outlined
+                    dense
+                    @change="$router.push({ query: { name: name },  name: 'beaches-results'})"
+                >
+                </v-text-field>
             </v-col>
         </v-row>
         <v-row>
@@ -18,6 +22,7 @@
                     outlined
                     dense
                     label="Isla"
+                    @change="$router.push({ query: { island: islandFilter },  name: 'beaches-results'})"
                 ></v-select>
             </v-col>
         </v-row>
@@ -70,7 +75,7 @@
                         label="Grado de ocupación"
                     ></v-select>
                 </v-col>
-            </v-row>            
+            </v-row>
             <v-row>
                 <v-col class="py-0">
                     <v-select
@@ -106,7 +111,7 @@
                         label="Oleaje"
                     ></v-select>
                 </v-col>
-            </v-row>  
+            </v-row>
             <v-row>
                 <v-col class="py-0">
                     <v-select
@@ -118,14 +123,14 @@
                         label="Tipos de acceso"
                     ></v-select>
                 </v-col>
-            </v-row>  
+            </v-row>
             <v-row>
                 <v-col class="py-0 pt-1" cols="8">
                     <h4>Playa nudista</h4>
                 </v-col>
                 <v-spacer></v-spacer>
                 <v-col class="pa-0" cols="3">
-                    <v-switch v-model="nudismFilter" 
+                    <v-switch v-model="nudismFilter"
                               class="ma-0"
                     ></v-switch>
                 </v-col>
@@ -444,6 +449,7 @@
 <script>
 export default {
     data: () => ({
+        name: null,
         islandFilter: null,
         municipalityFilter: null,
         placeFilter: null,
@@ -613,7 +619,7 @@ export default {
             }
             return []
         },
-    }
+    },
 }
 
 
