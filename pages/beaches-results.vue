@@ -72,10 +72,10 @@ export default {
   },
   data() {
     return {
-      panel: [0]
+      panel: 0
     }
   },
-   watchQuery: ["name", "island"],
+   watchQuery: ["name", "island", "municipality", "placeType"],
 }
 </script>
 <style lang="scss">

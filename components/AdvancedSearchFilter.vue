@@ -8,7 +8,7 @@
                     clearable
                     outlined
                     dense
-                    @change="$router.push({ query: { name: name },  name: 'beaches-results'})"
+                    @change="$router.push({ query: { ... query },  name: 'beaches-results'})"
                 >
                 </v-text-field>
             </v-col>
@@ -22,7 +22,10 @@
                     outlined
                     dense
                     label="Isla"
-                    @change="$router.push({ query: { island: islandFilter },  name: 'beaches-results'})"
+                    @change="() => {
+                        if (this.islandFilter === null) this.municipalityFilter = null
+                        this.$router.replace({ query })
+                    }"
                 ></v-select>
             </v-col>
         </v-row>
@@ -35,6 +38,7 @@
                     outlined
                     dense
                     label="Municipio"
+                    @change="$router.replace({ query })"
                 ></v-autocomplete>
             </v-col>
         </v-row>
@@ -47,23 +51,25 @@
                     outlined
                     dense
                     label="Municipio"
+                    @change="$router.replace({ query })"
                 ></v-select>
             </v-col>
         </v-row>
         <v-row>
             <v-col class="py-0">
                 <v-select
-                    v-model="placeType"
+                    v-model="placeFilter"
                     :items=placeTypes
                     clearable
                     outlined
                     dense
                     label="Tipo de lugar"
+                    @change="$router.replace({ query })"
                 ></v-select>
             </v-col>
         </v-row>
-        <v-divider v-show="placeType != null"></v-divider>
-        <div v-show="placeType == 'Playas'" class="mt-7">
+        <v-divider v-show="placeFilter != null"></v-divider>
+        <div v-show="placeFilter == 'Playas'" class="mt-7">
             <v-row>
                 <v-col class="py-0">
                     <v-select
@@ -125,299 +131,246 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Playa nudista</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch v-model="nudismFilter"
-                              class="ma-0"
-                    ></v-switch>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Bandera azul</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="blueFlagFiler"
-                    ></v-switch>
+                <v-col class="pt-0">
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="nudismFilter? 'primary': 'normal'"
+                        @click="nudismFilter = !nudismFilter"
+                    >
+                        Playa nudista
+                    </v-btn>
                 </v-col>
             </v-row>
             <v-row>
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Socorrista</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="lifeGuardFilter"
-                    ></v-switch>
-                </v-col>
-            </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Acceso para discapacitados</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="disabledAccessFilter"
-                    ></v-switch>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="blueFlagFilter? 'primary': 'normal'"
+                        @click="blueFlagFilter = !blueFlagFilter"
+                    >
+                        Bandera azul
+                    </v-btn>
                 </v-col>
             </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Parking</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="parkingFilter"
-                    ></v-switch>
-                </v-col>
-            </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Duchas</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="showerFilter"
-                    ></v-switch>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="lifeGuardFilter? 'primary': 'normal'"
+                        @click="lifeGuardFilter = !lifeGuardFilter"
+                    >
+                        Socorrista
+                    </v-btn>
                 </v-col>
             </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Alquiler de sombrillas</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="rentalSunUmbrellaFilter"
-                    ></v-switch>
-                </v-col>
-            </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Alquiler de tumbonas</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="rentalHamocksFilter"
-                        dense
-                    ></v-switch>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="disabledAccessFilter? 'primary': 'normal'"
+                        @click="disabledAccessFilter = !disabledAccessFilter"
+                    >
+                        Acceso minusválido
+                    </v-btn>
                 </v-col>
             </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Alquiler de barcos</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="rentalBoatsFilter"
-                        dense
-                    ></v-switch>
-                </v-col>
-            </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Comida</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="foodFilter"
-                        dense
-                    ></v-switch>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="parkingFilter? 'primary': 'normal'"
+                        @click="parkingFilter = !parkingFilter"
+                    >
+                        Parking
+                    </v-btn>
                 </v-col>
             </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Bebida</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="drinksFilter"
-                        dense
-                    ></v-switch>
-                </v-col>
-            </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Zona para niños</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="childZoneFilter"
-                        dense
-                    ></v-switch>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="showerFilter? 'primary': 'normal'"
+                        @click="showerFilter = !showerFilter"
+                    >
+                        Duchas
+                    </v-btn>
                 </v-col>
             </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Zona deportiva</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="sportZoneFilter"
-                        dense
-                    ></v-switch>
-                </v-col>
-            </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Submarinismo</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="scubaDivingFilter"
-                        dense
-                    ></v-switch>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="rentalSunUmbrellaFilter? 'primary': 'normal'"
+                        @click="rentalSunUmbrellaFilter = !rentalSunUmbrellaFilter"
+                    >
+                        Alquiler sombrilla
+                    </v-btn>
                 </v-col>
             </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Surf</h4>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="rentalHamocksFilter? 'primary': 'normal'"
+                        @click="rentalHamocksFilter = !rentalHamocksFilter"
+                    >
+                        Alquiler tumbona
+                    </v-btn>
                 </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="surfZoneFilter"
-                        dense
-                    ></v-switch>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="rentalBoatsFilter? 'primary': 'normal'"
+                        @click="rentalBoatsFilter = !rentalBoatsFilter"
+                    >
+                        Alquiler botes
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="foodsFilter? 'primary': 'normal'"
+                        @click="foodsFilter = !foodsFilter"
+                    >
+                        Venta comida
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="drinksFilter? 'primary': 'normal'"
+                        @click="drinksFilter = !drinksFilter"
+                    >
+                        Venta bebida
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="childZoneFilter? 'primary': 'normal'"
+                        @click="childZoneFilter = !childZoneFilter"
+                    >
+                        Zona infantil
+                    </v-btn>
+                </v-col>
+            </v-row>
+             <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="sportsZoneFilter? 'primary': 'normal'"
+                        @click="sportsZoneFilter = !sportsZoneFilter"
+                    >
+                        Zona deportiva
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="scubaDivingFilter? 'primary': 'normal'"
+                        @click="scubaDivingFilter = !scubaDivingFilter"
+                    >
+                        Submarinismo
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="surfZoneFilter? 'primary': 'normal'"
+                        @click="surfZoneFilter = !surfZoneFilter"
+                    >
+                        Surf
+                    </v-btn>
                 </v-col>
             </v-row>
         </div>
-<div v-show="placeFilter == 1">
+        <div v-show="placeFilter == 'Restaurantes'" class="mt-7">
             <v-row>
-                <v-col style="padding-bottom: 0">
-                    <v-divider style="margin-bottom:20px"></v-divider>
-                    <h4>Tipo de establecimiento</h4>
+                <v-col class="py-0">
+                    <v-text-field
+                        v-model="name"
+                        label="Platos"
+                        clearable
+                        outlined
+                        dense
+                        @change="$router.push({ query: { ... query },  name: 'beaches-results'})"
+                    >
+                    </v-text-field>
                 </v-col>
             </v-row>
             <v-row>
-                <v-col>
-                    <v-list>
-                        <v-list-item-group v-model="model">
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Bar/Cafetería</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Restarante</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Guachinche</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
+                <v-col class="py-0">
+                    <v-select
+                        v-model="accessFilter"
+                        :items="accessTypes"
+                        clearable
+                        outlined
+                        dense
+                        label="Tipo de establecimiento"
+                    ></v-select>
                 </v-col>
             </v-row>
             <v-row>
-                <v-col style="padding-bottom: 0">
-                    <v-divider style="margin-bottom:20px"></v-divider>
-                    <h4>Tipo de comida</h4>
+                <v-col class="py-0">
+                    <v-select
+                        v-model="accessFilter"
+                        :items="accessTypes"
+                        clearable
+                        outlined
+                        dense
+                        label="Tipo de comida"
+                    ></v-select>
                 </v-col>
             </v-row>
             <v-row>
-                <v-col>
-                    <v-list>
-                        <v-list-item-group v-model="model">
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Típica</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Mediterránea</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Internacional</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
-                </v-col>
-            </v-row>
-                       <v-row>
-                <v-col style="padding-bottom: 0">
-                    <v-divider style="margin-bottom:20px"></v-divider>
-                    <h4>Especialidad</h4>
+                <v-col class="py-0">
+                    <v-select
+                        v-model="accessFilter"
+                        :items="accessTypes"
+                        clearable
+                        outlined
+                        dense
+                        label="Especialidad"
+                    ></v-select>
                 </v-col>
             </v-row>
             <v-row>
-                <v-col>
-                    <v-list>
-                        <v-list-item-group v-model="model">
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Carne a la parrilla</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Sopas</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Pescado frito</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col style="padding-bottom: 0">
-                    <v-divider style="margin-bottom:20px"></v-divider>
-                    <h4>Comidas</h4>
-                </v-col>
-            </v-row>
-            <v-row>
-                <v-col>
-                    <v-list>
-                        <v-list-item-group v-model="model">
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Desayuno</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Brunch</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Almuerzo</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                            <v-list-item>
-                                <v-list-item-content>
-                                    <v-list-item-title>Cena</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
+                <v-col class="py-0">
+                    <v-select
+                        v-model="accessFilter"
+                        :items="accessTypes"
+                        clearable
+                        outlined
+                        dense
+                        label="Servicio"
+                    ></v-select>
                 </v-col>
             </v-row>
             <v-row align-content="center">
@@ -459,7 +412,7 @@ export default {
         surgeFilter: null,
         accessTypeFilter: null,
         nudismFilter: null,
-        blueFlagFiler: null,
+        blueFlagFilter: null,
         lifeGuardFilter: null,
         disabledAccessFilter: null,
         parkingFilter: null,
@@ -473,7 +426,6 @@ export default {
         sportZoneFilter: null,
         scubaDivingFilter: null,
         surfZoneFilter: null,
-        placeType: null,
         islands: ['El Hierro',
                   'Fuerteventura',
                   'Gran Canaria',
@@ -508,6 +460,9 @@ export default {
                      'Coche',
                      'Barco'
                     ],
+        establishmentTypes: ['Bar/cafetería',
+                             'Restaurante',
+                             'Guanchinche']
     }),
     computed: {
         municipality () {
@@ -619,8 +574,30 @@ export default {
             }
             return []
         },
+        query() {
+            const query = {}
+            if (this.name !== null && this.name !== '') query.name = this.name
+            if (this.islandFilter !== null) {
+                query.island = this.islandFilter
+                if (this.municipalityFilter !== null) query.municipality = this.municipalityFilter
+            }
+            if (this.placeFilter !== null) {
+                if (this.placeFilter === 'Playas') query.placeType = 'beaches'
+                if (this.placeFilter === 'Restaurantes') query.placeType = 'restaurants'
+                if (this.placeFilter === 'Museos') query.placeType = 'museums'
+                if (this.placeFilter === 'Miradores') query.placeType = 'viewpoints'
+            }
+            return query
+        }
     },
+    mounted(){
+        this.name = this.$route.query.name
+            if (this.$route.query.placeType !== null) {
+                if (this.$route.query.placeType === 'beaches') this.placeFilter = 'Playas'
+                if (this.$route.query.placeType === 'restaurants') this.placeFilter = 'Restaurantes'
+                if (this.$route.query.placeType === 'museums') this.placeFilter = 'Museos'
+                if (this.$route.query.placeType === 'viewpòints') this.placeFilter = 'Miradores'
+            }
+    }
 }
-
-
 </script>
