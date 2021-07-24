@@ -597,7 +597,10 @@ export default {
                 if (this.$route.query.placeType === 'restaurants') this.placeFilter = 'Restaurantes'
                 if (this.$route.query.placeType === 'museums') this.placeFilter = 'Museos'
                 if (this.$route.query.placeType === 'viewpòints') this.placeFilter = 'Miradores'
+            } else {
+                this.placeFilter = this.$$route.params.placeType
             }
+
     }
 }
 </script>

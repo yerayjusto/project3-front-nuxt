@@ -3,7 +3,7 @@
     <v-row align="center" justify="center" class="mt-5">
       <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
         <nuxt-link
-          :to="{ params: { ...params }, name: 'search-beach-2' }"
+          :to="{ params: { ...params }, name: 'search-rest-2' }"
           style="text-decoration: none; color: inherit"
         >
           <v-btn
@@ -20,11 +20,15 @@
         </nuxt-link>
       </v-col>
 
-      <ButtonBeachesFilter v-if="params" :params="params" :beaches="beaches" />
+      <ButtonRestFilter
+        v-if="params"
+        :params="params"
+        :restaurants="restaurants"
+      />
 
       <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
         <nuxt-link
-          :to="{ params: { ...params }, name: 'search-beach-4' }"
+          :to="{ params: { ...params }, name: 'search-rest-4' }"
           style="text-decoration: none; color: inherit"
         >
           <v-btn
@@ -44,7 +48,7 @@
 
     <v-row align="center" justify="center">
       <v-col
-        v-for="(size, idx) in sizes"
+        v-for="(cuisine, idx) in cuisines"
         :key="idx"
         class="px-lg-10"
         cols="6"
@@ -52,10 +56,10 @@
         sm="4"
         md="3"
       >
-        <CardBeach
-          :image="size.image"
-          :name="size.size"
-          nview="search-beach-4"
+        <CardRestaurant
+          :image="cuisine.image"
+          :name="cuisine.cuisine"
+          nview="search-rest-4"
         />
       </v-col>
     </v-row>
@@ -65,26 +69,26 @@
 <script>
 export default {
   async asyncData({ $axios, params }) {
-    if (params.size !== null) delete params.size
-    const beaches = await $axios.get('/places/search', {
+    if (params.cuisine !== null) delete params.cuisine
+    const restaurants = await $axios.get('/places/search', {
       params: { ...params },
     })
-    if (params === {}) return { beaches: beaches.data }
-    return { beaches: beaches.data, params }
+    if (params === {}) return { restaurants: restaurants.data }
+    return { restaurants: restaurants.data, params }
   },
   data() {
     return {
-      sizes: [
+      cuisines: [
         {
-          size: 'Pequeña',
+          cuisine: 'Típica Canaria',
           image: 'small-beach.jpg',
         },
         {
-          size: 'Mediana',
+          cuisine: 'Mediterránea',
           image: 'medium-beach.jpg',
         },
         {
-          size: 'Grande',
+          cuisine: 'Internacional',
           image: 'large-beach.jpg',
         },
       ],
@@ -92,7 +96,7 @@ export default {
   },
   methods: {
     delFilter() {
-      delete this.$route.params.sandType
+      delete this.$route.params.establishmentType
     },
   },
 }
@@ -100,7 +104,6 @@ export default {
 
 <style lang="scss" scoped>
 .choose {
-  display: absolute;
   width: 100%;
   height: 100%;
 }

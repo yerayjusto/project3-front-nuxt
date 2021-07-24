@@ -1,61 +1,110 @@
 <template>
-  <div class="d-flex justify-center" id="login">
-    <v-snackbar dark v-model="snackbar" top right text>
-      <p class="text-center ma-0">{{ snackText }}</p>
-    </v-snackbar>
-    <v-card width="500px" v-on:keyup.enter="login">
-      <v-card-title>Accede a tu cuenta</v-card-title>
-      <v-card-text>
-        <v-text-field type="text" label="Email" v-model="email"></v-text-field>
-        <v-text-field
-          type="password"
-          label="Passowrd"
-          v-model="password"
-        ></v-text-field>
-      </v-card-text>
+  <v-card
+    align="center"
+    class="ma-4"
+    elevation="15"
+    width="400px"
+  >
+    <v-img
+      v-if="$vuetify.breakpoint.xs"
+      :src="require('/assets/logoletsgo.png')"
+      height="80"
+      width="160"
+      class="mt-5"
+    ></v-img>
+    <v-img
+      v-else
+      :src="require('/assets/logoletsgo.png')"
+      height="100"
+      width="200"
+      class="mt-5"
+    ></v-img>
+    <v-card-text>
+      <v-text-field filled dense outlined clearable v-model="email" type="text" label="email">
+      </v-text-field>
 
-      <v-divider></v-divider>
+      <v-text-field
+        v-model="password"
+        filled
+        dense
+        outlined
+        clearable
+        type="password"
+        label="password"
+      ></v-text-field>
+      <v-btn dark class="ma-0" color="blue" @click="userLogin"> Entrar </v-btn>
+      <nuxt-link to=""
+        ><v-card-text class="pa-0 mt-2"
+          >¿Has olvidado la contraseña?</v-card-text
+        ></nuxt-link
+      >
+    </v-card-text>
 
-      <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn large color="primary" @click="login">Login</v-btn>
-      </v-card-actions>
-    </v-card>
-  </div>
+    <v-divider></v-divider>
+
+    <nuxt-link to="/user/signup" style="text-decoration: none; color: inherit">
+      <v-btn dark class="ma-2" color="success"> Registrarse </v-btn>
+    </nuxt-link>
+  </v-card>
 </template>
 
 <script>
 export default {
-  name: "Login",
+  name: 'Login',
 
-  data: () => ({
-    email: "",
-    password: "",
-    snackbar: false,
-    snackText: "",
-  }),
-  // methods: {
-  //   login() {
-  //     AuthService.login(this.email, this.password)
-  //       .then((response) => {
-  //         if (response.token) {
-  //           localStorage.setItem("token", response.token);
-  //           localStorage.setItem("email", response.email);
-  //           localStorage.setItem("role", response.role);
-  //           this.$router.push("/logged");
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   },
-  // },
-};
-</script>
-<style lang="scss" scoped>
-#login{
-  opacity: 0,1;
-  height: auto;
-  width: auto;
+  data() {
+    return {
+      email: '',
+      password: '',
+      loader: null,
+      loading4: false,
+    }
+  },
+computed: {
+  login() {
+    return { email: this.email, password: this.password }
+  }
+},
+  watch: {
+    loader() {
+      const l = this.loader
+      this[l] = !this[l]
+
+      setTimeout(() => (this[l] = false), 3000)
+
+      this.loader = null
+    },
+  },
+  methods: {
+    async userLogin(e) {
+      try {
+        const response = await this.$auth.loginWith('local', {
+          data: this.login,
+        })
+        console.log(response.data.rol)
+        console.log(this.$auth)
+        this.$auth.$storage.setUniversal("role", response.data.rol)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+  },
 }
-</style>
+
+// methods: {
+//   login() {
+//     AuthService.login(this.email, this.password)
+//       .then((response) => {
+//         if (response.token) {
+//           localStorage.setItem("token", response.token);
+//           localStorage.setItem("email", response.email);
+//           localStorage.setItem("role", response.role);
+//           this.$router.push("/logged");
+//         }
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   },
+// },
+</script>
