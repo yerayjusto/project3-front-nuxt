@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="choose">
     <v-row align="center" justify="center" class="mt-5">
-      <v-col class="d-flex justify-center" cols="12">
+      <v-col class="d-flex justify-end px-lg-15" cols="12">
         <nuxt-link
           :to="{ params: { placeType: 'beaches' }, name: 'search-beach-2' }"
           style="text-decoration: none; color: inherit"

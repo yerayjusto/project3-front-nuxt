@@ -115,7 +115,6 @@
             dark
             :small="$vuetify.breakpoint.xs"
             color="red accent-4"
-            @click="edit = !edit"
             >ELIMINAR CUENTA</v-btn
           >
         </v-card>

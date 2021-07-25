@@ -1,5 +1,5 @@
 <template>
-  <v-col v-if="beaches.length > 1" class="d-flex justify-center" xs="6" sm="6" md="4" lg="4" xl="4">
+  <v-col v-if="beaches.length > 1" class="d-flex px-lg-15" xs="6" sm="6" md="4">
     <nuxt-link
       :to="{ params: { ...params }, name: 'beaches-results' }"
       style="text-decoration: none; color: inherit"

@@ -1,14 +1,13 @@
 <template>
   <v-container fluid class="choose">
     <v-row align="center" justify="center" class="mt-5">
-      <v-col class="d-flex justify-center" xs="6" sm="6" md="4" lg="4" xl="4">
         <ButtonRestFilter
           v-if="params"
           :params="params"
           :restaurants="restaurants"
         />
-      </v-col>
-      <v-col class="d-flex justify-center" xs="6" sm="2" md="2" lg="2" xl="2">
+      <v-spacer></v-spacer>
+      <v-col class="d-flex justify-end px-lg-15" xs="6" sm="4">
         <v-btn-toggle>
           <nuxt-link
             :to="{ params: { ...params }, name: 'search-rest-1' }"
@@ -44,11 +43,9 @@
       <v-col
         v-for="(type, idx) in types"
         :key="idx"
-        class="px-lg-10"
-        cols="12"
+        class="px-lg-15"
         xs="12"
         sm="4"
-        md="3"
       >
         <CardRestaurantMobile
           v-if="$vuetify.breakpoint.xs"

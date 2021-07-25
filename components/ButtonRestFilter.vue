@@ -1,5 +1,5 @@
 <template>
-  <v-col v-if="restaurants.length > 1">
+  <v-col v-if="restaurants.length > 1" class="d-flex px-lg-15" xs="6" sm="6" md="4">
     <nuxt-link
       :to="{ params: { ...params }, name: 'restaurants-results' }"
       style="text-decoration: none; color: inherit"
