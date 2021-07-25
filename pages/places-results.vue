@@ -20,7 +20,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <v-container fluid class="results">
-          <v-row v-if="beaches.length === 0">
+          <v-row v-if="places.length === 0">
             <v-col
               class="d-flex justify-center"
             >
@@ -29,14 +29,14 @@
           </v-row>
 
           <v-row v-else align="center" justify="center">
-            <v-col v-if="beaches.length > 1" justify="center">
+            <v-col v-if="places.length > 1" justify="center">
               <h1 style="text-align: center">
-                {{ beaches.length }} Playas encontradas!
+                {{ places.length }} resultados encontrados!
               </h1>
             </v-col>
             <v-col v-else justify="center">
               <h1 style="text-align: center">
-                {{ beaches.length }} Playa encontrada!
+                {{ places.length }} resultado encontrado!
               </h1>
             </v-col>
           </v-row>
@@ -60,7 +60,7 @@
           <v-row align="center" justify="center">
 
             <v-col
-              v-for="(beach, idx) in beaches"
+              v-for="(place, idx) in places"
               id="card"
               :key="idx"
               class="d-flex justify-center pa-xs-0"
@@ -71,7 +71,7 @@
               lg="3"
               xl="3"
             >
-              <CardPlace :place="beach"/>
+              <CardPlace :place="place"/>
             </v-col>
           </v-row>
         </v-container>
@@ -82,20 +82,45 @@
 
 <script>
 export default {
-  name: 'Beaches',
+  name: 'Places',
 
   async asyncData({ $axios, params, query }) {
-    const beaches = await $axios.get('/places/search', {
-      params: { ...params, ...query},
+    const places = await $axios.get('/places/search', {
+      params: { ...query },
     })
-    return { beaches: beaches.data }
+    return { places: places.data }
   },
   data() {
     return {
       panel: 0
     }
   },
-   watchQuery: ["name", "island", "municipality", "placeType"],
+   watchQuery: ["name",
+                "island",
+                "municipality",
+                "placeType",
+                "occupation",
+                "urbanization",
+                "sandType",
+                "surge",
+                "wayToAccess",
+                "nudism",
+                "blueFlag",
+                "lifeguard",
+                "disabledAccess",
+                "parking",
+                "showers",
+                "rentalSunUmbrella",
+                "rentalHamocks",
+                "rentalBoats",
+                "food",
+                "drinks",
+                "childZone",
+                "sportZone",
+                "scubaDiving",
+                "surfZone",
+                "establishmentType",
+                "cuisine"],
 }
 </script>
 <style lang="scss">

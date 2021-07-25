@@ -8,7 +8,7 @@
                     clearable
                     outlined
                     dense
-                    @change="$router.push({ query: { ... query },  name: 'beaches-results'})"
+                    @change="$router.push({ query: { ... query },  name: 'places-results'})"
                 >
                 </v-text-field>
             </v-col>
@@ -79,6 +79,7 @@
                         outlined
                         dense
                         label="Grado de ocupación"
+                        @change="$router.replace({ query })"
                     ></v-select>
                 </v-col>
             </v-row>
@@ -91,6 +92,7 @@
                         outlined
                         dense
                         label="Grado de urbanización"
+                        @change="$router.replace({ query })"
                     ></v-select>
                 </v-col>
             </v-row>
@@ -103,6 +105,7 @@
                         outlined
                         dense
                         label="Tipo de playa"
+                        @change="$router.replace({ query })"
                     ></v-select>
                 </v-col>
             </v-row>
@@ -115,18 +118,20 @@
                         outlined
                         dense
                         label="Oleaje"
+                        @change="$router.replace({ query })"
                     ></v-select>
                 </v-col>
             </v-row>
             <v-row>
                 <v-col class="py-0">
                     <v-select
-                        v-model="accessFilter"
+                        v-model="accessTypeFilter"
                         :items="accessTypes"
                         clearable
                         outlined
                         dense
                         label="Tipos de acceso"
+                        @change="$router.replace({ query })"
                     ></v-select>
                 </v-col>
             </v-row>
@@ -136,7 +141,10 @@
                         block
                         elevation="1"
                         :color="nudismFilter? 'primary': 'normal'"
-                        @click="nudismFilter = !nudismFilter"
+                        @click="() => {
+                            nudismFilter = !nudismFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Playa nudista
                     </v-btn>
@@ -148,7 +156,10 @@
                         block
                         elevation="1"
                         :color="blueFlagFilter? 'primary': 'normal'"
-                        @click="blueFlagFilter = !blueFlagFilter"
+                        @click="() => {
+                            blueFlagFilter = !blueFlagFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Bandera azul
                     </v-btn>
@@ -159,8 +170,11 @@
                     <v-btn
                         block
                         elevation="1"
-                        :color="lifeGuardFilter? 'primary': 'normal'"
-                        @click="lifeGuardFilter = !lifeGuardFilter"
+                        :color="lifeguardFilter? 'primary': 'normal'"
+                        @click="() => {
+                            lifeguardFilter = !lifeguardFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Socorrista
                     </v-btn>
@@ -172,7 +186,10 @@
                         block
                         elevation="1"
                         :color="disabledAccessFilter? 'primary': 'normal'"
-                        @click="disabledAccessFilter = !disabledAccessFilter"
+                        @click="() => {
+                            disabledAccessFilter = !disabledAccessFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Acceso minusválido
                     </v-btn>
@@ -184,7 +201,10 @@
                         block
                         elevation="1"
                         :color="parkingFilter? 'primary': 'normal'"
-                        @click="parkingFilter = !parkingFilter"
+                        @click="() => {
+                            parkingFilter = !parkingFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Parking
                     </v-btn>
@@ -196,7 +216,10 @@
                         block
                         elevation="1"
                         :color="showerFilter? 'primary': 'normal'"
-                        @click="showerFilter = !showerFilter"
+                        @click="() => {
+                            showerFilter = !showerFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Duchas
                     </v-btn>
@@ -208,7 +231,10 @@
                         block
                         elevation="1"
                         :color="rentalSunUmbrellaFilter? 'primary': 'normal'"
-                        @click="rentalSunUmbrellaFilter = !rentalSunUmbrellaFilter"
+                        @click="() => {
+                            rentalSunUmbrellaFilter = !rentalSunUmbrellaFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Alquiler sombrilla
                     </v-btn>
@@ -220,7 +246,10 @@
                         block
                         elevation="1"
                         :color="rentalHamocksFilter? 'primary': 'normal'"
-                        @click="rentalHamocksFilter = !rentalHamocksFilter"
+                        @click="() => {
+                            rentalHamocksFilter = !rentalHamocksFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Alquiler tumbona
                     </v-btn>
@@ -232,7 +261,10 @@
                         block
                         elevation="1"
                         :color="rentalBoatsFilter? 'primary': 'normal'"
-                        @click="rentalBoatsFilter = !rentalBoatsFilter"
+                        @click="() => {
+                            rentalBoatsFilter = !rentalBoatsFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Alquiler botes
                     </v-btn>
@@ -243,8 +275,11 @@
                     <v-btn
                         block
                         elevation="1"
-                        :color="foodsFilter? 'primary': 'normal'"
-                        @click="foodsFilter = !foodsFilter"
+                        :color="foodFilter? 'primary': 'normal'"
+                        @click="() => {
+                            foodFilter = !foodFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Venta comida
                     </v-btn>
@@ -256,7 +291,10 @@
                         block
                         elevation="1"
                         :color="drinksFilter? 'primary': 'normal'"
-                        @click="drinksFilter = !drinksFilter"
+                        @click="() => {
+                            drinksFilter = !drinksFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Venta bebida
                     </v-btn>
@@ -268,7 +306,10 @@
                         block
                         elevation="1"
                         :color="childZoneFilter? 'primary': 'normal'"
-                        @click="childZoneFilter = !childZoneFilter"
+                        @click="() => {
+                            childZoneFilter = !childZoneFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Zona infantil
                     </v-btn>
@@ -279,8 +320,11 @@
                     <v-btn
                         block
                         elevation="1"
-                        :color="sportsZoneFilter? 'primary': 'normal'"
-                        @click="sportsZoneFilter = !sportsZoneFilter"
+                        :color="sportZoneFilter? 'primary': 'normal'"
+                        @click="() => {
+                            sportZoneFilter = !sportZoneFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Zona deportiva
                     </v-btn>
@@ -292,7 +336,10 @@
                         block
                         elevation="1"
                         :color="scubaDivingFilter? 'primary': 'normal'"
-                        @click="scubaDivingFilter = !scubaDivingFilter"
+                        @click="() => {
+                            scubaDivingFilter = !scubaDivingFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Submarinismo
                     </v-btn>
@@ -304,7 +351,10 @@
                         block
                         elevation="1"
                         :color="surfZoneFilter? 'primary': 'normal'"
-                        @click="surfZoneFilter = !surfZoneFilter"
+                        @click="() => {
+                            surfZoneFilter = !surfZoneFilter
+                            $router.replace({ query })
+                        }"
                     >
                         Surf
                     </v-btn>
@@ -320,7 +370,7 @@
                         clearable
                         outlined
                         dense
-                        @change="$router.push({ query: { ... query },  name: 'beaches-results'})"
+                        @change="$router.push({ query: { ... query },  name: 'places-results'})"
                     >
                     </v-text-field>
                 </v-col>
@@ -328,24 +378,26 @@
             <v-row>
                 <v-col class="py-0">
                     <v-select
-                        v-model="accessFilter"
-                        :items="accessTypes"
+                        v-model="establishmentFilter"
+                        :items="establishmentTypes"
                         clearable
                         outlined
                         dense
                         label="Tipo de establecimiento"
+                        @change="$router.replace({ query })"
                     ></v-select>
                 </v-col>
             </v-row>
             <v-row>
                 <v-col class="py-0">
                     <v-select
-                        v-model="accessFilter"
-                        :items="accessTypes"
+                        v-model="cuisineFilter"
+                        :items="cuisineTypes"
                         clearable
                         outlined
                         dense
                         label="Tipo de comida"
+                        @change="$router.replace({ query })"
                     ></v-select>
                 </v-col>
             </v-row>
@@ -373,26 +425,136 @@
                     ></v-select>
                 </v-col>
             </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Acceso para discapacitados</h4>
-                </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="disabledAccessFilter"
-                    ></v-switch>
+            <v-row>
+                <v-col class="py-0">
+                    <v-select
+                        v-model="accessFilter"
+                        :items="accessTypes"
+                        clearable
+                        outlined
+                        dense
+                        label="Precio"
+                    ></v-select>
                 </v-col>
             </v-row>
-            <v-row align-content="center">
-                <v-col class="py-0 pt-1" cols="8">
-                    <h4>Parking</h4>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="scubaDivingFilter? 'primary': 'normal'"
+                        @click="() => {
+                            scubaDivingFilter = !scubaDivingFilter
+                            $router.replace({ query })
+                        }"
+                    >
+                        Parking
+                    </v-btn>
                 </v-col>
-                <v-spacer></v-spacer>
-                <v-col class="pa-0" cols="3">
-                    <v-switch class="ma-0"
-                        v-model="parkingFilter"
-                    ></v-switch>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="scubaDivingFilter? 'primary': 'normal'"
+                        @click="() => {
+                            scubaDivingFilter = !scubaDivingFilter
+                            $router.replace({ query })
+                        }"
+                    >
+                        Acceso minusválido
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="scubaDivingFilter? 'primary': 'normal'"
+                        @click="() => {
+                            scubaDivingFilter = !scubaDivingFilter
+                            $router.replace({ query })
+                        }"
+                    >
+                        Baño minusválido
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="scubaDivingFilter? 'primary': 'normal'"
+                        @click="() => {
+                            scubaDivingFilter = !scubaDivingFilter
+                            $router.replace({ query })
+                        }"
+                    >
+                        Aceptan mascota
+                    </v-btn>
+                </v-col>
+            </v-row>
+                        <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="scubaDivingFilter? 'primary': 'normal'"
+                        @click="() => {
+                            scubaDivingFilter = !scubaDivingFilter
+                            $router.replace({ query })
+                        }"
+                    >
+                        Menú del día
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="scubaDivingFilter? 'primary': 'normal'"
+                        @click="() => {
+                            scubaDivingFilter = !scubaDivingFilter
+                            $router.replace({ query })
+                        }"
+                    >
+                        Opción vegana
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="scubaDivingFilter? 'primary': 'normal'"
+                        @click="() => {
+                            scubaDivingFilter = !scubaDivingFilter
+                            $router.replace({ query })
+                        }"
+                    >
+                        Opción vegetariana
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                        block
+                        elevation="1"
+                        :color="scubaDivingFilter? 'primary': 'normal'"
+                        @click="() => {
+                            scubaDivingFilter = !scubaDivingFilter
+                            $router.replace({ query })
+                        }"
+                    >
+                        Menú sin gluten
+                    </v-btn>
                 </v-col>
             </v-row>
         </div>
@@ -413,7 +575,7 @@ export default {
         accessTypeFilter: null,
         nudismFilter: null,
         blueFlagFilter: null,
-        lifeGuardFilter: null,
+        lifeguardFilter: null,
         disabledAccessFilter: null,
         parkingFilter: null,
         showerFilter: null,
@@ -460,9 +622,14 @@ export default {
                      'Coche',
                      'Barco'
                     ],
-        establishmentTypes: ['Bar/cafetería',
+        establishmentFilter: null,
+        cuisineFilter: null,
+        establishmentTypes: ['Bar/Cafetería',
                              'Restaurante',
-                             'Guanchinche']
+                             'Guanchinche'],
+        cuisineTypes:['Típica Canaria',
+                      'Mediterránea',
+                      'Internacional'],
     }),
     computed: {
         municipality () {
@@ -582,8 +749,34 @@ export default {
                 if (this.municipalityFilter !== null) query.municipality = this.municipalityFilter
             }
             if (this.placeFilter !== null) {
-                if (this.placeFilter === 'Playas') query.placeType = 'beaches'
-                if (this.placeFilter === 'Restaurantes') query.placeType = 'restaurants'
+                if (this.placeFilter === 'Playas') {
+                    query.placeType = 'beaches'
+                    if (this.occupationFilter !== null) query.occupation = this.occupationFilter
+                    if (this.urbanizationFilter !== null) query.urbanization = this.urbanizationFilter
+                    if (this.sandTypeFilter !== null) query.sandType = this.sandTypeFilter
+                    if (this.surgeFilter !== null) query.surge = this.surgeFilter
+                    if (this.accessTypeFilter !== null) query.wayToAccess = this.accessTypeFilter
+                    if (this.nudismFilter === true) query.nudism = 'Sí'
+                    if (this.blueFlagFilter === true) query.blueFlag = 'Sí'
+                    if (this.lifeguardFilter === true) query.lifeguard = 'Sí'
+                    if (this.disabledAccessFilter === true) query.disabledAccess = 'Sí'
+                    if (this.parkingFilter === true) query.parking = 'Sí'
+                    if (this.showerFilter === true) query.showers = 'Sí'
+                    if (this.rentalSunUmbrellaFilter === true) query.rentalSunUmbrella = 'Sí'
+                    if (this.rentalHamocksFilter === true) query.rentalHamocks = 'Sí'
+                    if (this.rentalBoatsFilter === true) query.rentalBoats = 'Sí'
+                    if (this.foodFilter === true) query.food= 'Sí'
+                    if (this.drinksFilter === true) query.drinks= 'Sí'
+                    if (this.childZoneFilter === true) query.childZone= 'Sí'
+                    if (this.sportZoneFilter === true) query.sportZone= 'Sí'
+                    if (this.scubaDivingFilter === true) query.scubaDiving= 'Sí'
+                    if (this.surfZoneFilter === true) query.surfZone= 'Sí'
+                }
+                if (this.placeFilter === 'Restaurantes') {
+                    query.placeType = 'restaurants'
+                    if (this.establishmentFilter !== null) query.establishmentType= this.establishmentFilter
+                    if (this.cuisineFilter !== null) query.cuisine = this.cuisineFilter
+                }
                 if (this.placeFilter === 'Museos') query.placeType = 'museums'
                 if (this.placeFilter === 'Miradores') query.placeType = 'viewpoints'
             }
@@ -592,15 +785,39 @@ export default {
     },
     mounted(){
         this.name = this.$route.query.name
-            if (this.$route.query.placeType !== null) {
-                if (this.$route.query.placeType === 'beaches') this.placeFilter = 'Playas'
-                if (this.$route.query.placeType === 'restaurants') this.placeFilter = 'Restaurantes'
-                if (this.$route.query.placeType === 'museums') this.placeFilter = 'Museos'
-                if (this.$route.query.placeType === 'viewpòints') this.placeFilter = 'Miradores'
-            } else {
-                this.placeFilter = this.$$route.params.placeType
+        this.islandFilter = this.$route.query.island
+        if (this.$route.query.placeType !== null) {
+            if (this.$route.query.placeType === 'beaches') {
+                this.placeFilter = 'Playas'
+                this.occupationFilter = this.$route.query.occupation
+                this.urbanizationFilter = this.$route.query.urbanization
+                this.sandTypeFilter = this.$route.query.sandType
+                this.surgeFilter = this.$route.query.surge
+                this.accessTypeFilter = this.$route.query.wayToAccess
+                if (this.$route.query.nudism === 'Sí') this.nudismFilter = true
+                if (this.$route.query.blueFlag === 'Sí') this.blueFlagFilter = true
+                if (this.$route.query.lifeguard === 'Sí') this.lifeguardFilter = true
+                if (this.$route.query.disabledAccess === 'Sí') this.disabledAccessFilter = true
+                if (this.$route.query.parking === 'Sí') this.parkingFilter = true
+                if (this.$route.query.showers === 'Sí') this.showerFilter = true
+                if (this.$route.query.rentalSunUmbrella === 'Sí') this.rentalSunUmbrellaFilter = true
+                if (this.$route.query.rentalHamocks === 'Sí') this.rentalHamocksFilter = true
+                if (this.$route.query.rentalBoats === 'Sí') this.rentalBoatsFilter = true
+                if (this.$route.query.food === 'Sí') this.foodFilter = true
+                if (this.$route.query.drinks === 'Sí') this.drinksFilter = true
+                if (this.$route.query.childZone === 'Sí') this.childZoneFilter = true
+                if (this.$route.query.sportZone === 'Sí') this.sportZoneFilter = true
+                if (this.$route.query.scubaDiving === 'Sí') this.scubaDivingFilter = true
+                if (this.$route.query.surfZone === 'Sí') this.surfZoneFilter = true
             }
-
-    }
+            if (this.$route.query.placeType === 'restaurants') {
+                this.placeFilter = 'Restaurantes'
+                this.establishmentFilter = this.$route.query.establishmentType
+                this.cuisineFilter = this.$route.query.cuisine
+            }
+            if (this.$route.query.placeType === 'museums') this.placeFilter = 'Museos'
+            if (this.$route.query.placeType === 'viewpoints') this.placeFilter = 'Miradores'
+        }
+    },
 }
 </script>

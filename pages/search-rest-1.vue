@@ -34,7 +34,7 @@
         xl="3"
       >
         <nuxt-link
-          :to="{ params: { placeType: 'restaurants' }, name: 'search-rest-2' }"
+          :to="{ query: { ...params }, params: { placeType: 'restaurants' }, name: 'search-rest-2' }"
         >
           <v-btn
             v-if="$vuetify.breakpoint.xs"

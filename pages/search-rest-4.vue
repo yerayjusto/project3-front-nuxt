@@ -3,7 +3,7 @@
     <v-row align="center" justify="center" class="mt-5">
       <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
         <nuxt-link
-          :to="{ params: { ...params }, name: 'search-rest-3' }"
+          :to="{ query: { ...params }, params: { ...params }, name: 'search-rest-3' }"
           style="text-decoration: none; color: inherit"
         >
           <v-btn
@@ -28,7 +28,7 @@
 
       <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
         <nuxt-link
-          :to="{ params: { ...params }, name: 'restaurants-results' }"
+          :to="{ query: { ...params }, name: 'places-results' }"
           style="text-decoration: none; color: inherit"
         >
           <v-btn
@@ -59,7 +59,7 @@
         <CardRestaurant
           :image="price.image"
           :name="price.price"
-          nview="restaurants-results"
+          nview="places-results"
         />
       </v-col>
     </v-row>
