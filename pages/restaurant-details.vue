@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid fill-height class="details" >
+  <v-container fluid fill-height class="details">
     <v-row>
       <v-spacer></v-spacer>
       <v-col :lg="7" :md="6" :sm="6" :xs="12">
@@ -127,7 +127,9 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn color="orange lighten-2" text>+ información </v-btn>
+            <v-btn color="orange lighten-2" text @click="show = !show"
+              >+ información
+            </v-btn>
 
             <v-spacer></v-spacer>
 
@@ -176,7 +178,7 @@
         </v-card>
       </v-col>
       <v-col :lg="3" :md="5" :sm="5" :xs="12">
-        <v-card :loading="loading" class="mx-auto" style="height:100%">
+        <v-card :loading="loading" class="mx-auto" style="height: 100%">
           <template slot="progress">
             <v-progress-linear
               color="deep-purple"
@@ -204,7 +206,8 @@
             </v-row>
           </v-card-text>
           <v-card-subtitle>
-            A mi me gusto el trato fueron buena gente y me invitaron a un chupito.
+            A mi me gusto el trato fueron buena gente y me invitaron a un
+            chupito.
           </v-card-subtitle>
 
           <v-card-text>
@@ -221,11 +224,12 @@
             </v-row>
           </v-card-text>
           <v-card-subtitle>
-            Lo mejor que tienen es el pavo estilo thai con soja, tienen que probarlo.
+            Lo mejor que tienen es el pavo estilo thai con soja, tienen que
+            probarlo.
           </v-card-subtitle>
 
           <v-card-text>
-            <v-row align="center" class="mx-0" style="height:50%">
+            <v-row align="center" class="mx-0" style="height: 50%">
               <v-rating
                 :value="4.5"
                 color="amber"
@@ -239,7 +243,9 @@
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
-            <v-btn color="orange lighten-2" text>+ Comentarios </v-btn>
+            <v-btn color="orange lighten-2" text @click="show1 = !show1"
+              >+ Comentarios
+            </v-btn>
 
             <v-spacer></v-spacer>
 
@@ -254,21 +260,13 @@
               <v-divider></v-divider>
 
               <v-card-text class="d-flex aling-center">
-                <v-card-text>
-                  
-                </v-card-text>
+                <v-card-text> </v-card-text>
               </v-card-text>
             </div>
           </v-expand-transition>
-          
-          
-          <a
-            :href="mapUrl"
-            target="_blank"
-          >
-            <v-img
-              :src="require('../assets/google-maps-new-logo.jpg')"
-            ></v-img>
+
+          <a :href="mapUrl" target="_blank">
+            <v-img :src="require('../assets/google-maps-new-logo.jpg')"></v-img>
           </a>
         </v-card>
       </v-col>
@@ -286,15 +284,14 @@ export default {
   },
   data: () => ({
     show: false,
-    show1:false,
+    show1: false,
   }),
   computed: {
-    mapUrl () {
+    mapUrl() {
       return `https://www.google.es/maps/@${this.place.coordX},${this.place.coordY}`
-    }
+    },
   },
   mounted() {},
-
 }
 </script>
 <style>

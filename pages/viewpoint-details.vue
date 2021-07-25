@@ -22,7 +22,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-         <v-col :lg="3" :md="5" :sm="5" :xs="12">
+      <v-col :lg="3" :md="5" :sm="5" :xs="12">
         <v-card :loading="loading" class="mx-auto" style="height: 100%">
           <template slot="progress">
             <v-progress-linear
@@ -115,15 +115,15 @@
           </a>
         </v-card>
       </v-col>
-    </v-row>
       <v-spacer></v-spacer>
+    </v-row>
   </v-container>
 </template>
 
 
 <script>
 export default {
-  name: 'museum-details',
+  name: 'viewpoint-details',
   async asyncData({ $axios, params }) {
     const place = await $axios.get(`/places/${params.id}`)
     return { place: place.data }
@@ -134,7 +134,7 @@ export default {
   }),
   computed: {
     mapUrl() {
-      return `https://www.google.es/maps/@${this.place.coordX},${this.place.coordY}`
+      return `https://www.google.es/maps/@${this.place.coordLatitude},${this.place.coordLenght}`
     },
   },
   mounted() {},
