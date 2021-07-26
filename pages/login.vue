@@ -36,12 +36,12 @@ export default {
   middleware: 'user',
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .index {
   display: absolute;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/background_index.jpg') !important;
+  background-image: url('../assets/background_index.jpg');
   background-size: cover;
   background-position: center;
 }

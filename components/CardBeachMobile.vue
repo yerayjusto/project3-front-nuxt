@@ -3,10 +3,10 @@
     :to="{ params: { ...params }, name: nview }"
     style="text-decoration: none; color: inherit"
   >
-    <v-card class="rounded-lg">
+    <v-card class="rounded-lg" height="auto">
       <v-row class="ma-0" align="center" justify="center">
         <v-col cols="4"
-          ><v-avatar  size="80" rounded>
+          ><v-avatar class="ma-3" size="80" rounded>
             <v-img :src="require(`@/assets/${image}`)"></v-img> </v-avatar
         ></v-col>
         <v-col cols="8"

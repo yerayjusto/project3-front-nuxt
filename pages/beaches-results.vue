@@ -9,7 +9,7 @@
       </v-col>
     </v-row>
 
-    <v-row v-else align="center" justify="center">
+    <v-row v-else>
       <v-col v-if="beaches.length > 1">
         <h2 v-if="$vuetify.breakpoint.smAndDown">
           {{ beaches.length }} Playas encontradas!

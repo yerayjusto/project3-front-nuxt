@@ -44,6 +44,7 @@
         v-for="(type, idx) in types"
         :key="idx"
         class="px-lg-15"
+        cols="12"
         xs="12"
         sm="4"
       >
@@ -79,15 +80,15 @@ export default {
       types: [
         {
           establishmentType: 'Bar/Cafetería',
-          image: 'cheap.png',
+          image: 'cafeteria.jpg',
         },
         {
           establishmentType: 'Restaurante',
-          image: 'black-sand.jpg',
+          image: 'restaurant.jpg',
         },
         {
           establishmentType: 'Guachinche',
-          image: 'white-sand.jpg',
+          image: 'guachinche.jpg',
         },
       ],
     }

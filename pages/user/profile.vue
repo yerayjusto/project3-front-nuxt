@@ -80,8 +80,8 @@
           </v-form>
           <v-btn-toggle class="mb-5"
             ><v-btn
-              width="100px"
               v-show="edit === true"
+              width="100px"
               :small="$vuetify.breakpoint.xs"
               dark
               color="#4D7F9A"
@@ -90,8 +90,8 @@
               >EDITAR</v-btn
             >
             <v-btn
-              width="100px"
               v-show="edit === false"
+              width="100px"
               :small="$vuetify.breakpoint.xs"
               dark
               color="secondary"
@@ -165,6 +165,8 @@ export default {
       this.firstName = this.$store.$auth.$state.user.firstName
       this.lastName = this.$store.$auth.$state.user.lastName
       this.email = this.$store.$auth.$state.user.email
+      this.password = ''
+      this.confPass = ''
     },
     noChanges() {
       this.edit = !this.edit
@@ -199,12 +201,12 @@ export default {
   },
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .index {
   display: absolute;
   width: 100%;
   height: 100%;
-  background-image: url('../../assets/background_index.jpg') !important;
+  background-image: url('../../assets/background_index.jpg');
   background-size: cover;
   background-position: center;
 }

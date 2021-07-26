@@ -23,9 +23,9 @@
       <div v-if="$vuetify.breakpoint.lgAndUp" class="d-flex">
         <v-btn-toggle group dense>
           <v-btn
-            x-large
             v-for="(btn, idx) in btns"
             :key="idx"
+            x-large
             @click="navBarClick(btn.text)"
           >
             {{ btn.name }}
@@ -37,8 +37,8 @@
         <v-row>
           <v-col>
             <v-text-field
-              flat
               v-model="name"
+              flat
               background-color="white"
               light
               dense
@@ -46,7 +46,7 @@
               placeholder="Buscar..."
               solo
               @keyup.enter="
-                $router.push({ query: { name: name }, name: 'beaches-results' })
+                $router.push({ query: { name: name }, name: 'places-results' })
               "
             >
             </v-text-field>
@@ -55,10 +55,12 @@
       </div>
       <div class="d-flex">
         <v-btn-toggle group dense>
-          <v-btn @click="navBarClick('profile')"
-            class="mx-0"><v-icon>mdi-account-edit</v-icon></v-btn
+          <v-btn class="mx-0" @click="navBarClick('profile')" 
+            ><v-icon>mdi-account-edit</v-icon></v-btn
           >
-          <v-btn @click="logout" class="mx-0"><v-icon>mdi-logout</v-icon></v-btn>
+          <v-btn class="mx-0" @click="logout" 
+            ><v-icon>mdi-logout</v-icon></v-btn
+          >
         </v-btn-toggle>
       </div>
     </v-app-bar>
@@ -66,6 +68,7 @@
     <v-navigation-drawer
       v-if="$vuetify.breakpoint.mdAndDown"
       v-model="drawer"
+      style="position: fixed"
       absolute
       temporary
     >

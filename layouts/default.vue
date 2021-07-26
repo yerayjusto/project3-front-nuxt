@@ -4,11 +4,7 @@
     <v-main class="main">
       <nuxt />
       <v-footer
-        v-if="
-          $vuetify.breakpoint.md ||
-          $vuetify.breakpoint.lg ||
-          $vuetify.breakpoint.xl
-        "
+        v-if="$vuetify.breakpoint.mdAndUp"
         class="justify-center pl-0"
         inset
         app
@@ -50,6 +46,9 @@ h1 {
   color: #686868;
 }
 h2 {
+  color: #686868;
+}
+h3 {
   color: #686868;
 }
 h4 {

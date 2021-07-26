@@ -93,11 +93,6 @@ export default {
       ],
     }
   },
-  methods: {
-    delFilter() {
-      delete this.$route.params.sandType
-    },
-  },
 }
 </script>
 

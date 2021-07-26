@@ -1,11 +1,11 @@
 <template>
   <v-container fluid class="choose">
     <v-row align="center" justify="center" class="mt-5">
-        <ButtonRestFilter
-          v-if="params"
-          :params="params"
-          :restaurants="restaurants"
-        />
+      <ButtonRestFilter
+        v-if="params"
+        :params="params"
+        :restaurants="restaurants"
+      />
       <v-spacer></v-spacer>
       <v-col class="d-flex justify-end px-lg-15" xs="6" sm="4">
         <v-btn-toggle>
@@ -44,6 +44,7 @@
         v-for="(price, idx) in prices"
         :key="idx"
         class="px-lg-15"
+        cols="12"
         xs="12"
         sm="4"
       >
@@ -72,6 +73,7 @@ export default {
       params: { ...params },
     })
     if (params === {}) return { restaurants: restaurants.data }
+
     return { restaurants: restaurants.data, params }
   },
   data() {
@@ -79,15 +81,15 @@ export default {
       prices: [
         {
           price: 'Económico (<15€)',
-          image: 'surge-calm.jpg',
+          image: 'economico.jpg',
         },
         {
           price: 'Moderado (15-25€)',
-          image: 'surge-medium.jpeg',
+          image: 'moderado.jpg',
         },
         {
           price: 'Elevado (>25€)',
-          image: 'surge-hard.jpeg',
+          image: 'elevado.jpg',
         },
       ],
     }

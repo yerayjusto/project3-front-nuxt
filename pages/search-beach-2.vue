@@ -3,7 +3,7 @@
     <v-row class="mt-5" align="center">
       <ButtonBeachesFilter v-if="params" :params="params" :beaches="beaches" />
       <v-spacer></v-spacer>
-      <v-col class="d-flex justify-end px-lg-15" xs="6" sm="4">
+      <v-col class="d-flex justify-end px-lg-15" xs="4" sm="4">
         <v-btn-toggle>
           <nuxt-link
             :to="{ params: { ...params }, name: 'search-beach-1' }"

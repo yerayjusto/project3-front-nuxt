@@ -44,6 +44,7 @@
         v-for="(cuisine, idx) in cuisines"
         :key="idx"
         class="px-lg-15"
+        cols="12"
         xs="12"
         sm="4"
       >
@@ -80,23 +81,18 @@ export default {
       cuisines: [
         {
           cuisine: 'Típica Canaria',
-          image: 'small-beach.jpg',
+          image: 'cocinacanaria.jpg',
         },
         {
           cuisine: 'Mediterránea',
-          image: 'medium-beach.jpg',
+          image: 'mediterranea.jpg',
         },
         {
           cuisine: 'Internacional',
-          image: 'large-beach.jpg',
+          image: 'internacional.png',
         },
       ],
     }
-  },
-  methods: {
-    delFilter() {
-      delete this.$route.params.establishmentType
-    },
   },
 }
 </script>
