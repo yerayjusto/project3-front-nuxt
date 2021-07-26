@@ -3,8 +3,8 @@
     <v-row>
       <v-spacer></v-spacer>
       <v-col :lg="7" :md="6" :sm="6" :xs="12">
-        <v-card class="mx-auto" max-width="344">
-          <v-img :src="place.imageUrl" height="200px"></v-img>
+        <v-card class="mx-auto">
+          <v-img :src="place.imageUrl" height="600px" width="1400px"></v-img>
 
           <v-card-title>
             {{ place.name }}
@@ -16,9 +16,8 @@
           <v-card-text>
             <b>Descripción:</b> <br />{{ place.description }}<br />
             <br />
-            <b>Dirección:</b> {{ place.placeId.adress }} <br />
-            <b>Web:</b> {{ place.placeId.web }} <br />
-            <b>Teléfono:</b> {{ place.placeId.telephone }} <br />
+            <b>Localización:</b> {{ place.coordY}} , {{place.coordX}} <br />
+
           </v-card-text>
         </v-card>
       </v-col>
@@ -134,7 +133,7 @@ export default {
   }),
   computed: {
     mapUrl() {
-      return `https://www.google.es/maps/@${this.place.coordLatitude},${this.place.coordLenght}`
+      return `https://www.google.es/maps/@${this.place.coordX},${this.place.coordY}`
     },
   },
   mounted() {},

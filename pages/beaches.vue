@@ -23,7 +23,7 @@ export default {
   name: 'Beaches',
   async asyncData({ $axios, params }) {
     const beaches = await $axios.get('/places/search', {
-      params: { placeType: 'beaches' },
+      params: { placeType: 'beaches' }
     })
     return { beaches: beaches.data }
   },

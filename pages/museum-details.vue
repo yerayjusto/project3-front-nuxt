@@ -3,8 +3,8 @@
     <v-row>
       <v-spacer></v-spacer>
       <v-col :lg="7" :md="6" :sm="6" :xs="12">
-        <v-card class="mx-auto" max-width="344">
-          <v-img :src="place.imageUrl" height="200px"></v-img>
+        <v-card class="mx-auto" >
+          <v-img :src="place.imageUrl" height="600px" width="1400px"></v-img>
 
           <v-card-title>
             {{ place.name }}
@@ -115,8 +115,8 @@
           </a>
         </v-card>
       </v-col>
-    </v-row>
       <v-spacer></v-spacer>
+    </v-row>
   </v-container>
 </template>
 

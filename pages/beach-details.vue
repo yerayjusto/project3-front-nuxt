@@ -23,11 +23,14 @@
             <b>Acceso:</b> {{ place.placeId.wayToAccess }} <br />
 
             <b>Tipo de arena:</b> {{ place.placeId.sandType }}
+             <b>Localización:</b> {{place.coordY}} , {{place.coordX}}
+
+
           </v-card-text>
           <v-card-text>
             <b>Servicios:</b>
 
-            <v-card-text class="d-flex aling-center">
+            <v-card-text class="d-flex aling-center mr-5">
               <v-tooltip bottom>
                 <template #activator="{ on, attrs }">
                   <v-icon
@@ -391,7 +394,7 @@
       </v-col>
       <v-spacer></v-spacer>
     </v-row>
-    
+
   </v-container>
 </template>
 
@@ -408,7 +411,7 @@ export default {
   }),
   computed: {
     mapUrl() {
-      return `https://www.google.es/maps/@${this.place.coordLatitude},${this.place.coordLenght}`
+      return `https://www.google.es/maps/@${this.place.coordX},${this.place.coordY}`
     },
   },
   mounted() {},

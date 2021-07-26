@@ -12,7 +12,13 @@
         lg="3"
         xl="3"
       >
+      <nuxt-link
+           :to="{ params: { ...params }, name: 'museum-details' }"
+          style="text-decoration: none; color: inherit"
+        >
+
         <CardPlace :place="museum" />
+        </nuxt-link>
       </v-col>
     </v-row>
   </v-container>

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-auto" width="374" height="500"> 
+  <v-card class="ma-auto" width="374" height="500">
     <nuxt-link :to="{ params: { id: place._id }, name: nameDetailsPage }"
     style="text-decoration: none; color: inherit">
     <template slot="progress">
@@ -77,6 +77,8 @@ export default {
   mounted(){
     if (this.place.placeType === 'beaches') this.nameDetailsPage = 'beach-details'
     if (this.place.placeType === 'restaurants') this.nameDetailsPage = 'restaurant-details'
+    if (this.place.placeType === 'viewpoints') this.nameDetailsPage = 'viewpoint-details'
+    if (this.place.placeType === 'museums') this.nameDetailsPage = 'museum-details'
   }
 
 
