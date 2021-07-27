@@ -1,7 +1,7 @@
 <template>
   <v-card width="350" height="500">
     <nuxt-link
-      :to="{ params: { id: place._id }, name: nameDetailsPage }"
+      :to="{ query: { id: place._id }, name: nameDetailsPage }"
       style="text-decoration: none; color: inherit"
     >
       <v-img height="250" :src="place.imageUrl"></v-img>

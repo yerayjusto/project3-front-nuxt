@@ -1,14 +1,22 @@
 <template>
   <v-container fluid class="index">
+    <v-row class="mt-15">
+      <v-col :cols="$vuetify.breakpoint.mdAndDown ? '12' : '6'">
+        <h1>PLAYAS</h1>
+      </v-col>
+      <v-col v-if="$vuetify.breakpoint.lgAndUp">
+        <h1>TOP SITIOS</h1>
+      </v-col>
+    </v-row>
+
     <v-row>
-      <v-col cols="6" class="d-flex"
-        ><v-carousel cycle hide-delimiters show-arrows-on-hover>
+      <v-col :cols="$vuetify.breakpoint.mdAndDown ? '12' : '6'" class="d-flex">
+        <v-carousel cycle hide-delimiters show-arrows-on-hover>
           <v-carousel-item
             v-for="(beach, idx) in beaches"
             :key="idx"
-            max-height="400"
-            max-width="1000"
             :src="beach.imageUrl"
+            :to="{ query: { id: beach._id }, name: 'beach-details' }"
           >
             <v-row align="start" justify="start">
               <div
@@ -24,8 +32,21 @@
           </v-carousel-item>
         </v-carousel>
       </v-col>
-      <v-col cols="6" class="d-flex">
+      <v-col v-if="$vuetify.breakpoint.mdAndDown" cols="12">
+        <h1>TOP SITIOS</h1>
       </v-col>
+      <v-col :cols="$vuetify.breakpoint.lgAndUp ? '2' : '12'" class="d-flex">
+       <CardPlaceMobile v-if="$vuetify.breakpoint.mdAndDown" :place="restaurantRate" style="width: 100%"/><CardPlace v-else :place="restaurantRate" />
+      </v-col>
+      <v-col :cols="$vuetify.breakpoint.lgAndUp ? '2' : '12'" class="d-flex">
+        <CardPlaceMobile v-if="$vuetify.breakpoint.mdAndDown" :place="beachRate" style="width: 100%"/><CardPlace v-else :place="beachRate" />
+      </v-col>
+      <v-col :cols="$vuetify.breakpoint.lgAndUp ? '2' : '12'" class="d-flex">
+        <CardPlaceMobile v-if="$vuetify.breakpoint.mdAndDown" :place="museumRate" class="mb-10" style="width: 100%"/><CardPlace v-else :place="museumRate" />
+      </v-col>
+    </v-row>
+    <v-row>
+
     </v-row>
   </v-container>
 </template>
@@ -43,14 +64,29 @@ export default {
     const museums = await $axios.get('/places/search', {
       params: { placeType: 'museums' },
     })
+    const restaurantRate = restaurants.data.reduce((acc, i) =>
+      i.rate > acc.rate ? i : acc
+    )
+    const beachRate = beaches.data.reduce((acc, i) =>
+      i.rate > acc.rate ? i : acc
+    )
+    const museumRate = museums.data.reduce((acc, i) =>
+      i.rate > acc.rate ? i : acc
+    )
     return {
       restaurants: restaurants.data,
+      restaurantRate,
       beaches: beaches.data,
+      beachRate,
       museums: museums.data,
+      museumRate,
     }
   },
   data() {
     return {}
+  },
+  mounted() {
+    console.log('---------------', this.restaurantRate)
   },
 }
 </script>

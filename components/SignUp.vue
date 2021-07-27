@@ -115,7 +115,7 @@ export default {
     },
   },
   methods: {
-    async register() {
+    async register(e) {
       try {
         await this.$axios.post('/auth/signup', {
           alias: this.alias,
@@ -138,15 +138,15 @@ export default {
         this.error = e.response.data.message
       }
     },
-    submit() {
+    submit(e) {
       this.formHasErrors = false
 
       Object.keys(this.form).forEach((field) => {
         if (!this.form[field]) this.formHasErrors = true
-        
+
         this.$refs[field].validate(true)
       })
-      if (!this.formHasErrors) this.register()
+      if (!this.formHasErrors) this.register(e)
     },
   },
 }

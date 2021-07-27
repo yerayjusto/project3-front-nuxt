@@ -124,8 +124,8 @@
 <script>
 export default {
   name: 'museum-details',
-  async asyncData({ $axios, params }) {
-    const place = await $axios.get(`/places/${params.id}`)
+  async asyncData({ $axios, query }) {
+    const place = await $axios.get(`/places/${query.id}`)
     return { place: place.data }
   },
   data: () => ({
