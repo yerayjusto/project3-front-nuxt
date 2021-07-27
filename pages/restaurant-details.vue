@@ -41,7 +41,7 @@
               <v-tooltip bottom>
                 <template #activator="{ on, attrs }">
                   <v-icon
-                    v-show="place.placeId.petFriendly === 'No'"
+                    v-show="place.placeId.petFriendly === 'Sí'"
                     v-bind="attrs"
                     v-on="on"
                     >mdi-dog-side</v-icon
@@ -53,7 +53,7 @@
               <v-tooltip bottom>
                 <template #activator="{ on, attrs }">
                   <img
-                    v-show="place.placeId.disabledBath === 'No'"
+                    v-show="place.placeId.disabledBath === 'Sí'"
                     src="../assets/disabled-toilet.png"
                     style="width: 24px; height: 24px"
                     v-bind="attrs"
@@ -90,7 +90,7 @@
               <v-tooltip bottom>
                 <template #activator="{ on, attrs }">
                   <v-icon
-                    v-show="place.placeId.veganOption === 'No'"
+                    v-show="place.placeId.veganOption === 'Sí'"
                     v-bind="attrs"
                     v-on="on"
                     >mdi-vimeo</v-icon
@@ -102,7 +102,7 @@
               <v-tooltip bottom>
                 <template #activator="{ on, attrs }">
                   <img
-                    v-show="place.placeId.glutenFree === 'No'"
+                    v-show="place.placeId.glutenFree === 'Sí'"
                     src="../assets/gluten-free.png"
                     style="width: 24px; height: 24px"
                     v-bind="attrs"
@@ -115,7 +115,7 @@
               <v-tooltip bottom>
                 <template #activator="{ on, attrs }">
                   <v-icon
-                    v-show="place.placeId.dayMenu === 'No'"
+                    v-show="place.placeId.dayMenu === 'Sí'"
                     v-bind="attrs"
                     v-on="on"
                     >mdi-silverware-fork-knife</v-icon
