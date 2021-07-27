@@ -22,11 +22,19 @@
         </div>
       </v-row>
 
-      <v-card-subtitle>
+      <v-card-subtitle v-if="place.municipality.length > 33">
+        {{ place.island }} - {{ place.municipality.slice(0, 33) + '...' }}
+      </v-card-subtitle>
+
+      <v-card-subtitle v-else>
         {{ place.island }} - {{ place.municipality }}
       </v-card-subtitle>
 
-      <v-card-text style="overflow-x: hidden;">
+      <v-card-text v-if="place.description.length > 160" style="overflow-x: hidden;">
+        {{ place.description.slice(0, 155) + '...' }}
+      </v-card-text>
+
+      <v-card-text v-else style="overflow-x: hidden;">
         {{ place.description }}
       </v-card-text>
     </nuxt-link>

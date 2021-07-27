@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="details">
-    <v-row>
+    <v-row class="mt-10">
       <v-spacer></v-spacer>
       <v-col :lg="7" :md="6" :sm="6" :xs="12">
         <v-card class="mx-auto" >
@@ -137,7 +137,6 @@ export default {
       return `https://www.google.es/maps/@${this.place.coordX},${this.place.coordY}`
     },
   },
-  mounted() {},
 }
 </script>
 <style>

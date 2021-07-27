@@ -22,14 +22,14 @@
 
       <div v-if="$vuetify.breakpoint.lgAndUp" class="d-flex">
         <v-btn-toggle group dense>
-          <v-btn
-            v-for="(btn, idx) in btns"
+          <nuxt-link
+            v-for="(route, idx) in routes"
             :key="idx"
-            x-large
-            @click="navBarClick(btn.text)"
+            :to="getPath(idx)"
+            style="text-decoration: none; color: inherit"
           >
-            {{ btn.name }}
-          </v-btn>
+            <v-btn x-large text>{{ route.name }}</v-btn>
+          </nuxt-link>
         </v-btn-toggle>
       </div>
       <v-spacer v-if="!$vuetify.breakpoint.md"></v-spacer>
@@ -55,10 +55,10 @@
       </div>
       <div class="d-flex">
         <v-btn-toggle group dense>
-          <v-btn class="mx-0" @click="navBarClick('profile')" 
+          <v-btn class="mx-0" @click="navBarClick('profile')"
             ><v-icon>mdi-account-edit</v-icon></v-btn
           >
-          <v-btn class="mx-0" @click="logout" 
+          <v-btn class="mx-0" @click="logout"
             ><v-icon>mdi-logout</v-icon></v-btn
           >
         </v-btn-toggle>
@@ -90,7 +90,7 @@
           </nuxt-link>
 
           <nuxt-link
-            to="/restaurants"
+            :to="{ query: { placeType: 'restaurants' }, name: 'places-results' }"
             style="text-decoration: none; color: inherit"
           >
             <v-list-item>
@@ -114,7 +114,7 @@
           </nuxt-link>
 
           <nuxt-link
-            to="/beaches"
+            :to="{ query: { placeType: 'beaches' }, name: 'places-results' }"
             style="text-decoration: none; color: inherit"
           >
             <v-list-item>
@@ -161,12 +161,12 @@ export default {
     group: null,
     name: '',
 
-    btns: [
-      { text: 'beaches', name: 'PLAYAS' },
-      { text: 'searchBeachs', name: 'PLAYA IDEAL' },
-      { text: 'restaurants', name: 'RESTAURANTES' },
-      { text: 'searchRestaurants', name: 'DONDE COMER HOY' },
-      { text: 'museums', name: 'MUSEOS' },
+    routes: [
+      { path: 'beaches', name: 'PLAYAS' },
+      { path: 'searchBeachs', name: 'PLAYA IDEAL' },
+      { path: 'restaurants', name: 'RESTAURANTES' },
+      { path: 'searchRestaurants', name: 'DONDE COMER HOY' },
+      { path: 'museums', name: 'MUSEOS' },
     ],
   }),
   methods: {
@@ -177,12 +177,33 @@ export default {
     navBarClick(btn) {
       if (btn === 'home') this.$router.push('/')
       if (btn === 'profile') this.$router.push('/user/profile')
-      if (btn === 'beaches') this.$router.push('/beaches')
+      if (btn === 'beaches') this.$router.push({ query: { placeType: 'beaches' }, name: 'places-results' })
       if (btn === 'searchBeachs') this.$router.push('/search-beach-1')
-      if (btn === 'restaurants') this.$router.push('/restaurants')
+      if (btn === 'restaurants') this.$router.push({ query: { placeType: 'restaurants' }, name: 'places-results' })
       if (btn === 'searchRestaurants') this.$router.push('/search-rest-1')
-      if (btn === 'museums') this.$router.push('/museums')
+      if (btn === 'museums') this.$router.push({ query: { placeType: 'museums' }, name: 'places-results' })
     },
+    getPath(n) {
+      const path = this.routes[n].path
+      if (path === 'beaches' || path === 'restaurants' || path === 'museums') {
+        return {
+          name: 'places-results',
+          query: {
+            placeType: path
+          }
+        }
+      }
+      if (path === 'searchBeachs') {
+        return {
+          name: 'search-beach-1'
+        }
+      }
+      if (path === 'searchRestaurants') {
+        return {
+          name: 'search-rest-1'
+        }
+      }
+    }
   },
 }
 </script>
