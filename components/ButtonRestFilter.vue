@@ -1,7 +1,7 @@
 <template>
   <v-col v-if="restaurants.length > 0" class="d-flex px-lg-15" cols="6" xs="6" sm="6" md="4">
     <nuxt-link
-      :to="{ params: { ...params }, name: 'restaurants-results' }"
+      :to="{ query: { ...params }, name: 'places-results' }"
       style="text-decoration: none; color: inherit"
     >
       <h4 v-if="$vuetify.breakpoint.xs">{{ restaurants.length }} RESULTADOS >></h4>

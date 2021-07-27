@@ -1,7 +1,7 @@
 <template>
   <v-card elevation="15">
     <nuxt-link
-      :to="{ params: { ...params }, name: nview }"
+      :to="{ query: { ...params }, params: { ...params }, name: nview }"
       style="text-decoration: none; color: inherit"
     >
       <v-card-title id="title-name" class="justify-center">{{

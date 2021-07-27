@@ -10,8 +10,8 @@
       <v-col class="d-flex justify-end px-lg-15" xs="6" sm="4">
         <v-btn-toggle>
           <nuxt-link
-            :to="{ params: { ...params }, name: 'search-beach-3' }"
-            style="text-decoration: none; color: inherit"
+          :to="{ query: { ...params }, params: { ...params }, name: 'search-beach-3' }"
+          style="text-decoration: none; color: inherit"
           >
             <v-btn
               v-if="$vuetify.breakpoint.smAndDown"
@@ -23,8 +23,8 @@
             <v-btn v-else class="me-2 secondary">VOLVER</v-btn>
           </nuxt-link>
           <nuxt-link
-            :to="{ params: { ...params }, name: 'beaches-results' }"
-            style="text-decoration: none; color: inherit"
+          :to="{ query: { ...params }, name: 'places-results' }"
+          style="text-decoration: none; color: inherit"
           >
             <v-btn
               v-if="$vuetify.breakpoint.smAndDown"
@@ -58,7 +58,7 @@
           v-else
           :image="surge.image"
           :name="surge.surge"
-          nview="beaches-results"
+          nview="places-results"
         />
       </v-col>
     </v-row>

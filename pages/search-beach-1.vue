@@ -3,7 +3,7 @@
     <v-row align="center" justify="center" class="mt-5">
       <v-col class="d-flex justify-end px-lg-15" cols="12">
         <nuxt-link
-          :to="{ params: { placeType: 'beaches' }, name: 'search-beach-2' }"
+          :to="{ query: { ...params }, params: { placeType: 'beaches' }, name: 'search-beach-2' }"
           style="text-decoration: none; color: inherit"
         >
           <v-btn dark large color="#FF9A00"> SIGUIENTE </v-btn>
@@ -79,10 +79,8 @@ export default {
     }
   },
   mounted() {
-    console.log('------------------before', this.$route.params.island)
     if (this.$route.params.island !== undefined)
       delete this.$route.params.island
-    console.log('------------------after', this.$route.params.island)
   },
 }
 </script>

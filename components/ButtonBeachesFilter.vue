@@ -8,7 +8,7 @@
     md="4"
   >
     <nuxt-link
-      :to="{ params: { ...params }, name: 'beaches-results' }"
+      :to="{ query: { ...params }, name: 'places-results' }"
       style="text-decoration: none; color: inherit"
     >
       <h4 v-if="$vuetify.breakpoint.xs">{{ beaches.length }} RESULTADOS >></h4>

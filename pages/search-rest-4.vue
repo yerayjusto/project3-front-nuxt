@@ -10,7 +10,7 @@
       <v-col class="d-flex justify-end px-lg-15" xs="6" sm="4">
         <v-btn-toggle>
           <nuxt-link
-            :to="{ params: { ...params }, name: 'search-rest-3' }"
+            :to="{ query: { ...params }, params: { ...params }, name: 'search-rest-3' }"
             style="text-decoration: none; color: inherit"
           >
             <v-btn
@@ -23,7 +23,7 @@
             <v-btn v-else class="me-2 secondary">VOLVER</v-btn>
           </nuxt-link>
           <nuxt-link
-            :to="{ params: { ...params }, name: 'restaurants-results' }"
+            :to="{ query: { ...params }, name: 'places-results' }"
             style="text-decoration: none; color: inherit"
           >
             <v-btn
@@ -59,7 +59,7 @@
           v-else
           :image="price.image"
           :name="price.price"
-          nview="restaurants-results"
+          nview="places-results"
         />
       </v-col>
     </v-row>

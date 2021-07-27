@@ -3,7 +3,7 @@
     <v-row align="center" justify="center" class="mt-5">
       <v-col class="d-flex justify-end px-lg-15" cols="12">
         <nuxt-link
-          :to="{ params: { placeType: 'restaurants' }, name: 'search-rest-2' }"
+          :to="{ query: { ...params }, params: { placeType: 'restaurants' }, name: 'search-rest-2' }"
           style="text-decoration: none; color: inherit"
         >
           <v-btn dark large color="#FF9A00"> SIGUIENTE </v-btn>
