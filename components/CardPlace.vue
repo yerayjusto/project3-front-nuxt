@@ -48,12 +48,14 @@ export default {
     nameDetailsPage: '',
   }),
 
-  mounted() {
-    if (this.place.placeType === 'beaches')
-      this.nameDetailsPage = 'beach-details'
-    if (this.place.placeType === 'restaurants')
-      this.nameDetailsPage = 'restaurant-details'
-  },
+  mounted(){
+    if (this.place.placeType === 'beaches') this.nameDetailsPage = 'beach-details'
+    if (this.place.placeType === 'restaurants') this.nameDetailsPage = 'restaurant-details'
+    if (this.place.placeType === 'viewpoints') this.nameDetailsPage = 'viewpoint-details'
+    if (this.place.placeType === 'museums') this.nameDetailsPage = 'museum-details'
+  }
+
+
 }
 </script>
 <style scoped>
