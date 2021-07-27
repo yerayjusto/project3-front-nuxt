@@ -6,29 +6,31 @@ export default {
     titleTemplate: '%s - project3-front-nuxt',
     title: 'project3-front-nuxt',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' }
+      {
+        rel: 'stylesheet',
+        href: 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css',
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css',
+      },
     ],
-    script: [
-      { src:"https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"}
-
-    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -40,27 +42,29 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://letsgocanarias.herokuapp.com/api'
+    baseURL: 'https://letsgocanarias.herokuapp.com/api',
     // baseURL: 'http://localhost:3000/api'
   },
-
+  env: {
+    MAPBOX_API_KEY: process.env.MAPBOX_API_KEY
+  },
   auth: {
     redirect: {
       login: '/login',
       logout: '/login',
-      home: '/'
+      home: '/',
     },
     strategies: {
       local: {
@@ -68,19 +72,19 @@ export default {
           property: 'token',
           global: true,
           // required: true,
-          type: false
+          type: false,
         },
         user: {
-          property: 'user'
+          property: 'user',
           // autoFetch: true
         },
         endpoints: {
           login: { url: '/auth/login', method: 'post' },
           logout: false,
-          user: { url: '/auth/profile', method: 'get' }
-        }
-      }
-    }
+          user: { url: '/auth/profile', method: 'get' },
+        },
+      },
+    },
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -95,14 +99,12 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
+          success: colors.green.accent3,
+        },
+      },
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
-
+  build: {},
 }

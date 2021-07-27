@@ -21,6 +21,7 @@
     "@nuxtjs/auth-next": "*",
     "@nuxtjs/axios": "^5.13.6",
     "core-js": "^3.15.1",
+    "mapbox-gl": "^2.3.1",
     "nuxt": "^2.15.7",
     "vuetify": "^2.5.5"
   },
