@@ -1,16 +1,31 @@
 <template>
-  <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
+  <v-col
+    v-if="beaches.length > 0"
+    class="d-flex px-lg-15"
+    cols="6"
+    xs="6"
+    sm="6"
+    md="4"
+  >
     <nuxt-link
       :to="{ params: { ...params }, name: 'beaches-results' }"
       style="text-decoration: none; color: inherit"
     >
-      <v-btn v-if="$vuetify.breakpoint.xs" small class="success">
-        <v-icon dark>mdi-white-balance-sunny</v-icon>
-        &nbsp;
-        {{ beaches.length }} PLAYAS
-      </v-btn>
-      <v-btn v-else class="success"> {{ beaches.length }} PLAYAS</v-btn>
+      <h4 v-if="$vuetify.breakpoint.xs">{{ beaches.length }} RESULTADOS >></h4>
+
+      <h3 v-if="$vuetify.breakpoint.sm">{{ beaches.length }} RESULTADOS >></h3>
+
+      <h1 v-if="$vuetify.breakpoint.mdAndUp">
+        {{ beaches.length }} RESULTADOS >>
+      </h1>
     </nuxt-link>
+  </v-col>
+  <v-col v-else class="d-flex px-lg-15" cols="6" xs="6" sm="6" md="4">
+    <h4 v-if="$vuetify.breakpoint.xs">SIN RESULTADOS</h4>
+
+    <h3 v-if="$vuetify.breakpoint.sm">SIN RESULTADOS</h3>
+
+    <h1 v-if="$vuetify.breakpoint.mdAndUp">SIN RESULTADOS</h1>
   </v-col>
 </template>
 

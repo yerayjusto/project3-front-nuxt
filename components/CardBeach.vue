@@ -1,5 +1,5 @@
 <template>
-  <v-card id="vcard" elevation="15">
+  <v-card elevation="15">
     <nuxt-link
       :to="{ params: { ...params }, name: nview }"
       style="text-decoration: none; color: inherit"
@@ -7,10 +7,10 @@
       <v-card-title id="title-name" class="justify-center">{{
         name
       }}</v-card-title>
-      <div id="divcard" class="pa-2">
+      <div class="pa-2">
         <v-img
-          id="imgcard"
-          height="200"
+          style="border-radius: 5px;"
+          :height="$vuetify.breakpoint.sm ? '180' : '250'"
           :src="require(`@/assets/${image}`)"
         ></v-img>
       </div>
@@ -49,9 +49,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media only screen and (min-device-width: 200px) and (max-device-width: 600px) {
+@media only screen and (min-device-width: 600px) and (max-device-width: 790px) {
   #title-name {
-    font-size: 14px;
+    font-size: 16px;
     word-break: normal;
     white-space: nowrap;
   }

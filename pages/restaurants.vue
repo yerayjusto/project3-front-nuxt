@@ -1,18 +1,23 @@
 <template>
   <v-container fluid class="restaurants">
-    <v-row>
+    <v-row align="center" justify="center">
       <v-col
         v-for="(restaurant, idx) in restaurants"
         :key="idx"
-        class="d-flex justify-center pa-xs-0"
-        cols="6"
-        xs="4"
-        sm="4"
+        class="d-flex justify-center"
+        cols="12"
+        xs="12"
+        sm="6"
         md="4"
         lg="3"
         xl="3"
       >
-        <CardPlace :place="restaurant" />
+        <CardPlaceMobile
+          v-if="$vuetify.breakpoint.xs"
+          :place="restaurant"
+          style="width: 100%"
+        />
+        <CardPlace v-else :place="restaurant" />
       </v-col>
     </v-row>
   </v-container>

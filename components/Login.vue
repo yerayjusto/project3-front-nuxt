@@ -1,24 +1,13 @@
 <template>
   <v-card
     align="center"
-    class="ma-4"
-    elevation="15"
-    width="400px"
+    class="pa-10 rounded-xl"
+    elevation="5"
+    width="450px"
+    height="380px"
+    rounded
   >
-    <v-img
-      v-if="$vuetify.breakpoint.xs"
-      :src="require('/assets/logoletsgo.png')"
-      height="80"
-      width="160"
-      class="mt-5"
-    ></v-img>
-    <v-img
-      v-else
-      :src="require('/assets/logoletsgo.png')"
-      height="100"
-      width="200"
-      class="mt-5"
-    ></v-img>
+  <v-form>
     <v-card-text>
       <v-text-field filled dense outlined clearable v-model="email" type="text" label="email">
       </v-text-field>
@@ -32,19 +21,18 @@
         type="password"
         label="password"
       ></v-text-field>
-      <v-btn dark class="ma-0" color="blue" @click="userLogin"> Entrar </v-btn>
-      <nuxt-link to=""
-        ><v-card-text class="pa-0 mt-2"
+      <v-btn dark width="180" class="ma-0" color="#4D7F9A" @click="userLogin"> Entrar </v-btn>
+      <nuxt-link to="" style="text-decoration: none;"
+        ><v-card-text
           >¿Has olvidado la contraseña?</v-card-text
         ></nuxt-link
       >
     </v-card-text>
 
-    <v-divider></v-divider>
-
-    <nuxt-link to="/user/signup" style="text-decoration: none; color: inherit">
-      <v-btn dark class="ma-2" color="success"> Registrarse </v-btn>
+    <nuxt-link to="/signup" style="text-decoration: none; color: inherit">
+      <v-btn dark width="180" class="ma-1" color="#FF9A00"> Registrarse </v-btn>
     </nuxt-link>
+    </v-form>
   </v-card>
 </template>
 
@@ -83,28 +71,11 @@ computed: {
         })
         console.log(response.data.rol)
         console.log(this.$auth)
-        this.$auth.$storage.setUniversal("role", response.data.rol)
+        this.$auth.$storage.setUniversal('role', response.data.rol)
       } catch (err) {
         console.log(err)
       }
     },
   },
 }
-
-// methods: {
-//   login() {
-//     AuthService.login(this.email, this.password)
-//       .then((response) => {
-//         if (response.token) {
-//           localStorage.setItem("token", response.token);
-//           localStorage.setItem("email", response.email);
-//           localStorage.setItem("role", response.role);
-//           this.$router.push("/logged");
-//         }
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   },
-// },
 </script>

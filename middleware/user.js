@@ -1,3 +1,5 @@
-export default function (context) {
-  if (context.$auth.$state.role !== 'user') context.redirect('/')
+export default function ({ store, redirect }) {
+  if (store.state.auth.loggedIn) {
+    return redirect('/beaches')
+  }
 }

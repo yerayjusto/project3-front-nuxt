@@ -1,27 +1,14 @@
 <template>
   <v-card
     align="center"
-    class="ma-0 pa-0"
+    class="ma-0 pa-5 rounded-xl"
     elevation="15"
     width="400px"
     @v-on:keyup.enter="signup"
   >
-    <v-img
-      v-if="$vuetify.breakpoint.xs"
-      :src="require('/assets/logoletsgo.png')"
-      height="80"
-      width="160"
-      class="mt-5"
-    ></v-img>
-    <v-img
-      v-else
-      :src="require('/assets/logoletsgo.png')"
-      height="100"
-      width="200"
-      class="mt-5"
-    ></v-img>
     <v-card-text>
       <v-text-field
+        v-model="alias"
         filled
         dense
         outlined
@@ -30,70 +17,66 @@
         label="alias"
       ></v-text-field>
       <v-text-field
+        ref="name"
+        v-model="firstName"
         filled
         dense
         outlined
         clearable
-        ref="name"
         type="text"
         label="nombre"
-        v-model="firstName"
       ></v-text-field>
       <v-text-field
+        ref="name"
+        v-model="lastName"
         filled
         dense
         outlined
         clearable
-        ref="name"
         type="text"
         label="apellidos"
-        v-model="lastName"
       ></v-text-field>
       <v-text-field
+        ref="email"
+        v-model="email"
         filled
         dense
         outlined
         clearable
-        ref="email"
         type="text"
         label="email"
-        v-model="email"
         :rules="[rules.email]"
       ></v-text-field>
       <v-text-field
+        ref="password"
+        v-model="password"
         filled
         dense
         outlined
         clearable
-        ref="password"
         type="password"
         label="password"
-        v-model="password"
         :rules="[rules.password]"
       ></v-text-field>
       <v-text-field
+        v-model="confPass"
         filled
         dense
         outlined
         clearable
         type="password"
         label="confirmar password"
-        v-model="confPass"
         :rules="[confPassRule]"
       ></v-text-field>
-      <v-btn width="100%" color="success" large @click="submit">
-      Registrarse
-    </v-btn>
+      <v-btn dark width="100%" color="#FF9A00" large @click="submit">
+        Registrarse
+      </v-btn>
     </v-card-text>
 
     <v-divider></v-divider>
-          <nuxt-link to="/" style="text-decoration: none; color: inherit">
-      <btn icon>
-        <v-icon large>mdi-arrow-left-bold-circle</v-icon>
-      </btn>
-      </nuxt-link>
-
-
+    <nuxt-link to="/" style="text-decoration: none; color: inherit">
+      <v-card-text>Ya tengo una cuenta</v-card-text>
+    </nuxt-link>
   </v-card>
 </template>
 
@@ -107,7 +90,7 @@ export default {
     email: '',
     password: '',
     confPass: '',
-    role: '',
+    alias: '',
     formHasErrors: false,
     rules: {
       email: (value) =>
@@ -128,32 +111,43 @@ export default {
       return {
         email: this.email,
         password: this.password,
-      }
+      };
     },
   },
   methods: {
+    async register() {
+      try {
+        await this.$axios.post('/auth/signup', {
+          alias: this.alias,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          nickName: this.alias,
+          email: this.email,
+          password: this.password,
+        })
+
+        await this.$auth.loginWith('local', {
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+        })
+
+        this.$router.push('/')
+      } catch (e) {
+        this.error = e.response.data.message
+      }
+    },
     submit() {
       this.formHasErrors = false
 
       Object.keys(this.form).forEach((field) => {
         if (!this.form[field]) this.formHasErrors = true
-
+        
         this.$refs[field].validate(true)
       })
-
-      if (!this.formHasErrors) this.signup()
+      if (!this.formHasErrors) this.register()
     },
-    // signup() {
-    //   AuthService.signup(this.name, this.email, this.password, this.role)
-    //   .then(response => {
-    //     localStorage.setItem('token', response.token)
-    //     localStorage.setItem('email', response.email)
-    //     localStorage.setItem('role', response.role)
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
-    // }
   },
 }
 </script>

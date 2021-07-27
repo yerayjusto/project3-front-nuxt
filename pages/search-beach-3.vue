@@ -1,44 +1,41 @@
 <template>
   <v-container fluid class="choose">
     <v-row align="center" justify="center" class="mt-5">
-      <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
-        <nuxt-link
-          :to="{ params: { ...params }, name: 'search-beach-2' }"
-          style="text-decoration: none; color: inherit"
-        >
-          <v-btn
-            v-if="$vuetify.breakpoint.xs"
-            class="mx-2"
-            fab
-            dark
-            small
-            color="secondary"
+        <ButtonBeachesFilter
+          v-if="params"
+          :params="params"
+          :beaches="beaches"
+        />
+      <v-spacer></v-spacer>
+      <v-col class="d-flex justify-end px-lg-15" xs="6" sm="4">
+        <v-btn-toggle>
+          <nuxt-link
+            :to="{ params: { ...params }, name: 'search-beach-2' }"
+            style="text-decoration: none; color: inherit"
           >
-            <v-icon dark>mdi-arrow-left-bold</v-icon>
-          </v-btn>
-          <v-btn v-else class="secondary">ATRAS</v-btn>
-        </nuxt-link>
-      </v-col>
-
-      <ButtonBeachesFilter v-if="params" :params="params" :beaches="beaches" />
-
-      <v-col class="d-flex justify-center col-sm-4 col-md-4 col-lg-4">
-        <nuxt-link
-          :to="{ params: { ...params }, name: 'search-beach-4' }"
-          style="text-decoration: none; color: inherit"
-        >
-          <v-btn
-            v-if="$vuetify.breakpoint.xs"
-            class="mx-2"
-            fab
-            dark
-            small
-            color="primary"
+            <v-btn
+              v-if="$vuetify.breakpoint.smAndDown"
+              class="ma-0"
+              color="secondary"
+            >
+              <v-icon color="white">mdi-arrow-left-bold</v-icon>
+            </v-btn>
+            <v-btn v-else class="me-2 secondary">VOLVER</v-btn>
+          </nuxt-link>
+          <nuxt-link
+            :to="{ params: { ...params }, name: 'search-beach-4' }"
+            style="text-decoration: none; color: inherit"
           >
-            <v-icon dark>mdi-arrow-right-bold</v-icon>
-          </v-btn>
-          <v-btn v-else class="primary"> SIGUIENTE (SALTAR) </v-btn>
-        </nuxt-link>
+            <v-btn
+              v-if="$vuetify.breakpoint.smAndDown"
+              class="mx-2"
+              color="#FF9A00"
+            >
+              <v-icon color="white">mdi-arrow-right-bold</v-icon>
+            </v-btn>
+            <v-btn v-else dark color="#FF9A00"> SIGUIENTE </v-btn>
+          </nuxt-link>
+        </v-btn-toggle>
       </v-col>
     </v-row>
 
@@ -46,13 +43,19 @@
       <v-col
         v-for="(size, idx) in sizes"
         :key="idx"
-        class="px-lg-10"
-        cols="6"
-        xs="4"
+        class="px-lg-15"
+        cols="12"
+        xs="12"
         sm="4"
-        md="3"
       >
+        <CardBeachMobile
+          v-if="$vuetify.breakpoint.xs"
+          :name="size.size"
+          :image="size.image"
+          nview="search-beach-4"
+        />
         <CardBeach
+          v-else
           :image="size.image"
           :name="size.size"
           nview="search-beach-4"
@@ -89,11 +92,6 @@ export default {
         },
       ],
     }
-  },
-  methods: {
-    delFilter() {
-      delete this.$route.params.sandType
-    },
   },
 }
 </script>
