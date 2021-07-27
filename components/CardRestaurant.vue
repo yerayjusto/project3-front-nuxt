@@ -34,6 +34,10 @@ export default {
       type: String,
       default: '',
     },
+    value: {
+      type: String,
+      default: '',
+    }
   },
   computed: {
     params() {
@@ -41,7 +45,7 @@ export default {
       if (this.$route.name === 'search-rest-1') params.island = this.name
       if (this.$route.name === 'search-rest-2') params.establishmentType = this.name
       if (this.$route.name === 'search-rest-3') params.cuisine = this.name
-      if (this.$route.name === 'search-rest-4') params.price = this.name
+      if (this.$route.name === 'search-rest-4') params.price = this.value
 
       return { ...this.$route.params, ...params }
     },

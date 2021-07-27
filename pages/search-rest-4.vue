@@ -52,6 +52,7 @@
           v-if="$vuetify.breakpoint.xs"
           :image="price.image"
           :name="price.price"
+          :value="price.value"
           nview="restaurants-results"
         />
 
@@ -59,6 +60,7 @@
           v-else
           :image="price.image"
           :name="price.price"
+          :value="price.value"
           nview="places-results"
         />
       </v-col>
@@ -81,14 +83,17 @@ export default {
       prices: [
         {
           price: 'Económico (<15€)',
+          value: 'Económico',
           image: 'economico.jpg',
         },
         {
           price: 'Moderado (15-25€)',
+          value: 'Moderado',
           image: 'moderado.jpg',
         },
         {
           price: 'Elevado (>25€)',
+          value: 'Elevado',
           image: 'elevado.jpg',
         },
       ],
