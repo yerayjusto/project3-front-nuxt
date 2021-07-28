@@ -8,8 +8,13 @@
           <v-card-title>
             {{ place.name }}
           </v-card-title>
-          <v-rating>
-            {{place.rate}}
+          <v-rating
+            length="5"
+            readonly
+            background-color="#FF9A00"
+            color="#FF9A00"
+            :value="place.rate"
+          >
           </v-rating>
           <v-card-subtitle>
             {{ place.island }} - {{ place.municipality }}
@@ -17,8 +22,7 @@
           <v-card-text>
             <b>Descripción:</b> <br />{{ place.description }}<br />
             <br />
-            <b>Localización:</b> {{ place.coordY}} , {{place.coordX}} <br />
-
+            <b>Localización:</b> {{ place.coordY }} , {{ place.coordX }} <br />
           </v-card-text>
         </v-card>
       </v-col>
@@ -33,13 +37,11 @@
           </template>
 
           <v-card-title>Comentarios</v-card-title>
-
         </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
-
 
 <script>
 export default {
@@ -49,7 +51,7 @@ export default {
     return {
       place: place.data,
       coordinates: { x: place.data.coordX, y: place.data.coordY },
-      }
+    }
   },
   data: () => ({
     show: false,
@@ -63,7 +65,7 @@ export default {
 }
 </script>
 <style>
-.map-container{
+.map-container {
   height: 300px;
 }
 

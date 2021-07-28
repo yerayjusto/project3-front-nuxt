@@ -8,7 +8,13 @@
           <v-card-title>
             {{ place.name }}
           </v-card-title>
-
+           <v-rating
+            length="5"
+            readonly
+            background-color="#FF9A00"
+            color="#FF9A00"
+            :value ="place.rate">
+          </v-rating>
           <v-card-subtitle>
             {{ place.island }} - {{ place.municipality }}
           </v-card-subtitle>
