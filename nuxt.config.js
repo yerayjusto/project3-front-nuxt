@@ -52,8 +52,8 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://letsgocanarias.herokuapp.com/api'
-    // baseURL: 'http://localhost:3000/api'
+    // baseURL: 'https://letsgocanarias.herokuapp.com/api'
+    baseURL: 'http://localhost:1800/api'
   },
 
   auth: {
