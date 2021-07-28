@@ -7,14 +7,14 @@
             <v-btn color="#FF9A00"><h3 style="color: white;">FILTROS</h3> </v-btn>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <AdvancedSearchFilter />
+            <AdvancedSearchFilter/>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
     </v-row>
     <v-row>
       <v-col cols="2" class="hidden-md-and-down">
-        <AdvancedSearchFilter />
+        <AdvancedSearchFilter/>
       </v-col>
       <v-col cols="12" lg="10">
         <v-container fluid class="results">
@@ -71,15 +71,15 @@
 export default {
   name: 'Places',
 
-  async asyncData({ $axios, params, query }) {
+  async asyncData({ $axios, query }) {
     const places = await $axios.get('/places/search', {
       params: { ...query },
     })
-    return { places: places.data }
+    return { places: places.data, query: { ...query } }
   },
   data() {
     return {
-      panel: 0,
+      panel: 0
     }
   },
   watchQuery: [

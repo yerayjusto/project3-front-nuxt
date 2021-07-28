@@ -140,255 +140,256 @@
         </v-col>
       </v-row>
       <v-expansion-panels>
-    <v-expansion-panel>
-        <v-expansion-panel-header style="background-color: #FF9A00;"><h4 style="text-align:center; color: white;">FILTROS AVANZADOS</h4></v-expansion-panel-header>
-        <v-expansion-panel-content>
+        <v-expansion-panel>
+          <v-expansion-panel-header style="background-color: #ff9a00"
+            ><h4 style="text-align: center; color: white">
+              FILTROS AVANZADOS
+            </h4></v-expansion-panel-header
+          >
+          <v-expansion-panel-content>
             <v-row>
-        <v-col class="d-flex ms-2 py-0 mt-5">
-          <v-switch
-            label="Bandera azul"
-            inset
-            :color="blueFlagFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                blueFlagFilter = !blueFlagFilter
-                $router.replace({ query })
-              }
-            "
-          >
-
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Socorrista"
-            inset
-            :color="lifeguardFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                lifeguardFilter = !lifeguardFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            inset
-            label="Accesibilidad"
-            :color="disabledAccessFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                disabledAccessFilter = !disabledAccessFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Parking"
-            inset
-            :color="parkingFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                parkingFilter = !parkingFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Duchas"
-            inset
-            :color="showerFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                showerFilter = !showerFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Playa nudista"
-            inset
-            :color="nudismFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                nudismFilter = !nudismFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Alquiler Sombrilla"
-            inset
-            :color="rentalSunUmbrellaFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                rentalSunUmbrellaFilter = !rentalSunUmbrellaFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-          label="Alquiler tumbona"
-            inset
-            :color="rentalHamocksFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                rentalHamocksFilter = !rentalHamocksFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Alquiler botes"
-            inset
-            :color="rentalBoatsFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                rentalBoatsFilter = !rentalBoatsFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Venta comida"
-            inset
-            :color="foodFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                foodFilter = !foodFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Venta bebida"
-            inset
-            :color="drinksFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                drinksFilter = !drinksFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Zona infantil"
-            inset
-            :color="childZoneFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                childZoneFilter = !childZoneFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Zona deportiva"
-            inset
-            :color="sportZoneFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                sportZoneFilter = !sportZoneFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Submarinismo"
-            inset
-            :color="scubaDivingFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                scubaDivingFilter = !scubaDivingFilter
-                $router.replace({ query })
-              }
-            "
-          >
-
-          </v-switch>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="d-flex ms-2 py-0">
-          <v-switch
-            label="Surf"
-            inset
-            :color="surfZoneFilter ? 'primary' : 'normal'"
-            @click="
-              () => {
-                surfZoneFilter = !surfZoneFilter
-                $router.replace({ query })
-              }
-            "
-          >
-          </v-switch>
-        </v-col>
-      </v-row>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
+              <v-col class="d-flex ms-2 py-0 mt-5">
+                <v-switch
+                  label="Bandera azul"
+                  inset
+                  :color="blueFlagFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      blueFlagFilter = !blueFlagFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Socorrista"
+                  inset
+                  :color="lifeguardFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      lifeguardFilter = !lifeguardFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  inset
+                  label="Accesibilidad"
+                  :color="disabledAccessFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      disabledAccessFilter = !disabledAccessFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Parking"
+                  inset
+                  :color="parkingFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      parkingFilter = !parkingFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Duchas"
+                  inset
+                  :color="showerFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      showerFilter = !showerFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Playa nudista"
+                  inset
+                  :color="nudismFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      nudismFilter = !nudismFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Alquiler Sombrilla"
+                  inset
+                  :color="rentalSunUmbrellaFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      rentalSunUmbrellaFilter = !rentalSunUmbrellaFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Alquiler tumbona"
+                  inset
+                  :color="rentalHamocksFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      rentalHamocksFilter = !rentalHamocksFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Alquiler botes"
+                  inset
+                  :color="rentalBoatsFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      rentalBoatsFilter = !rentalBoatsFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Venta comida"
+                  inset
+                  :color="foodFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      foodFilter = !foodFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Venta bebida"
+                  inset
+                  :color="drinksFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      drinksFilter = !drinksFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Zona infantil"
+                  inset
+                  :color="childZoneFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      childZoneFilter = !childZoneFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Zona deportiva"
+                  inset
+                  :color="sportZoneFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      sportZoneFilter = !sportZoneFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Submarinismo"
+                  inset
+                  :color="scubaDivingFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      scubaDivingFilter = !scubaDivingFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col class="d-flex ms-2 py-0">
+                <v-switch
+                  label="Surf"
+                  inset
+                  :color="surfZoneFilter ? 'primary' : 'normal'"
+                  @click="
+                    () => {
+                      surfZoneFilter = !surfZoneFilter
+                      $router.replace({ query })
+                    }
+                  "
+                >
+                </v-switch>
+              </v-col>
+            </v-row>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
       </v-expansion-panels>
-
     </div>
     <div v-show="getFilterValues.placeType === 'Restaurantes'" class="mt-7">
       <v-row>
@@ -821,51 +822,54 @@ export default {
           if (this.$route.query.placeType === 'beaches') filters.placeType = 'Playas'
           if (this.$route.query.placeType === 'museums') filters.placeType = 'Museos'
           if (this.$route.query.placeType === 'restaurants') filters.placeType = 'Restaurantes'
-
+          if (this.$route.query.placeType === 'viewpoints') filters.placeType = 'Miradores'
+          this.resetFilters()
           return filters
       }
   },
-  mounted() {
-    this.name = this.$route.query.name
-    this.islandFilter = this.$route.query.island
-    if (this.$route.query.placeType !== null) {
-      if (this.$route.query.placeType === 'beaches') {
-        this.placeFilter = 'Playas'
-        this.occupationFilter = this.$route.query.occupation
-        this.urbanizationFilter = this.$route.query.urbanization
-        this.sandTypeFilter = this.$route.query.sandType
-        this.surgeFilter = this.$route.query.surge
-        this.accessTypeFilter = this.$route.query.wayToAccess
-        if (this.$route.query.nudism === 'Sí') this.nudismFilter = true
-        if (this.$route.query.blueFlag === 'Sí') this.blueFlagFilter = true
-        if (this.$route.query.lifeguard === 'Sí') this.lifeguardFilter = true
-        if (this.$route.query.disabledAccess === 'Sí')
-          this.disabledAccessFilter = true
-        if (this.$route.query.parking === 'Sí') this.parkingFilter = true
-        if (this.$route.query.showers === 'Sí') this.showerFilter = true
-        if (this.$route.query.rentalSunUmbrella === 'Sí')
-          this.rentalSunUmbrellaFilter = true
-        if (this.$route.query.rentalHamocks === 'Sí')
-          this.rentalHamocksFilter = true
-        if (this.$route.query.rentalBoats === 'Sí')
-          this.rentalBoatsFilter = true
-        if (this.$route.query.food === 'Sí') this.foodFilter = true
-        if (this.$route.query.drinks === 'Sí') this.drinksFilter = true
-        if (this.$route.query.childZone === 'Sí') this.childZoneFilter = true
-        if (this.$route.query.sportZone === 'Sí') this.sportZoneFilter = true
-        if (this.$route.query.scubaDiving === 'Sí')
-          this.scubaDivingFilter = true
-        if (this.$route.query.surfZone === 'Sí') this.surfZoneFilter = true
+  methods: {
+    resetFilters() {
+      this.name = this.$route.query.name
+      this.islandFilter = this.$route.query.island
+      if (this.$route.query.placeType !== null) {
+        if (this.$route.query.placeType === 'beaches') {
+          this.placeFilter = 'Playas'
+          this.occupationFilter = this.$route.query.occupation
+          this.urbanizationFilter = this.$route.query.urbanization
+          this.sandTypeFilter = this.$route.query.sandType
+          this.surgeFilter = this.$route.query.surge
+          this.accessTypeFilter = this.$route.query.wayToAccess
+          if (this.$route.query.nudism === 'Sí') this.nudismFilter = true
+          if (this.$route.query.blueFlag === 'Sí') this.blueFlagFilter = true
+          if (this.$route.query.lifeguard === 'Sí') this.lifeguardFilter = true
+          if (this.$route.query.disabledAccess === 'Sí')
+            this.disabledAccessFilter = true
+          if (this.$route.query.parking === 'Sí') this.parkingFilter = true
+          if (this.$route.query.showers === 'Sí') this.showerFilter = true
+          if (this.$route.query.rentalSunUmbrella === 'Sí')
+            this.rentalSunUmbrellaFilter = true
+          if (this.$route.query.rentalHamocks === 'Sí')
+            this.rentalHamocksFilter = true
+          if (this.$route.query.rentalBoats === 'Sí')
+            this.rentalBoatsFilter = true
+          if (this.$route.query.food === 'Sí') this.foodFilter = true
+          if (this.$route.query.drinks === 'Sí') this.drinksFilter = true
+          if (this.$route.query.childZone === 'Sí') this.childZoneFilter = true
+          if (this.$route.query.sportZone === 'Sí') this.sportZoneFilter = true
+          if (this.$route.query.scubaDiving === 'Sí')
+            this.scubaDivingFilter = true
+          if (this.$route.query.surfZone === 'Sí') this.surfZoneFilter = true
+        }
+        if (this.$route.query.placeType === 'restaurants') {
+          this.placeFilter = 'Restaurantes'
+          this.establishmentFilter = this.$route.query.establishmentType
+          this.cuisineFilter = this.$route.query.cuisine
+        }
+        if (this.$route.query.placeType === 'museums') this.placeFilter = 'Museos'
+        if (this.$route.query.placeType === 'viewpoints')
+          this.placeFilter = 'Miradores'
       }
-      if (this.$route.query.placeType === 'restaurants') {
-        this.placeFilter = 'Restaurantes'
-        this.establishmentFilter = this.$route.query.establishmentType
-        this.cuisineFilter = this.$route.query.cuisine
-      }
-      if (this.$route.query.placeType === 'museums') this.placeFilter = 'Museos'
-      if (this.$route.query.placeType === 'viewpoints')
-        this.placeFilter = 'Miradores'
-    }
+    },
   },
 }
 </script>
