@@ -18,7 +18,7 @@
       </v-col>
       <v-col cols="12" lg="10">
         <v-container fluid class="results">
-          <v-row v-if="places.length === 0">
+          <v-row  class="ms-3" v-if="places.length === 0">
             <v-col class="d-flex">
               <h2 v-if="$vuetify.breakpoint.smAndDown">
                 No se encontraron resultados
@@ -27,7 +27,7 @@
             </v-col>
           </v-row>
 
-          <v-row v-else>
+          <v-row class="ms-3" v-else>
             <v-col v-if="places.length > 1">
               <h2 v-if="$vuetify.breakpoint.smAndDown">
                 {{ places.length }} Sitios encontrados!
