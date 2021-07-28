@@ -8,17 +8,14 @@
 
       <v-card-title>{{ place.name }}</v-card-title>
       <v-row class="ms-3">
-        <v-rating
-          :value="4.5"
-          color="amber"
-          dense
-          half-increments
-          readonly
-          size="14"
-        ></v-rating>
+        <v--rating>
+
+        {{place.rate}}
+        </v--rating>
+
 
         <div v-if="$vuetify.breakpoint.mdAndUp" class="grey--text ms-4">
-          4.5 (413)
+        {{place.rate}}
         </div>
       </v-row>
 
