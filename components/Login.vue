@@ -69,8 +69,6 @@ computed: {
         const response = await this.$auth.loginWith('local', {
           data: this.login,
         })
-        console.log(response.data.rol)
-        console.log(this.$auth)
         this.$auth.$storage.setUniversal('role', response.data.rol)
       } catch (err) {
         console.log(err)

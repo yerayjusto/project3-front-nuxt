@@ -86,7 +86,7 @@ export default {
     return {}
   },
   mounted() {
-    console.log('---------------', this.restaurantRate)
+    console.log('---------------', this.$auth.user)
   },
 }
 </script>

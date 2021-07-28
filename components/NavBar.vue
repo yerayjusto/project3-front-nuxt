@@ -21,11 +21,30 @@
       <v-spacer v-if="$vuetify.breakpoint.mdAndDown"></v-spacer>
 
       <div v-if="$vuetify.breakpoint.lgAndUp" class="d-flex">
+
+        <v-menu>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn x-large text v-bind="attrs" v-on="on"
+              >LUGARES</v-btn
+            ></template
+          >
+          <v-list dark color="#4D7F9A">
+            <nuxt-link
+              v-for="(route, idx) in routes"
+              :key="idx"
+              :to="getPath(idx)"
+              style="text-decoration: none; color: inherit"
+            >
+              <v-list-item x-large text>{{ route.name }}</v-list-item>
+            </nuxt-link>
+          </v-list>
+        </v-menu>
+
         <v-btn-toggle group dense>
           <nuxt-link
-            v-for="(route, idx) in routes"
+            v-for="(route, idx) in routes2"
             :key="idx"
-            :to="getPath(idx)"
+            :to="getPath2(idx)"
             style="text-decoration: none; color: inherit"
           >
             <v-btn x-large text>{{ route.name }}</v-btn>
@@ -90,7 +109,10 @@
           </nuxt-link>
 
           <nuxt-link
-            :to="{ query: { placeType: 'restaurants' }, name: 'places-results' }"
+            :to="{
+              query: { placeType: 'restaurants' },
+              name: 'places-results',
+            }"
             style="text-decoration: none; color: inherit"
           >
             <v-list-item>
@@ -138,7 +160,7 @@
           </nuxt-link>
 
           <nuxt-link
-            to="/museums"
+            :to="{ query: { placeType: 'museums' }, name: 'places-results' }"
             style="text-decoration: none; color: inherit"
           >
             <v-list-item>
@@ -146,6 +168,18 @@
                 <v-icon>mdi-home-modern</v-icon>
               </v-list-item-icon>
               <v-list-item-title>Museos</v-list-item-title>
+            </v-list-item>
+          </nuxt-link>
+
+          <nuxt-link
+            :to="{ query: { placeType: 'viewpoints' }, name: 'places-results' }"
+            style="text-decoration: none; color: inherit"
+          >
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-binoculars</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Miradores</v-list-item-title>
             </v-list-item>
           </nuxt-link>
         </v-list-item-group>
@@ -163,11 +197,14 @@ export default {
 
     routes: [
       { path: 'beaches', name: 'PLAYAS' },
-      { path: 'searchBeachs', name: 'PLAYA IDEAL' },
       { path: 'restaurants', name: 'RESTAURANTES' },
-      { path: 'searchRestaurants', name: 'DONDE COMER HOY' },
       { path: 'museums', name: 'MUSEOS' },
+      { path: 'viewpoints', name: 'MIRADORES' },
     ],
+    routes2: [
+      { path: 'searchRestaurants', name: 'DONDE COMER HOY' },
+      { path: 'searchBeachs', name: 'PLAYA IDEAL' }
+    ]
   }),
   methods: {
     async logout() {
@@ -177,33 +214,76 @@ export default {
     navBarClick(btn) {
       if (btn === 'home') this.$router.push('/')
       if (btn === 'profile') this.$router.push('/user/profile')
-      if (btn === 'beaches') this.$router.push({ query: { placeType: 'beaches' }, name: 'places-results' })
+      if (btn === 'beaches')
+        this.$router.push({
+          query: { placeType: 'beaches' },
+          name: 'places-results',
+        })
       if (btn === 'searchBeachs') this.$router.push('/search-beach-1')
-      if (btn === 'restaurants') this.$router.push({ query: { placeType: 'restaurants' }, name: 'places-results' })
+      if (btn === 'restaurants')
+        this.$router.push({
+          query: { placeType: 'restaurants' },
+          name: 'places-results',
+        })
       if (btn === 'searchRestaurants') this.$router.push('/search-rest-1')
-      if (btn === 'museums') this.$router.push({ query: { placeType: 'museums' }, name: 'places-results' })
+      if (btn === 'museums')
+        this.$router.push({
+          query: { placeType: 'museums' },
+          name: 'places-results',
+        })
+      if (btn === 'viewpoints')
+        this.$router.push({
+          query: { placeType: 'viewpoints' },
+          name: 'places-results',
+        })
     },
     getPath(n) {
       const path = this.routes[n].path
-      if (path === 'beaches' || path === 'restaurants' || path === 'museums') {
+      if (
+        path === 'beaches' ||
+        path === 'restaurants' ||
+        path === 'museums' ||
+        path === 'viewpoints'
+      ) {
         return {
           name: 'places-results',
           query: {
-            placeType: path
-          }
+            placeType: path,
+          },
         }
       }
       if (path === 'searchBeachs') {
         return {
-          name: 'search-beach-1'
+          name: 'search-beach-1',
         }
       }
       if (path === 'searchRestaurants') {
         return {
-          name: 'search-rest-1'
+          name: 'search-rest-1',
         }
       }
-    }
+    },
+     getPath2(n) {
+      const path2 = this.routes2[n].path
+      if (path2 === 'searchBeachs') {
+        return {
+          name: 'search-beach-1',
+        }
+      }
+      if (path2 === 'searchRestaurants') {
+        return {
+          name: 'search-rest-1',
+        }
+      }
+    },
   },
+
 }
 </script>
+<style lang="scss" scoped>
+.v-application {
+  .v-btn--active::before, .v-btn:focus::before {
+    opacity: 0 !important;
+  }
+}
+</style>

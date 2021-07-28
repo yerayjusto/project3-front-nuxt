@@ -152,7 +152,6 @@
                 <v-switch
                   label="Bandera azul"
                   inset
-                  :color="blueFlagFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       blueFlagFilter = !blueFlagFilter
@@ -168,7 +167,6 @@
                 <v-switch
                   label="Socorrista"
                   inset
-                  :color="lifeguardFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       lifeguardFilter = !lifeguardFilter
@@ -184,7 +182,6 @@
                 <v-switch
                   inset
                   label="Accesibilidad"
-                  :color="disabledAccessFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       disabledAccessFilter = !disabledAccessFilter
@@ -193,6 +190,7 @@
                   "
                 >
                 </v-switch>
+                <v-icon class="ms-2">mdi-wheelchair-accessibility</v-icon>
               </v-col>
             </v-row>
             <v-row>
@@ -200,7 +198,6 @@
                 <v-switch
                   label="Parking"
                   inset
-                  :color="parkingFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       parkingFilter = !parkingFilter
@@ -216,7 +213,6 @@
                 <v-switch
                   label="Duchas"
                   inset
-                  :color="showerFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       showerFilter = !showerFilter
@@ -232,7 +228,6 @@
                 <v-switch
                   label="Playa nudista"
                   inset
-                  :color="nudismFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       nudismFilter = !nudismFilter
@@ -248,7 +243,6 @@
                 <v-switch
                   label="Alquiler Sombrilla"
                   inset
-                  :color="rentalSunUmbrellaFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       rentalSunUmbrellaFilter = !rentalSunUmbrellaFilter
@@ -264,7 +258,6 @@
                 <v-switch
                   label="Alquiler tumbona"
                   inset
-                  :color="rentalHamocksFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       rentalHamocksFilter = !rentalHamocksFilter
@@ -280,7 +273,6 @@
                 <v-switch
                   label="Alquiler botes"
                   inset
-                  :color="rentalBoatsFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       rentalBoatsFilter = !rentalBoatsFilter
@@ -296,7 +288,6 @@
                 <v-switch
                   label="Venta comida"
                   inset
-                  :color="foodFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       foodFilter = !foodFilter
@@ -312,7 +303,6 @@
                 <v-switch
                   label="Venta bebida"
                   inset
-                  :color="drinksFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       drinksFilter = !drinksFilter
@@ -328,7 +318,6 @@
                 <v-switch
                   label="Zona infantil"
                   inset
-                  :color="childZoneFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       childZoneFilter = !childZoneFilter
@@ -344,7 +333,6 @@
                 <v-switch
                   label="Zona deportiva"
                   inset
-                  :color="sportZoneFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       sportZoneFilter = !sportZoneFilter
@@ -360,7 +348,6 @@
                 <v-switch
                   label="Submarinismo"
                   inset
-                  :color="scubaDivingFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       scubaDivingFilter = !scubaDivingFilter
@@ -376,7 +363,6 @@
                 <v-switch
                   label="Surf"
                   inset
-                  :color="surfZoneFilter ? 'primary' : 'normal'"
                   @click="
                     () => {
                       surfZoneFilter = !surfZoneFilter
@@ -469,12 +455,20 @@
           ></v-select>
         </v-col>
       </v-row>
+
+      <v-expansion-panels>
+        <v-expansion-panel>
+          <v-expansion-panel-header style="background-color: #ff9a00"
+            ><h4 style="text-align: center; color: white">
+              FILTROS AVANZADOS
+            </h4></v-expansion-panel-header
+          >
+          <v-expansion-panel-content>
       <v-row>
-        <v-col>
-          <v-btn
-            block
-            elevation="1"
-            :color="scubaDivingFilter ? 'primary' : 'normal'"
+        <v-col class="d-flex ms-2 py-0 mt-5">
+          <v-switch
+            label="Parking"
+            inset
             @click="
               () => {
                 scubaDivingFilter = !scubaDivingFilter
@@ -482,16 +476,14 @@
               }
             "
           >
-            Parking
-          </v-btn>
+          </v-switch>
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
-          <v-btn
-            block
-            elevation="1"
-            :color="scubaDivingFilter ? 'primary' : 'normal'"
+        <v-col class="d-flex ms-2 py-0">
+          <v-switch
+            label="Accesibilidad"
+            inset
             @click="
               () => {
                 scubaDivingFilter = !scubaDivingFilter
@@ -499,17 +491,14 @@
               }
             "
           >
-            Acceso
-            <v-icon color="grey darken-2">mdi-wheelchair-accessibility</v-icon>
-          </v-btn>
+          </v-switch>
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
-          <v-btn
-            block
-            elevation="1"
-            :color="scubaDivingFilter ? 'primary' : 'normal'"
+        <v-col class="d-flex ms-2 py-0">
+          <v-switch
+            label="Aseo"
+            inset
             @click="
               () => {
                 scubaDivingFilter = !scubaDivingFilter
@@ -517,16 +506,15 @@
               }
             "
           >
-            Baño minusválido
-          </v-btn>
+          </v-switch>
+          <v-icon class="ms-2">mdi-wheelchair-accessibility</v-icon>
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
-          <v-btn
-            block
-            elevation="1"
-            :color="scubaDivingFilter ? 'primary' : 'normal'"
+        <v-col class="d-flex ms-2 py-0">
+          <v-switch
+            label="Aceptan mascotas"
+            inset
             @click="
               () => {
                 scubaDivingFilter = !scubaDivingFilter
@@ -534,16 +522,14 @@
               }
             "
           >
-            Aceptan mascota
-          </v-btn>
+          </v-switch>
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
-          <v-btn
-            block
-            elevation="1"
-            :color="scubaDivingFilter ? 'primary' : 'normal'"
+        <v-col class="d-flex ms-2 py-0">
+          <v-switch
+            label="Menú del día"
+            inset
             @click="
               () => {
                 scubaDivingFilter = !scubaDivingFilter
@@ -551,16 +537,14 @@
               }
             "
           >
-            Menú del día
-          </v-btn>
+          </v-switch>
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
-          <v-btn
-            block
-            elevation="1"
-            :color="scubaDivingFilter ? 'primary' : 'normal'"
+        <v-col class="d-flex ms-2 py-0">
+          <v-switch
+          label="Opción vegana"
+            inset
             @click="
               () => {
                 scubaDivingFilter = !scubaDivingFilter
@@ -568,16 +552,14 @@
               }
             "
           >
-            Opción vegana
-          </v-btn>
+          </v-switch>
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
-          <v-btn
-            block
-            elevation="1"
-            :color="scubaDivingFilter ? 'primary' : 'normal'"
+        <v-col class="d-flex ms-2 py-0">
+          <v-switch
+            label="Opción vegetariana"
+            inset
             @click="
               () => {
                 scubaDivingFilter = !scubaDivingFilter
@@ -585,16 +567,14 @@
               }
             "
           >
-            Opción vegetariana
-          </v-btn>
+          </v-switch>
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
-          <v-btn
-            block
-            elevation="1"
-            :color="scubaDivingFilter ? 'primary' : 'normal'"
+        <v-col class="d-flex ms-2 py-0">
+          <v-switch
+            label="Sin glúten"
+            inset
             @click="
               () => {
                 scubaDivingFilter = !scubaDivingFilter
@@ -602,10 +582,12 @@
               }
             "
           >
-            Menú sin gluten
-          </v-btn>
+          </v-switch>
         </v-col>
       </v-row>
+      </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </div>
   </v-container>
 </template>
@@ -795,8 +777,7 @@ export default {
           if (this.disabledAccessFilter) query.disabledAccess = 'Sí'
           if (this.parkingFilter) query.parking = 'Sí'
           if (this.showerFilter) query.showers = 'Sí'
-          if (this.rentalSunUmbrellaFilter)
-            query.rentalSunUmbrella = 'Sí'
+          if (this.rentalSunUmbrellaFilter) query.rentalSunUmbrella = 'Sí'
           if (this.rentalHamocksFilter) query.rentalHamocks = 'Sí'
           if (this.rentalBoatsFilter) query.rentalBoats = 'Sí'
           if (this.foodFilter) query.food = 'Sí'
@@ -818,14 +799,18 @@ export default {
       return query
     },
     getFilterValues() {
-          const filters = {}
-          if (this.$route.query.placeType === 'beaches') filters.placeType = 'Playas'
-          if (this.$route.query.placeType === 'museums') filters.placeType = 'Museos'
-          if (this.$route.query.placeType === 'restaurants') filters.placeType = 'Restaurantes'
-          if (this.$route.query.placeType === 'viewpoints') filters.placeType = 'Miradores'
-          this.resetFilters()
-          return filters
-      }
+      const filters = {}
+      if (this.$route.query.placeType === 'beaches')
+        filters.placeType = 'Playas'
+      if (this.$route.query.placeType === 'museums')
+        filters.placeType = 'Museos'
+      if (this.$route.query.placeType === 'restaurants')
+        filters.placeType = 'Restaurantes'
+      if (this.$route.query.placeType === 'viewpoints')
+        filters.placeType = 'Miradores'
+      this.resetFilters()
+      return filters
+    },
   },
   methods: {
     resetFilters() {
@@ -865,7 +850,8 @@ export default {
           this.establishmentFilter = this.$route.query.establishmentType
           this.cuisineFilter = this.$route.query.cuisine
         }
-        if (this.$route.query.placeType === 'museums') this.placeFilter = 'Museos'
+        if (this.$route.query.placeType === 'museums')
+          this.placeFilter = 'Museos'
         if (this.$route.query.placeType === 'viewpoints')
           this.placeFilter = 'Miradores'
       }
