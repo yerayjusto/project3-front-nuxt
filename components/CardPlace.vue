@@ -1,19 +1,19 @@
 <template>
   <v-card width="350" height="500">
+    <v-img height="250" :src="place.imageUrl"
+      ><v-row class="ma-1" align="start" justify="end"
+        ><v-btn @click="changeFav" v-if="isFav" icon style="z-index: 1"
+          ><v-icon color="#FF9A00">mdi-star</v-icon></v-btn
+        ><v-btn @click="changeFav" v-else icon style="z-index: 1"
+          ><v-icon color="#FF9A00">mdi-star-outline</v-icon></v-btn
+        >
+      </v-row>
+    </v-img>
     <nuxt-link
       :to="{ query: { id: place._id }, name: nameDetailsPage }"
       style="text-decoration: none; color: inherit"
+      @click.stop.prevent=""
     >
-      <v-img height="250" :src="place.imageUrl"
-        ><v-row class="ma-1" align="start" justify="end"
-          ><v-btn @click="changeFav" v-if="isFav" icon
-            ><v-icon color="#FF9A00">mdi-star</v-icon></v-btn
-          ><v-btn @click="changeFav" v-else icon
-            ><v-icon color="#FF9A00">mdi-star-outline</v-icon></v-btn
-          >
-        </v-row></v-img
-      >
-
       <v-card-title style="word-break: normal">{{ place.name }}</v-card-title>
       <v-row class="ms-3">
         <v-rating
@@ -73,8 +73,33 @@ export default {
         await this.$axios.post('/users/favs', {
           favs: this.place._id,
         })
+        // this.$auth.user.favs.push(this.place._id)
+        console.log(this.$auth.user)
       } catch (e) {
         this.error = e.response.data.message
+      }
+    },
+    async delFav() {
+      console.log(this.place)
+      try {
+        await this.$axios.delete('/users/favs', {
+          data: { favs: this.place._id },
+        })
+        /* this.$auth.user.favs.splice(
+          this.$auth.user.favs.indexOf(this.place._id)
+        ) */
+        console.log(this.$auth.user)
+      } catch (e) {
+        this.error = e.response.data.message
+      }
+    },
+    changeFav() {
+      if (this.isFav) {
+        this.delFav()
+        this.isFav = false
+      } else {
+        this.addFav()
+        this.isFav = true
       }
     },
   },
@@ -99,6 +124,7 @@ export default {
     if (this.place.placeType === 'museums')
       this.nameDetailsPage = 'museum-details'
     this.isFav = this.$auth.user.favs.includes(this.place._id)
+    console.log()
   },
 }
 </script>
