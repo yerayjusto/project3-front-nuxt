@@ -1,9 +1,9 @@
 <template>
   <v-card
     align="center"
-    class="pa-10 rounded-xl"
+    class="pa-10 rounded"
     elevation="5"
-    width="450px"
+    width="400px"
     height="380px"
     rounded
   >

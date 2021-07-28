@@ -1,7 +1,7 @@
 <template>
   <v-card
     align="center"
-    class="ma-0 pa-5 rounded-xl"
+    class="ma-0 pa-5 rounded"
     elevation="15"
     width="400px"
     @v-on:keyup.enter="signup"
