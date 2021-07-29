@@ -12,7 +12,7 @@
               <v-container>
                 <v-row >
                   <v-col cols="12">
-                    <p>Con esta aplicación podrá encontrar su playa ideal y la localización, gracias a nuestra amplia base de datos!</p>
+                    <p>Con esta aplicación podrás encontrar tu playa ideal y la localización, gracias a nuestra amplia base de datos!</p>
                   </v-col>
 
                 </v-row>
@@ -31,7 +31,7 @@
               <v-container>
                 <v-row>
                   <v-col cols="12">
-                    <p>Aquí encontrarás todo tipo de restaurantes, bares, cafeterías y guachinches para que pueda disfrutar de sus mejores platos y bebidas.</p>
+                    <p>Aquí encontrarás todo tipo de restaurantes, bares, cafeterías y guachinches para que puedas disfrutar de sus mejores platos y bebidas.</p>
                   </v-col>
                 </v-row>
               </v-container>
@@ -47,7 +47,7 @@
               <v-container>
                 <v-row>
                   <v-col cols="12">
-                    <p>Podrá compartir cualquier lugar con sus familiares o amigos para conocer nuevos sitios de las islas.
+                    <p>Podrás compartir cualquier lugar con tus familiares o amigos para conocer nuevos sitios de las islas.
                       </p>
                   </v-col>
                 </v-row>

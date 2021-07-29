@@ -225,6 +225,7 @@ export default {
           query: { placeType: 'restaurants' },
           name: 'places-results',
         })
+        this.$nuxt.refresh()
       if (btn === 'searchRestaurants') this.$router.push('/search-rest-1')
       if (btn === 'museums')
         this.$router.push({

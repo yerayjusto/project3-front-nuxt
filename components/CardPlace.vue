@@ -12,21 +12,20 @@
     <nuxt-link
       :to="{ query: { id: place._id }, name: nameDetailsPage }"
       style="text-decoration: none; color: inherit"
-      @click.stop.prevent=""
     >
       <v-card-title style="word-break: normal">{{ place.name }}</v-card-title>
       <v-row class="ms-3">
         <v-rating
-          :value="4.5"
+          :value="place.rate"
           color="amber"
           dense
           half-increments
           readonly
-          size="14"
+          size="18"
         ></v-rating>
 
         <div v-if="$vuetify.breakpoint.mdAndUp" class="grey--text ms-4">
-          4.5 (413)
+          {{ place.rate }}
         </div>
       </v-row>
 
@@ -65,30 +64,25 @@ export default {
 
   data: () => ({
     nameDetailsPage: '',
-    isFav: false,
+    // isFav: false,
   }),
   methods: {
     async addFav() {
       try {
-        await this.$axios.post('/users/favs', {
+        const res = await this.$axios.post('/users/favs', {
           favs: this.place._id,
         })
-        // this.$auth.user.favs.push(this.place._id)
-        console.log(this.$auth.user)
+        this.$auth.setUser(res.data.user)
       } catch (e) {
         this.error = e.response.data.message
       }
     },
     async delFav() {
-      console.log(this.place)
       try {
-        await this.$axios.delete('/users/favs', {
+        const res = await this.$axios.delete('/users/favs', {
           data: { favs: this.place._id },
         })
-        /* this.$auth.user.favs.splice(
-          this.$auth.user.favs.indexOf(this.place._id)
-        ) */
-        console.log(this.$auth.user)
+        this.$auth.setUser(res.data.user)
       } catch (e) {
         this.error = e.response.data.message
       }
@@ -96,10 +90,10 @@ export default {
     changeFav() {
       if (this.isFav) {
         this.delFav()
-        this.isFav = false
+        // this.isFav = false
       } else {
         this.addFav()
-        this.isFav = true
+        // this.isFav = true
       }
     },
   },
@@ -113,6 +107,9 @@ export default {
     //       return { favs: this.$auth.user.favs }
     //     }
     //   },
+    isFav() {
+      return this.$auth.user.favs.includes(this.place._id)
+    }
   },
   mounted() {
     if (this.place.placeType === 'beaches')
@@ -123,8 +120,8 @@ export default {
       this.nameDetailsPage = 'viewpoint-details'
     if (this.place.placeType === 'museums')
       this.nameDetailsPage = 'museum-details'
-    this.isFav = this.$auth.user.favs.includes(this.place._id)
-    console.log()
+    // this.isFav = this.$auth.user.favs.includes(this.place._id)
+    // console.log()
   },
 }
 </script>

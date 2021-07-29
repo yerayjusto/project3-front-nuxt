@@ -1,10 +1,9 @@
 <template>
   <v-container fluid fill-height class="index">
-    <v-row>
       <v-col align="center" justify="center">
         <v-card
           align="center"
-          class="pa-10 rounded-xl"
+          class="pa-10 rounded"
           elevation="5"
           width="450px"
           height="550px"
@@ -126,7 +125,6 @@
 <script>
 export default {
   name: 'Profile',
-
   data() {
     return {
       email: '',
@@ -145,6 +143,7 @@ export default {
           /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(value) ||
           '8 caracteres, 1 número, 1 mayúscula y 1 minúscula',
       },
+      favorites: [],
     }
   },
   computed: {
@@ -158,6 +157,7 @@ export default {
     this.firstName = this.$store.$auth.$state.user.firstName
     this.lastName = this.$store.$auth.$state.user.lastName
     this.email = this.$store.$auth.$state.user.email
+    this.favorites = this.$auth.user.favs
   },
   methods: {
     profileFields() {

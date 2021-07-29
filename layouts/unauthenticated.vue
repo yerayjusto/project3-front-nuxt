@@ -20,7 +20,7 @@
 
 <script>
 export default {
-
+  name: 'Unauthenticated'
 }
 </script>
 <style lang="scss">
