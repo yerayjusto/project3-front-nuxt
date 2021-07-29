@@ -88,14 +88,17 @@ export default {
   computed: {},
   methods: {
     async addComment() {
-      try {
-        await this.$axios.post('/comments', {
-          placeId: this.id,
-          title: this.title,
-          message: this.message,
-          rate: this.rate,
-        })
+      const comment = {
+        placeId: this.id,
+        title: this.title,
+        message: this.message,
+        rate: this.rate,
+      }
 
+      try {
+        const resp = await this.$axios.post('/comments', comment)
+        console.log(resp, '-----------------------------------')
+        this.$emit('updateComments', resp.data)
         close()
       } catch (e) {
         this.error = e.response.data.message

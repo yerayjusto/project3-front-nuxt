@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="details">
     <v-row class="d-flex justify-center" :md="10" :xs="12">
-      <v-col :lg="7" :md="6" :sm="6" :xs="12" >
+      <v-col :lg="7" :md="6" :sm="6" :xs="12">
         <v-card>
           <v-img :src="place.imageUrl" height="300px" width="1200px"></v-img>
 
@@ -13,8 +13,8 @@
             readonly
             background-color="#FF9A00"
             color="#FF9A00"
-            :value ="place.rate">
-
+            :value="place.rate"
+          >
           </v-rating>
 
           <v-card-subtitle>
@@ -270,7 +270,9 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn color="orange lighten-2" text @click="showInfo = !showInfo">+ información </v-btn>
+            <v-btn color="orange lighten-2" text @click="showInfo = !showInfo"
+              >+ información
+            </v-btn>
 
             <v-spacer></v-spacer>
 
@@ -305,9 +307,9 @@
         </v-card>
       </v-col>
       <v-col :lg="3" :md="5" :sm="5" :xs="12">
-        <v-card :loading="loading" class="mx-auto" style="height: 100%">
+        <v-card class="mx-auto" style="height: 100%">
           <div class="map-container">
-            <Map :coordinates="coordinates"/>
+            <Map :coordinates="coordinates" />
           </div>
           <v-container fluid>
             <v-row>
@@ -318,7 +320,7 @@
             <v-divider></v-divider>
             <v-row>
               <v-col mt-10>
-                <v-container fluid style="height: 25vh; overflow: auto">
+                <v-container fluid style="height: 35vh; overflow: auto">
                   <div v-for="(comment, idx) in place.comments" :key="idx">
                     <v-card-subtitle>
                       <v-row>
@@ -356,16 +358,7 @@
             </v-row>
             <v-row>
               <v-col pa-10>
-                <AddComment :id="place._id" />
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col>
-                <a :href="mapUrl" target="_blank">
-                  <v-img
-                    :src="require('../assets/google-maps-new-logo.jpg')"
-                  ></v-img>
-                </a>
+                <AddComment :id="place._id" @updateComments="updateComments" />
               </v-col>
             </v-row>
           </v-container>
@@ -376,39 +369,35 @@
 </template>
 
 <script>
-import AddComment from '~/components/AddComment.vue'
 export default {
-  components: { AddComment },
   name: 'beach-details',
-     async asyncData({ $axios, query }) {
-
+  async asyncData({ $axios, query }) {
     const place = await $axios.get(`/places/${query.id}`)
     return {
       place: place.data,
-      coordinates:{x:place.data.coordX, y:place.data.coordY}
+      coordinates: { x: place.data.coordX, y: place.data.coordY },
     }
-
   },
   data: () => ({
     showInfo: false,
   }),
-  computed: {
-    mapUrl() {
-      return `https://www.google.es/maps/@${this.place.coordX.toString()},${this.place.coordY.toString()},19z`
+  mounted() {
+    console.log()
+  },
+  methods: {
+    updateComments(comment) {
+      console.log(comment)
+      this.place.comments.push(comment)
     },
   },
-  mounted() {
-    console.log(this.$route.query.id)
-    },
 }
 </script>
 <style>
 #mapid {
   height: 180px;
 }
-.map-container{
+.map-container {
   height: 300px;
-
 }
 
 .details {

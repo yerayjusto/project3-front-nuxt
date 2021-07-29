@@ -9,13 +9,17 @@
       <v-card-title>{{ place.name }}</v-card-title>
       <v-row class="ms-3">
         <v--rating>
-
-        {{place.rate}}
+          <v-rating
+            :value="place.rate"
+            color="amber"
+            background-color="amber"
+            dense
+            readonly
+          ></v-rating>
         </v--rating>
 
-
         <div v-if="$vuetify.breakpoint.mdAndUp" class="grey--text ms-4">
-        {{place.rate}}
+          {{ place.rate }}
         </div>
       </v-row>
 
@@ -23,7 +27,7 @@
         {{ place.island }} - {{ place.municipality }}
       </v-card-subtitle>
 
-      <v-card-text style="overflow-x: hidden;">
+      <v-card-text style="overflow-x: hidden">
         {{ place.description }}
       </v-card-text>
     </nuxt-link>
@@ -45,18 +49,19 @@ export default {
     nameDetailsPage: '',
   }),
 
-  mounted(){
-    if (this.place.placeType === 'beaches') this.nameDetailsPage = 'beach-details'
-    if (this.place.placeType === 'restaurants') this.nameDetailsPage = 'restaurant-details'
-    if (this.place.placeType === 'viewpoints') this.nameDetailsPage = 'viewpoint-details'
-    if (this.place.placeType === 'museums') this.nameDetailsPage = 'museum-details'
-  }
-
-
+  mounted() {
+    if (this.place.placeType === 'beaches')
+      this.nameDetailsPage = 'beach-details'
+    if (this.place.placeType === 'restaurants')
+      this.nameDetailsPage = 'restaurant-details'
+    if (this.place.placeType === 'viewpoints')
+      this.nameDetailsPage = 'viewpoint-details'
+    if (this.place.placeType === 'museums')
+      this.nameDetailsPage = 'museum-details'
+  },
 }
 </script>
 <style scoped>
-
 @media (min-width: 200px) and (max-width: 600px) {
   #place-vcard {
     height: 220px;
