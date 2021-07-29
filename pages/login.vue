@@ -3,7 +3,7 @@
     <v-row>
       <v-col v-if="$vuetify.breakpoint.lgAndUp" style="max-width:70%" lg="8" xl="6">
         <v-timeline class="ms-10">
-          <v-timeline-item color="#FF9A00" fill-dot right>
+          <v-timeline-item color="#FF9A00" fill-dot right small>
             <v-card min-width="450px">
               <v-card-title style="background-color: #FF9A00;">
                 <v-icon dark size="42" class="mr-4"> mdi-magnify </v-icon>
@@ -12,9 +12,8 @@
               <v-container>
                 <v-row >
                   <v-col cols="12">
-                    <p>Con esta aplicación podrás encontrar tu playa ideal y la localización, gracias a nuestra amplia base de datos!</p>
+                    <p>Encuentra tu playa ideal y su localización, gracias a nuestra amplia base de datos!</p>
                   </v-col>
-
                 </v-row>
               </v-container>
             </v-card>
@@ -38,7 +37,7 @@
             </v-card>
           </v-timeline-item>
 
-          <v-timeline-item color="#4D7F9A" fill-dot right>
+          <v-timeline-item color="#4D7F9A" fill-dot right small>
             <v-card min-width="350px">
               <v-card-title style="background-color: #4D7F9A">
                 <v-icon class="mr-4" dark size="42"> mdi-share-variant </v-icon>
