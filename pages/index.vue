@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="index">
-    <v-row class="mt-15">
+    <v-row>
       <v-col :cols="$vuetify.breakpoint.mdAndDown ? '12' : '6'">
         <h1>PLAYAS</h1>
       </v-col>
@@ -35,27 +35,19 @@
       <v-col v-if="$vuetify.breakpoint.mdAndDown" cols="12">
         <h1>TOP LUGARES</h1>
       </v-col>
-      <v-col :cols="$vuetify.breakpoint.lgAndUp ? '2' : '12'" class="d-flex">
+      <v-col :cols="$vuetify.breakpoint.lgAndUp ? '3' : '12'" class="d-flex">
         <CardPlaceMobile
           v-if="$vuetify.breakpoint.mdAndDown"
           :place="restaurantRate"
           style="width: 100%"
         /><CardPlace v-else :place="restaurantRate" />
       </v-col>
-      <v-col :cols="$vuetify.breakpoint.lgAndUp ? '2' : '12'" class="d-flex">
+      <v-col :cols="$vuetify.breakpoint.lgAndUp ? '3' : '12'" class="d-flex">
         <CardPlaceMobile
           v-if="$vuetify.breakpoint.mdAndDown"
           :place="beachRate"
           style="width: 100%"
         /><CardPlace v-else :place="beachRate" />
-      </v-col>
-      <v-col :cols="$vuetify.breakpoint.lgAndUp ? '2' : '12'" class="d-flex">
-        <CardPlaceMobile
-          v-if="$vuetify.breakpoint.mdAndDown"
-          :place="museumRate"
-          class="mb-10"
-          style="width: 100%"
-        /><CardPlace v-else :place="museumRate" />
       </v-col>
     </v-row>
     <v-row> </v-row>
@@ -72,33 +64,30 @@ export default {
     const beaches = await $axios.get('/places/search', {
       params: { placeType: 'beaches' },
     })
-    const museums = await $axios.get('/places/search', {
+    /* const museums = await $axios.get('/places/search', {
       params: { placeType: 'museums' },
-    })
+    }) */
     const restaurantRate = restaurants.data.reduce((acc, i) =>
       i.rate > acc.rate ? i : acc
     )
     const beachRate = beaches.data.reduce((acc, i) =>
       i.rate > acc.rate ? i : acc
     )
-    const museumRate = museums.data.reduce((acc, i) =>
+    /* const museumRate = museums.data.reduce((acc, i) =>
       i.rate > acc.rate ? i : acc
-    )
+    ) */
 
     return {
       restaurants: restaurants.data,
       restaurantRate,
       beaches: beaches.data,
       beachRate,
-      museums: museums.data,
-      museumRate,
+      /* museums: museums.data,
+      museumRate */
     }
   },
   data() {
     return {}
-  },
-  mounted() {
-    console.log('---------------', this.$auth.user)
   },
 }
 </script>
