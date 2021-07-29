@@ -2,9 +2,9 @@
   <v-card width="350" height="500">
     <v-img height="250" :src="place.imageUrl"
       ><v-row class="ma-1" align="start" justify="end"
-        ><v-btn @click="changeFav" v-if="isFav" icon style="z-index: 1"
+        ><v-btn v-if="isFav" icon @click="changeFav"
           ><v-icon color="#FF9A00">mdi-star</v-icon></v-btn
-        ><v-btn @click="changeFav" v-else icon style="z-index: 1"
+        ><v-btn v-else icon @click="changeFav"
           ><v-icon color="#FF9A00">mdi-star-outline</v-icon></v-btn
         >
       </v-row>
@@ -12,19 +12,16 @@
     <nuxt-link
       :to="{ query: { id: place._id }, name: nameDetailsPage }"
       style="text-decoration: none; color: inherit"
-      @click.stop.prevent=""
     >
       <v-card-title style="word-break: normal">{{ place.name }}</v-card-title>
       <v-row class="ms-3">
-        <v--rating>
-          <v-rating
-            :value="place.rate"
-            color="amber"
-            background-color="amber"
-            dense
-            readonly
-          ></v-rating>
-        </v--rating>
+        <v-rating
+          :value="place.rate"
+          color="#FF9A00"
+          background-color="#FF9A00"
+          dense
+          readonly
+        ></v-rating>
 
         <div v-if="$vuetify.breakpoint.mdAndUp" class="grey--text ms-4">
           {{ place.rate }}
@@ -66,54 +63,11 @@ export default {
 
   data: () => ({
     nameDetailsPage: '',
-    isFav: false,
   }),
-  methods: {
-    async addFav() {
-      try {
-        await this.$axios.post('/users/favs', {
-          favs: this.place._id,
-        })
-        // this.$auth.user.favs.push(this.place._id)
-        console.log(this.$auth.user)
-      } catch (e) {
-        this.error = e.response.data.message
-      }
-    },
-    async delFav() {
-      console.log(this.place)
-      try {
-        await this.$axios.delete('/users/favs', {
-          data: { favs: this.place._id },
-        })
-        /* this.$auth.user.favs.splice(
-          this.$auth.user.favs.indexOf(this.place._id)
-        ) */
-        console.log(this.$auth.user)
-      } catch (e) {
-        this.error = e.response.data.message
-      }
-    },
-    changeFav() {
-      if (this.isFav) {
-        this.delFav()
-        this.isFav = false
-      } else {
-        this.addFav()
-        this.isFav = true
-      }
-    },
-  },
   computed: {
-    //   isFav(id) {
-    //     if (this.$auth.user.favs.indexOf(id) !== -1) {
-    //       this.$auth.user.favs.splice(this.$auth.user.favs.indexOf(id))
-    //       return { favs: this.$auth.user.favs }
-    //     } else {
-    //       this.$auth.user.favs.push(id)
-    //       return { favs: this.$auth.user.favs }
-    //     }
-    //   },
+    isFav() {
+      return this.$auth.user.favs.includes(this.place._id)
+    },
   },
   mounted() {
     if (this.place.placeType === 'beaches')
@@ -124,8 +78,35 @@ export default {
       this.nameDetailsPage = 'viewpoint-details'
     if (this.place.placeType === 'museums')
       this.nameDetailsPage = 'museum-details'
-    this.isFav = this.$auth.user.favs.includes(this.place._id)
-    console.log()
+  },
+  methods: {
+    async addFav() {
+      try {
+        const res = await this.$axios.post('/users/favs', {
+          favs: this.place._id,
+        })
+        this.$auth.setUser(res.data.user)
+      } catch (e) {
+        this.error = e.response.data.message
+      }
+    },
+    async delFav() {
+      try {
+        const res = await this.$axios.delete('/users/favs', {
+          data: { favs: this.place._id },
+        })
+        this.$auth.setUser(res.data.user)
+      } catch (e) {
+        this.error = e.response.data.message
+      }
+    },
+    changeFav() {
+      if (this.isFav) {
+        this.delFav()
+      } else {
+        this.addFav()
+      }
+    },
   },
 }
 </script>
