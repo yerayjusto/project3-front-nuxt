@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height class="index">
     <v-row>
-      <v-col v-if="$vuetify.breakpoint.lgAndUp" lg="8" xl="6">
+      <v-col v-if="$vuetify.breakpoint.lgAndUp" style="max-width:70%" lg="8" xl="6">
         <v-timeline class="ms-10">
           <v-timeline-item color="#FF9A00" fill-dot right>
             <v-card min-width="450px">
