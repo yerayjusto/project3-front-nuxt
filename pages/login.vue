@@ -7,12 +7,12 @@
             <v-card>
               <v-card-title style="background-color: #FF9A00;">
                 <v-icon dark size="42" class="mr-4"> mdi-magnify </v-icon>
-                <h3 class="text-h4 white--text font-weight-light">Búsqueda de playas</h3>
+                <h4 class="text-h4 white--text font-weight-light">Búsqueda de playas</h4>
               </v-card-title>
               <v-container>
                 <v-row >
                   <v-col cols="12">
-                    <p>Encuentra tu playa ideal y su localización, gracias a nuestra amplia base de datos.</p>
+                    <p style="font-size:17px">Encuentra tu playa ideal y su localización, gracias a nuestra amplia base de datos.</p>
                   </v-col>
                 </v-row>
               </v-container>
@@ -23,14 +23,14 @@
             <v-card>
               <v-card-title class="secondary">
                 <v-icon dark size="40"> mdi-food-fork-drink </v-icon>
-                <h3 class="text-h4 ms-2 white--text font-weight-light">
+                <h4 class="text-h4 ms-2 white--text font-weight-light" style="font-size:20px">
                   ¿Dónde comer?
-                </h3>
+                </h4>
               </v-card-title>
               <v-container>
                 <v-row>
                   <v-col cols="12">
-                    <p>Aquí encontrarás todo tipo de restaurantes, bares, cafeterías y guachinches para que puedas disfrutar de sus mejores platos y bebidas.</p>
+                    <p style="font-size:17px">Aquí encontrarás todo tipo de restaurantes, bares, cafeterías y guachinches para que puedas disfrutar de sus mejores platos y bebidas.</p>
                   </v-col>
                 </v-row>
               </v-container>
@@ -41,12 +41,12 @@
             <v-card>
               <v-card-title style="background-color: #4D7F9A">
                 <v-icon class="mr-4" dark size="42"> mdi-share-variant </v-icon>
-                <h3 class="text-h4 white--text font-weight-light">Compartir lugares</h3>
+                <h4 class="text-h4 white--text font-weight-light">Compartir lugares</h4>
               </v-card-title>
               <v-container>
                 <v-row>
                   <v-col cols="12">
-                    <p>Podrás compartir cualquier lugar con tus familiares o amigos para conocer nuevos sitios de las islas.
+                    <p style="font-size:17px">Podrás compartir cualquier lugar con tus familiares o amigos para conocer nuevos sitios de las islas.
                       </p>
                   </v-col>
                 </v-row>
