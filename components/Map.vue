@@ -54,8 +54,7 @@ export default {
 }
 .btn-map{
   position: absolute;
- z-index: 2;
- right: 0;
- opacity: 80%;
+  z-index: 2;
+  right: 0;
 }
 </style>

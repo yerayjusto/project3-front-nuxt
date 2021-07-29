@@ -60,7 +60,7 @@
         xs="12"
         lg="4"
         xl="6"
-        :style="[$vuetify.breakpoint.mdAndDown ? {'margin-top': '0px'} : {'margin-top': '140px'}]"
+        :style="[$vuetify.breakpoint.mdAndDown ? {'margin-top': '0px'} : {'margin-top': '80px'}]"
         align="center"
         justify="center"
       >

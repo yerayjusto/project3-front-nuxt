@@ -33,7 +33,57 @@
           <div class="map-container">
             <Map :coordinates="coordinates" />
           </div>
-          <v-card-title>Comentarios</v-card-title>
+          <v-container fluid>
+            <v-row>
+              <v-col align-self="center">
+                <v-card-title center>Comentarios</v-card-title>
+              </v-col>
+            </v-row>
+            <v-divider></v-divider>
+            <v-row>
+              <v-col mt-10>
+                <v-container fluid style="height: 33vh; overflow: auto">
+                  <div v-for="(comment, idx) in place.comments" :key="idx">
+                    <v-card-subtitle>
+                      <v-row>
+                        <v-col>
+                          {{ comment.title }}
+                        </v-col>
+                        <v-col style="text-align: right">
+                          {{ comment.userId.nickName }}
+                        </v-col>
+                      </v-row>
+                    </v-card-subtitle>
+                    <v-card-text>
+                      <v-row>
+                        <v-col>
+                          {{ comment.message }}
+                        </v-col>
+                      </v-row>
+                      <v-row align="center" class="mx-0">
+                        <v-rating
+                          :value="comment.rate"
+                          color="#FF9A00"
+                          background-color="#FF9A00"
+                          dense
+                          half-increments
+                          readonly
+                          size="14"
+                        ></v-rating>
+                      </v-row>
+                    </v-card-text>
+                    <v-divider></v-divider>
+                  </div>
+                </v-container>
+                <v-divider></v-divider>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col pa-10>
+                <AddComment :id="place._id" @updateComments="updateComments" />
+              </v-col>
+            </v-row>
+          </v-container>
         </v-card>
       </v-col>
     </v-row>

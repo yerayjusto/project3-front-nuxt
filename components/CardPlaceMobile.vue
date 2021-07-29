@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="{ params: { id: place._id }, name: nameDetailsPage }"
+    :to="{ query: { id: place._id }, name: nameDetailsPage }"
     style="text-decoration: none; color: inherit"
   >
     <v-card class="rounded-lg">

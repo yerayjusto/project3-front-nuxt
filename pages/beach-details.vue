@@ -319,7 +319,7 @@
             <v-divider></v-divider>
             <v-row>
               <v-col mt-10>
-                <v-container fluid style="height: 35vh; overflow: auto">
+                <v-container fluid style="height: 33vh; overflow: auto">
                   <div v-for="(comment, idx) in place.comments" :key="idx">
                     <v-card-subtitle>
                       <v-row>
