@@ -19,9 +19,7 @@
         cols="12"
         xs="12"
         sm="4"
-        md="4"
-        lg="4"
-        xl="3"
+        md="3"
       >
         <CardRestaurantMobile
           v-if="$vuetify.breakpoint.xs"
