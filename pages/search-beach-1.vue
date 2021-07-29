@@ -20,6 +20,8 @@
         xs="12"
         sm="4"
         md="3"
+        lg="4"
+        xl="3"
       >
         <CardBeachMobile
           v-if="$vuetify.breakpoint.xs"
