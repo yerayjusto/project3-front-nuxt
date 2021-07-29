@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="details">
+  <v-container fluid fill-height class="details">
     <v-row class="d-flex justify-center" :md="10" :xs="12">
       <v-col :lg="7" :md="6" :sm="6" :xs="12">
         <v-card class="mx-auto">
@@ -28,14 +28,6 @@
       </v-col>
       <v-col :lg="3" :md="5" :sm="5" :xs="12">
         <v-card :loading="loading" class="mx-auto" style="height: 100%">
-          <template slot="progress">
-            <v-progress-linear
-              color="deep-purple"
-              height="10"
-              indeterminate
-            ></v-progress-linear>
-          </template>
-
           <v-card-title>Comentarios</v-card-title>
         </v-card>
       </v-col>
@@ -46,8 +38,8 @@
 <script>
 export default {
   name: 'viewpoint-details',
-  async asyncData({ $axios, params }) {
-    const place = await $axios.get(`/places/${params.id}`)
+  async asyncData({ $axios, query }) {
+    const place = await $axios.get(`/places/${query.id}`)
     return {
       place: place.data,
       coordinates: { x: place.data.coordX, y: place.data.coordY },
@@ -73,9 +65,6 @@ export default {
   display: absolute;
   width: 100%;
   height: 100%;
-  background: url('../assets/bgletsgo3.jpg') !important;
-  background-size: cover;
-  background-position: center;
 }
 @media (max-width: 600px) {
   h1 {

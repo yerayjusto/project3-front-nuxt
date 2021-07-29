@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="details">
+  <v-container fluid fill-height class="details">
     <v-row class="d-flex justify-center" :md="10" :xs="12">
       <v-col :lg="7" :md="6" :sm="6" :xs="12">
         <v-card>
@@ -30,7 +30,6 @@
             <b>Acceso:</b> {{ place.placeId.wayToAccess }} <br />
 
             <b>Tipo de arena:</b> {{ place.placeId.sandType }}
-            <b>Localización:</b> {{ place.coordY }} , {{ place.coordX }}
           </v-card-text>
           <v-card-text>
             <b>Servicios:</b>
@@ -341,8 +340,8 @@
                       <v-row align="center" class="mx-0">
                         <v-rating
                           :value="comment.rate"
-                          color="amber"
-                          background-color="amber"
+                          color="#FF9A00"
+                          background-color="#FF9A00"
                           dense
                           half-increments
                           readonly

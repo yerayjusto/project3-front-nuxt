@@ -5,7 +5,7 @@
         <h1>PLAYAS</h1>
       </v-col>
       <v-col v-if="$vuetify.breakpoint.lgAndUp">
-        <h1>TOP SITIOS</h1>
+        <h1>TOP LUGARES</h1>
       </v-col>
     </v-row>
 
@@ -33,7 +33,7 @@
         </v-carousel>
       </v-col>
       <v-col v-if="$vuetify.breakpoint.mdAndDown" cols="12">
-        <h1>TOP SITIOS</h1>
+        <h1>TOP LUGARES</h1>
       </v-col>
       <v-col :cols="$vuetify.breakpoint.lgAndUp ? '2' : '12'" class="d-flex">
         <CardPlaceMobile
@@ -75,7 +75,7 @@ export default {
     const museums = await $axios.get('/places/search', {
       params: { placeType: 'museums' },
     })
-     const restaurantRate = restaurants.data.reduce((acc, i) =>
+    const restaurantRate = restaurants.data.reduce((acc, i) =>
       i.rate > acc.rate ? i : acc
     )
     const beachRate = beaches.data.reduce((acc, i) =>
@@ -87,9 +87,9 @@ export default {
 
     return {
       restaurants: restaurants.data,
-       restaurantRate,
+      restaurantRate,
       beaches: beaches.data,
-       beachRate,
+      beachRate,
       museums: museums.data,
       museumRate,
     }

@@ -22,10 +22,6 @@
           dense
           readonly
         ></v-rating>
-
-        <div v-if="$vuetify.breakpoint.mdAndUp" class="grey--text ms-4">
-          {{ place.rate }}
-        </div>
       </v-row>
 
       <v-card-subtitle v-if="place.municipality.length > 23">
@@ -37,10 +33,10 @@
       </v-card-subtitle>
 
       <v-card-text
-        v-if="place.description.length > 158"
+        v-if="place.description.length > 120"
         style="overflow-x: hidden"
       >
-        {{ place.description.slice(0, 155) + '...' }}
+        {{ place.description.slice(0, 117) + '...' }}
       </v-card-text>
 
       <v-card-text v-else style="overflow-x: hidden">
