@@ -54,8 +54,8 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://letsgocanarias.herokuapp.com/api'
-    // baseURL: 'http://localhost:1800/api'
+    // baseURL: 'https://letsgocanarias.herokuapp.com/api'
+    baseURL: 'http://localhost:1800/api'
   },
   env: {
     MAPBOX_API_KEY: process.env.MAPBOX_API_KEY

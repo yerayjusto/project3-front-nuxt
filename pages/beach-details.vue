@@ -380,12 +380,14 @@ import AddComment from '~/components/AddComment.vue'
 export default {
   components: { AddComment },
   name: 'beach-details',
-  async asyncData({ $axios, params }) {
-    const place = await $axios.get(`/places/${params.id}`)
+     async asyncData({ $axios, query }) {
+
+    const place = await $axios.get(`/places/${query.id}`)
     return {
       place: place.data,
       coordinates:{x:place.data.coordX, y:place.data.coordY}
     }
+
   },
   data: () => ({
     showInfo: false,
@@ -395,7 +397,9 @@ export default {
       return `https://www.google.es/maps/@${this.place.coordX.toString()},${this.place.coordY.toString()},19z`
     },
   },
-  mounted() {},
+  mounted() {
+    console.log(this.$route.query.id)
+    },
 }
 </script>
 <style>
