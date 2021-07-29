@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     createMap() {
-      mapboxgl.accessToken = process.env.MAPBOX_API_KEY
+      mapboxgl.accessToken = "pk.eyJ1IjoibGV0c2dvY2FuYXJpYXMiLCJhIjoiY2tybTcxMndpMWdlbzJvcnYxOHU5N2tyZyJ9.yAXc2ZRhSAhXhNlx7U-mxQ"
       this.map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
