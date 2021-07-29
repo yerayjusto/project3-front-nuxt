@@ -1,14 +1,21 @@
 <template>
   <v-container fluid class="details">
-    <v-row>
-      <v-spacer></v-spacer>
+    <v-row class="d-flex justify-center" :md="10" :xs="12">
       <v-col :lg="7" :md="6" :sm="6" :xs="12">
-        <v-card >
+        <v-card>
           <v-img :src="place.imageUrl" height="300px" width="1200px"></v-img>
 
           <v-card-title>
             {{ place.name }}
           </v-card-title>
+          <v-rating
+            length="5"
+            readonly
+            background-color="#FF9A00"
+            color="#FF9A00"
+            :value="place.rate"
+          >
+          </v-rating>
 
           <v-card-subtitle>
             {{ place.island }} - {{ place.municipality }}
@@ -23,9 +30,7 @@
             <b>Acceso:</b> {{ place.placeId.wayToAccess }} <br />
 
             <b>Tipo de arena:</b> {{ place.placeId.sandType }}
-             <b>Localización:</b> {{place.coordY}} , {{place.coordX}}
-
-
+            <b>Localización:</b> {{ place.coordY }} , {{ place.coordX }}
           </v-card-text>
           <v-card-text>
             <b>Servicios:</b>
@@ -83,7 +88,7 @@
                 <template #activator="{ on, attrs }">
                   <img
                     v-show="place.placeId.nudism === 'Sí'"
-                    src="@/assets/nudist.png"
+                    src="../assets/nudist.png"
                     style="width: 24px; height: 24px"
                     v-bind="attrs"
                     v-on="on"
@@ -265,19 +270,21 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn color="orange lighten-2" text>+ información </v-btn>
+            <v-btn color="orange lighten-2" text @click="showInfo = !showInfo"
+              >+ información
+            </v-btn>
 
             <v-spacer></v-spacer>
 
-            <v-btn icon @click="show = !show">
+            <v-btn icon @click="showInfo = !showInfo">
               <v-icon>{{
-                show ? 'mdi-chevron-up' : 'mdi-chevron-down'
+                showInfo ? 'mdi-chevron-up' : 'mdi-chevron-down'
               }}</v-icon>
             </v-btn>
           </v-card-actions>
 
           <v-expand-transition>
-            <div v-show="show">
+            <div v-show="showInfo">
               <v-divider></v-divider>
 
               <v-card-text class="d-flex aling-center">
@@ -300,101 +307,64 @@
         </v-card>
       </v-col>
       <v-col :lg="3" :md="5" :sm="5" :xs="12">
-        <v-card :loading="loading" class="mx-auto" style="height: 100%">
-          <template slot="progress">
-            <v-progress-linear
-              color="deep-purple"
-              height="10"
-              indeterminate
-            ></v-progress-linear>
-          </template>
-
-          <v-card-title>Comentarios</v-card-title>
-          <v-card-subtitle>
-            Fuí y la comida estaba bien pero me parecio un poco caro.
-          </v-card-subtitle>
-
-          <v-card-text>
-            <v-row align="center" class="mx-0">
-              <v-rating
-                :value="4.5"
-                color="amber"
-                dense
-                half-increments
-                readonly
-                size="14"
-              ></v-rating>
-              <div class="grey--text ms-4">4.5 (413)</div>
+        <v-card class="mx-auto" style="height: 100%">
+          <div class="map-container">
+            <Map :coordinates="coordinates" />
+          </div>
+          <v-container fluid>
+            <v-row>
+              <v-col align-self="center">
+                <v-card-title center>Comentarios</v-card-title>
+              </v-col>
             </v-row>
-          </v-card-text>
-          <v-card-subtitle>
-            A mi me gusto el trato fueron buena gente y me invitaron a un
-            chupito.
-          </v-card-subtitle>
-
-          <v-card-text>
-            <v-row align="center" class="mx-0">
-              <v-rating
-                :value="4.5"
-                color="amber"
-                dense
-                half-increments
-                readonly
-                size="14"
-              ></v-rating>
-              <div class="grey--text ms-4">4.5 (413)</div>
+            <v-divider></v-divider>
+            <v-row>
+              <v-col mt-10>
+                <v-container fluid style="height: 35vh; overflow: auto">
+                  <div v-for="(comment, idx) in place.comments" :key="idx">
+                    <v-card-subtitle>
+                      <v-row>
+                        <v-col>
+                          {{ comment.title }}
+                        </v-col>
+                        <v-col style="text-align: right">
+                          {{ comment.userId.nickName }}
+                        </v-col>
+                      </v-row>
+                    </v-card-subtitle>
+                    <v-card-text>
+                      <v-row>
+                        <v-col>
+                          {{ comment.message }}
+                        </v-col>
+                      </v-row>
+                      <v-row align="center" class="mx-0">
+                        <v-rating
+                          :value="comment.rate"
+                          color="amber"
+                          background-color="amber"
+                          dense
+                          half-increments
+                          readonly
+                          size="14"
+                        ></v-rating>
+                      </v-row>
+                    </v-card-text>
+                    <v-divider></v-divider>
+                  </div>
+                </v-container>
+                <v-divider></v-divider>
+              </v-col>
             </v-row>
-          </v-card-text>
-          <v-card-subtitle>
-            Lo mejor que tienen es el pavo estilo thai con soja, tienen que
-            probarlo.
-          </v-card-subtitle>
-
-          <v-card-text>
-            <v-row align="center" class="mx-0" style="height: 50%">
-              <v-rating
-                :value="4.5"
-                color="amber"
-                dense
-                half-increments
-                readonly
-                size="14"
-              ></v-rating>
-              <div class="grey--text ms-4">4.5 (413)</div>
+            <v-row>
+              <v-col pa-10>
+                <AddComment :id="place._id" @updateComments="updateComments" />
+              </v-col>
             </v-row>
-          </v-card-text>
-          <v-divider></v-divider>
-          <v-card-actions>
-            <v-btn color="orange lighten-2" text @click="show1 = !show1"
-              >+ Comentarios
-            </v-btn>
-
-            <v-spacer></v-spacer>
-
-            <v-btn icon @click="show1 = !show1">
-              <v-icon>{{
-                show ? 'mdi-chevron-up' : 'mdi-chevron-down'
-              }}</v-icon>
-            </v-btn>
-          </v-card-actions>
-          <v-expand-transition>
-            <div v-show="show1">
-              <v-divider></v-divider>
-
-              <v-card-text class="d-flex aling-center">
-                <v-card-text> </v-card-text>
-              </v-card-text>
-            </div>
-          </v-expand-transition>
-
-          <a :href="mapUrl" target="_blank">
-            <v-img :src="require('../assets/google-maps-new-logo.jpg')"></v-img>
-          </a>
+          </v-container>
         </v-card>
       </v-col>
-      <v-spacer></v-spacer>
     </v-row>
-
   </v-container>
 </template>
 
@@ -403,23 +373,31 @@ export default {
   name: 'beach-details',
   async asyncData({ $axios, query }) {
     const place = await $axios.get(`/places/${query.id}`)
-    return { place: place.data }
+    return {
+      place: place.data,
+      coordinates: { x: place.data.coordX, y: place.data.coordY },
+    }
   },
   data: () => ({
-    show: false,
-    show1:false,
+    showInfo: false,
   }),
-  computed: {
-    mapUrl() {
-      return `https://www.google.es/maps/@${this.place.coordX},${this.place.coordY}`
+  mounted() {
+    console.log()
+  },
+  methods: {
+    updateComments(comment) {
+      console.log(comment)
+      this.place.comments.push(comment)
     },
   },
-  mounted() {},
 }
 </script>
 <style>
 #mapid {
   height: 180px;
+}
+.map-container {
+  height: 300px;
 }
 
 .details {
