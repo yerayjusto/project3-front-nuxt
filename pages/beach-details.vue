@@ -1,14 +1,21 @@
 <template>
   <v-container fluid class="details">
-    <v-row>
-      <v-spacer></v-spacer>
-      <v-col :lg="7" :md="6" :sm="6" :xs="12">
+    <v-row class="d-flex justify-center" :md="10" :xs="12">
+      <v-col :lg="7" :md="6" :sm="6" :xs="12" >
         <v-card>
           <v-img :src="place.imageUrl" height="300px" width="1200px"></v-img>
 
           <v-card-title>
             {{ place.name }}
           </v-card-title>
+          <v-rating
+            length="5"
+            readonly
+            background-color="#FF9A00"
+            color="#FF9A00"
+            :value ="place.rate">
+
+          </v-rating>
 
           <v-card-subtitle>
             {{ place.island }} - {{ place.municipality }}
@@ -81,7 +88,7 @@
                 <template #activator="{ on, attrs }">
                   <img
                     v-show="place.placeId.nudism === 'Sí'"
-                    src="@/assets/nudist.png"
+                    src="../assets/nudist.png"
                     style="width: 24px; height: 24px"
                     v-bind="attrs"
                     v-on="on"
@@ -263,19 +270,19 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-btn color="orange lighten-2" text>+ información </v-btn>
+            <v-btn color="orange lighten-2" text @click="showInfo = !showInfo">+ información </v-btn>
 
             <v-spacer></v-spacer>
 
-            <v-btn icon @click="show = !show">
+            <v-btn icon @click="showInfo = !showInfo">
               <v-icon>{{
-                show ? 'mdi-chevron-up' : 'mdi-chevron-down'
+                showInfo ? 'mdi-chevron-up' : 'mdi-chevron-down'
               }}</v-icon>
             </v-btn>
           </v-card-actions>
 
           <v-expand-transition>
-            <div v-show="show">
+            <div v-show="showInfo">
               <v-divider></v-divider>
 
               <v-card-text class="d-flex aling-center">
@@ -299,6 +306,9 @@
       </v-col>
       <v-col :lg="3" :md="5" :sm="5" :xs="12">
         <v-card :loading="loading" class="mx-auto" style="height: 100%">
+          <div class="map-container">
+            <Map :coordinates="coordinates"/>
+          </div>
           <v-container fluid>
             <v-row>
               <v-col align-self="center">
@@ -361,7 +371,6 @@
           </v-container>
         </v-card>
       </v-col>
-      <v-spacer></v-spacer>
     </v-row>
   </v-container>
 </template>
@@ -373,15 +382,17 @@ export default {
   name: 'beach-details',
   async asyncData({ $axios, params }) {
     const place = await $axios.get(`/places/${params.id}`)
-    return { place: place.data }
+    return {
+      place: place.data,
+      coordinates:{x:place.data.coordX, y:place.data.coordY}
+    }
   },
   data: () => ({
-    show: false,
-    show1: false,
+    showInfo: false,
   }),
   computed: {
     mapUrl() {
-      return `https://www.google.es/maps/@${this.place.coordX},${this.place.coordY}`
+      return `https://www.google.es/maps/@${this.place.coordX.toString()},${this.place.coordY.toString()},19z`
     },
   },
   mounted() {},
@@ -390,6 +401,10 @@ export default {
 <style>
 #mapid {
   height: 180px;
+}
+.map-container{
+  height: 300px;
+
 }
 
 .details {

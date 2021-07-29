@@ -84,7 +84,7 @@
 export default {
   name: 'Places',
 
-  async asyncData({ $axios, params, query }) {
+  async asyncData({ $axios, query }) {
     const places = await $axios.get('/places/search', {
       params: { ...query },
     })
