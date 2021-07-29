@@ -97,7 +97,6 @@ export default {
 
       try {
         const resp = await this.$axios.post('/comments', comment)
-        console.log(resp, '-----------------------------------')
         this.$emit('updateComments', resp.data)
         close()
       } catch (e) {
