@@ -70,6 +70,8 @@ computed: {
           data: this.login,
         })
         this.$auth.$storage.setUniversal('role', response.data.rol)
+        console.log(response.data)
+        localStorage.setItem('favs', [response.data.favs] )
       } catch (err) {
         console.log(err)
       }

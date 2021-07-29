@@ -61,34 +61,43 @@ export default {
       type: Object,
       required: true,
     },
+    favs: {
+      type: Array,
+      require: true
+    }
   },
 
   data: () => ({
     nameDetailsPage: '',
-    isFav: false,
   }),
   methods: {
     async addFav() {
       try {
-        await this.$axios.post('/users/favs', {
+         await this.$axios.post('/users/favs', {
           favs: this.place._id,
         })
-        // this.$auth.user.favs.push(this.place._id)
-        console.log(this.$auth.user)
+
+        const favs = [localStorage.getItem('favs')]
+        favs.push(this.place._id)
+        localStorage.setItem('favs', favs)
+        console.log(localStorage.getItem('favs'))
+
       } catch (e) {
         this.error = e.response.data.message
       }
     },
     async delFav() {
-      console.log(this.place)
       try {
         await this.$axios.delete('/users/favs', {
           data: { favs: this.place._id },
         })
-        /* this.$auth.user.favs.splice(
-          this.$auth.user.favs.indexOf(this.place._id)
-        ) */
-        console.log(this.$auth.user)
+
+        const favs = [localStorage.getItem('favs')]
+        favs.splice(favs.indexOf(this.place._id), 1)
+        localStorage.setItem('favs', favs)
+        console.log(localStorage.getItem('favs'))
+
+
       } catch (e) {
         this.error = e.response.data.message
       }
@@ -96,14 +105,17 @@ export default {
     changeFav() {
       if (this.isFav) {
         this.delFav()
-        this.isFav = false
+        this.$emit('updateFavs')
       } else {
         this.addFav()
-        this.isFav = true
+         this.$emit('updateFavs')
       }
     },
   },
   computed: {
+    isFav() {
+      return this.favs.includes(this.place._id)
+    }
     //   isFav(id) {
     //     if (this.$auth.user.favs.indexOf(id) !== -1) {
     //       this.$auth.user.favs.splice(this.$auth.user.favs.indexOf(id))
@@ -123,8 +135,7 @@ export default {
       this.nameDetailsPage = 'viewpoint-details'
     if (this.place.placeType === 'museums')
       this.nameDetailsPage = 'museum-details'
-    this.isFav = this.$auth.user.favs.includes(this.place._id)
-    console.log()
+    console.log(this.favs)
   },
 }
 </script>

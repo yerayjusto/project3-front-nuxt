@@ -58,7 +58,7 @@
                 :place="place"
                 style="width: 100%"
               />
-              <CardPlace v-else :place="place" />
+              <CardPlace @input="updateFavs" v-else :place="place" :favs="favs" />
             </v-col>
           </v-row>
         </v-container>
@@ -79,7 +79,16 @@ export default {
   },
   data() {
     return {
-      panel: 0
+      panel: 0,
+      favs: ''
+    }
+  },
+  mounted() {
+    this.favs = localStorage.getItem('favs')
+  },
+  methods: {
+    updateFavs(){
+      this.favs = localStorage.getItem('favs')
     }
   },
   watchQuery: [
