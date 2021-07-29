@@ -7,7 +7,7 @@
             <v-card>
               <v-card-title style="background-color: #FF9A00;">
                 <v-icon dark size="42" class="mr-4"> mdi-magnify </v-icon>
-                <h2 class="text-h4 white--text font-weight-light">Búsqueda de playas</h2>
+                <h3 class="text-h4 white--text font-weight-light">Búsqueda de playas</h3>
               </v-card-title>
               <v-container>
                 <v-row >
@@ -23,9 +23,9 @@
             <v-card>
               <v-card-title class="secondary">
                 <v-icon dark size="40"> mdi-food-fork-drink </v-icon>
-                <h2 class="text-h4 ms-2 white--text font-weight-light">
+                <h3 class="text-h4 ms-2 white--text font-weight-light">
                   ¿Dónde comer?
-                </h2>
+                </h3>
               </v-card-title>
               <v-container>
                 <v-row>
@@ -41,7 +41,7 @@
             <v-card>
               <v-card-title style="background-color: #4D7F9A">
                 <v-icon class="mr-4" dark size="42"> mdi-share-variant </v-icon>
-                <h2 class="text-h4 white--text font-weight-light">Compartir lugares</h2>
+                <h3 class="text-h4 white--text font-weight-light">Compartir lugares</h3>
               </v-card-title>
               <v-container>
                 <v-row>
