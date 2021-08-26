@@ -1,1 +1,1 @@
-# proyect3-front-nuxt
+# project3-front-nuxt
